@@ -5,3 +5,6 @@ require 'ruby_warrior/wait'
 require 'ruby_warrior/floor'
 require 'ruby_warrior/position'
 require 'ruby_warrior/walk'
+require 'ruby_warrior/level_builder'
+require 'ruby_warrior/level'
+
