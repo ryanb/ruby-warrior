@@ -9,7 +9,7 @@ describe RubyWarrior::Wait do
     lambda { @wait.act }.should_not raise_error(Exception)
   end
   
-  it "should be kind of Ability" do
+  it "should be subclass of Ability" do
     @wait.should be_kind_of(RubyWarrior::Ability)
   end
 end
