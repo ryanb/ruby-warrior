@@ -11,4 +11,6 @@ require 'ruby_warrior/ui'
 
 require 'ruby_warrior/units/warrior'
 
+require 'ruby_warrior/abilities/base'
 require 'ruby_warrior/abilities/walk'
+require 'ruby_warrior/abilities/attack'
