@@ -9,6 +9,10 @@ module RubyWarrior
       @level = level
     end
     
+    def level
+      @level
+    end
+    
     def level_name
       "level-" + @level.number.to_s.rjust(3, '0')
     end

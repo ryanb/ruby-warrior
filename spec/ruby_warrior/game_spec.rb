@@ -7,6 +7,6 @@ describe RubyWarrior::Game do
   
   it "should include tower name in player path" do
     @game.stubs(:tower_name).returns('foo')
-    @game.player_path.should == 'ruby-warrior/foo'
+    @game.player_path.should == 'ruby-warrior/foo-tower'
   end
 end

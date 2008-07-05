@@ -4,8 +4,9 @@ module RubyWarrior
       puts "Welcome to Ruby Warrior"
       
       if player_levels.empty?
-        # TODO ask before making directory
+        # TODO ask before making level
         generate_level(1)
+        puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
         puts "Player files found, it looks like you're on level #{current_level_number}"
         puts tower.build_level(current_level_number).inspect
@@ -35,7 +36,7 @@ module RubyWarrior
     end
     
     def player_path
-      "ruby-warrior/#{tower_name}"
+      "ruby-warrior/#{tower_name}-tower"
     end
   end
 end
