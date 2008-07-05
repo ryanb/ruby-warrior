@@ -30,6 +30,13 @@ describe RubyWarrior::LevelBuilder do
       level = @builder.result
       level.goal.should == [1, 2]
     end
+    
+    it "should yield new unit when building" do
+      @builder.unit :warrior, :x => 1, :y => 2 do |unit|
+        unit.should be_kind_of(RubyWarrior::Units::Warrior)
+        unit.position.should be_at(1, 2)
+      end
+    end
   end
   
   it "build on class should eval the file and return the result" do

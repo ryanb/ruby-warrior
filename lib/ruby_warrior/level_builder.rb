@@ -26,8 +26,10 @@ module RubyWarrior
       @level.goal = [options[:x], options[:y]]
     end
     
-    def warrior(options)
-      @level.add(Units::Warrior.new, options[:x], options[:y], options[:facing])
+    def unit(unit, options)
+      unit = eval("Units::#{unit.to_s.capitalize}").new
+      @level.add(unit, options[:x], options[:y], options[:facing])
+      yield unit if block_given?
     end
   end
 end

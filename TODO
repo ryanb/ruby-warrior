@@ -1,7 +1,4 @@
 Primary
-- add enemy units which have scripts like the warrior
-- add attack action
-- add feel sense to detect if there's something near
 - fill level readme adding more info about available abilities and units on level
 - add wall boundaries so player can't move outside them
 - add more generic documentation for those just getting started
