@@ -44,7 +44,15 @@ describe RubyWarrior::Units::Base do
   it "should be able to action twice if on separate turn" do
     @unit.add_actions(:walk)
     @unit.walk!
-    @unit.turn
+    @unit.perform_turn
     lambda { @unit.walk! }.should_not raise_error(Exception)
+  end
+  
+  it "should have feel ability once added" do
+    @unit.add_senses(:feel)
+    feel = stub
+    RubyWarrior::Abilities::Feel.expects(:new).with(@unit).returns(feel)
+    feel.expects(:perform).with(:forward)
+    @unit.feel :forward
   end
 end

@@ -20,7 +20,7 @@ module RubyWarrior
       turns.times do |n|
         return if passed?
         UI.puts "- turn #{n+1} -"
-        @floor.units.each { |unit| unit.turn }
+        @floor.units.each { |unit| unit.perform_turn }
         yield if block_given?
       end
     end

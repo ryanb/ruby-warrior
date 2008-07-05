@@ -15,6 +15,10 @@ module RubyWarrior
       def offset(direction)
         DIRECTIONS[direction]
       end
+      
+      def get(direction)
+        @unit.position.get_relative(*offset(direction))
+      end
     end
   end
 end
