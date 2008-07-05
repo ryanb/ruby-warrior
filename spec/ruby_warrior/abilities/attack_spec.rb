@@ -14,7 +14,7 @@ describe RubyWarrior::Abilities::Attack do
     receiver.health.should == 2
   end
   
-  it "should do nothing if recipient doesn't respond to health" do
+  it "should do nothing if recipient doesn't respond to take damage" do
     @attack.stubs(:get).returns(Object.new)
     lambda { @attack.perform }.should_not raise_error(Exception)
   end

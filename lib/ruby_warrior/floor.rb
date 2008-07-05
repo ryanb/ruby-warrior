@@ -1,6 +1,5 @@
 module RubyWarrior
   class Floor
-    attr_reader :units
     attr_accessor :width, :height, :grid
     
     def initialize(width, height)
@@ -14,8 +13,12 @@ module RubyWarrior
       unit.position = Position.new(self, x, y, direction)
     end
     
+    def units
+      @units.reject { |u| u.position.nil? }
+    end
+    
     def get(x, y)
-      @units.detect do |unit|
+      units.detect do |unit|
         unit.position.at?(x, y)
       end
     end

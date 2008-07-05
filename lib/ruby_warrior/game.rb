@@ -12,12 +12,12 @@ module RubyWarrior
         load player_level_paths.last + '/player.rb'
         UI.puts "Starting Level #{current_level.number}"
         current_level.play do
-          sleep 0.5
+          sleep 0.8
         end
         if current_level.passed?
           if next_level
-            generate_player_files_for_level(next_level)
-            UI.puts "Success! See the ruby-warrior directory for the next level."
+            generate_player_files(next_level)
+            UI.puts "Success! You have found the stairs. See the ruby-warrior directory for the next level."
           else
             UI.puts "CONGRATULATIONS! You have climbed to the top of the tower."
           end

@@ -21,7 +21,11 @@ module RubyWarrior
       def take_damage(amount)
         if @health
           @health -= amount
-          @position = nil if @health <= 0
+          say "takes #{amount} damage, #{@health} health power left"
+          if @health <= 0
+            @position = nil
+            say "dies"
+          end
         end
       end
       
@@ -55,6 +59,7 @@ module RubyWarrior
       def name
         self.class.name.split('::').last
       end
+      alias_method :to_s, :name
     end
   end
 end

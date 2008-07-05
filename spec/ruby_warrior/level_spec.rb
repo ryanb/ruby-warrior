@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe RubyWarrior::Level do
   before(:each) do
     @level = RubyWarrior::Level.new(1, 2, 3)
+    @level.stubs(:failed?).returns(false)
   end
   
   it "should call turn on each object specified number of times" do
@@ -21,7 +22,8 @@ describe RubyWarrior::Level do
   end
   
   it "should consider passed when warrior is on goal" do
-    @level.add(RubyWarrior::Units::Warrior.new, 0, 0, :north)
+    @level.warrior = RubyWarrior::Units::Warrior.new
+    @level.add(@level.warrior, 0, 0, :north)
     @level.goal = [0, 0]
     @level.should be_passed
   end

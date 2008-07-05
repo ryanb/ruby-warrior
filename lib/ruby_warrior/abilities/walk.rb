@@ -3,8 +3,12 @@ module RubyWarrior
     class Walk < Base
       def perform(direction = :forward)
         if @unit.position
-          @unit.say "walks #{direction}"
-          @unit.position.move(*offset(direction))
+          if get(direction).nil?
+            @unit.say "walks #{direction}"
+            @unit.position.move(*offset(direction))
+          else
+            @unit.say "bumps into #{get(direction)}"
+          end
         end
       end
     end

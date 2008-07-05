@@ -84,4 +84,9 @@ describe RubyWarrior::Units::Base do
     RubyWarrior::UI.expects(:puts).with("Base foo")
     @unit.say "foo"
   end
+  
+  it "should return name in to_s" do
+    @unit.name.should == 'Base'
+    @unit.to_s.should == 'Base'
+  end
 end

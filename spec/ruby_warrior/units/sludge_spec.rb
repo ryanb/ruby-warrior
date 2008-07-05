@@ -16,4 +16,8 @@ describe RubyWarrior::Units::Sludge do
   it "should have attack power of 2" do
     @sludge.attack_power.should == 2
   end
+  
+  it "should have 8 health power at beginning" do
+    @sludge.health.should == 8
+  end
 end

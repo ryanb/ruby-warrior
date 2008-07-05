@@ -2,14 +2,15 @@ module RubyWarrior
   module Units
     class Sludge < Base
       def initialize
+        @health = 8
         add_actions :attack
         add_senses :feel
       end
       
       def turn
-        [:front, :left, :right, :back].each do |direction|
-          if sense(direction)
-            attack(direction)
+        [:forward, :left, :right, :back].each do |direction|
+          if feel(direction)
+            attack!(direction)
             return
           end
         end

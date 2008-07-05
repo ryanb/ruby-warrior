@@ -30,6 +30,11 @@ module RubyWarrior
       unit = eval("Units::#{unit.to_s.capitalize}").new
       @level.add(unit, options[:x], options[:y], options[:facing])
       yield unit if block_given?
+      unit
+    end
+    
+    def warrior(options, &block)
+      @level.warrior = unit(:warrior, options, &block)
     end
   end
 end

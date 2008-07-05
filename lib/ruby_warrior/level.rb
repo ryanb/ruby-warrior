@@ -18,7 +18,7 @@ module RubyWarrior
     
     def play(turns = 1000)
       turns.times do |n|
-        return if passed?
+        return if passed? || failed?
         UI.puts "- turn #{n+1} -"
         @floor.units.each { |unit| unit.perform_turn }
         yield if block_given?
@@ -30,7 +30,11 @@ module RubyWarrior
     end
     
     def passed?
-      @floor.get(*goal).kind_of? Units::Warrior if goal
+      @floor.get(*goal) == warrior if goal
+    end
+    
+    def failed?
+      !@floor.units.include?(warrior)
     end
   end
 end
