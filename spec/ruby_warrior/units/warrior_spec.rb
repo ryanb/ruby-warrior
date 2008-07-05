@@ -30,4 +30,8 @@ describe RubyWarrior::Units::Warrior do
       @warrior.player.should == 'player'
     end
   end
+  
+  it "should have an attack power of 5" do
+    @warrior.attack_power.should == 5
+  end
 end

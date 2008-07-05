@@ -12,6 +12,10 @@ module RubyWarrior
       def player
         @player ||= Player.new
       end
+      
+      def attack_power
+        5
+      end
     end
   end
 end

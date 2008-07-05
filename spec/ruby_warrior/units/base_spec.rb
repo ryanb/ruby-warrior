@@ -13,6 +13,10 @@ describe RubyWarrior::Units::Base do
     @unit.position.should be_nil
   end
   
+  it "should have an attack power which defaults to zero" do
+    @unit.attack_power.should be_zero
+  end
+  
   it "should not have walk ability initially" do
     @unit.should_not respond_to(:walk!)
   end

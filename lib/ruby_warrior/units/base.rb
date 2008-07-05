@@ -3,6 +3,10 @@ module RubyWarrior
     class Base
       attr_accessor :position, :health
       
+      def attack_power
+        0
+      end
+      
       def turn
         @action_called = false
         play_turn

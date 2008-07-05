@@ -4,6 +4,10 @@ module RubyWarrior
       def initialize
         add_actions :attack
       end
+      
+      def attack_power
+        2
+      end
     end
   end
 end

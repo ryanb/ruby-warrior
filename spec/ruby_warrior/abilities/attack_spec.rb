@@ -2,16 +2,15 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe RubyWarrior::Abilities::Attack do
   before(:each) do
-    @attacker = stub(:position => stub)
+    @attacker = stub(:position => stub, :attack_power => 3)
     @attack = RubyWarrior::Abilities::Attack.new(@attacker)
   end
   
-  it "should subtract one from health when performing" do
+  it "should subtract attack power amount from health" do
     receiver = Struct.new(:health).new(5)
     @attack.stubs(:get).returns(receiver)
-    receiver.health = 10
     @attack.perform
-    receiver.health.should == 9
+    receiver.health.should == 2
   end
   
   it "should do nothing if recipient doesn't respond to health" do
