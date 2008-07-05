@@ -1,30 +1,23 @@
 module RubyWarrior
   class Floor
+    attr_reader :units
     attr_accessor :width, :height, :grid
     
     def initialize(width, height)
       @width = width
       @height = height
-      @grid = Array.new(width) { Array.new(height) }
+      @units = []
     end
     
-    def get(row, col)
-      @grid[row][col]
+    def add(unit, x, y, direction = nil)
+      @units << unit
+      unit.position = Position.new(self, x, y, direction)
     end
     
-    def set(obj, row, col)
-      @grid[row][col] = obj
-    end
-    
-    def clear(row, col)
-      obj = get(row, col)
-      @grid[row][col] = nil
-      obj
-    end
-    
-    # TODO make sure the objects returned are in a consistant order
-    def objects
-      @grid.flatten.compact
+    def get(x, y)
+      @units.detect do |unit|
+        unit.position.at?(x, y)
+      end
     end
   end
 end

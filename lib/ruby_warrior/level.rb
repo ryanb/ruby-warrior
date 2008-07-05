@@ -19,12 +19,12 @@ module RubyWarrior
     def play(turns = 1000)
       turns.times do
         return if passed?
-        @floor.objects.each { |obj| obj.turn }
+        @floor.units.each { |unit| unit.turn }
       end
     end
     
     def add(obj, x, y, direction)
-      @floor.set(obj, x, y)
+      @floor.add(obj, x, y, direction)
     end
     
     def passed?

@@ -2,11 +2,15 @@ module RubyWarrior
   class Position
     DIRECTIONS = [:north, :east, :south, :west]
     
-    def initialize(floor, x, y, direction)
+    def initialize(floor, x, y, direction = nil)
       @floor = floor
       @x = x
       @y = y
-      @direction_index = DIRECTIONS.index(direction)
+      @direction_index = DIRECTIONS.index(direction || :north)
+    end
+    
+    def at?(x, y)
+      @x == x && @y == y
     end
     
     def direction
@@ -24,9 +28,7 @@ module RubyWarrior
     end
     
     def move(forward, right = 0)
-      obj = @floor.clear(@x, @y)
       @x, @y = *translate_offset(forward, right)
-      @floor.set(obj, @x, @y)
     end
     
     private
