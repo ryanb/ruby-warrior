@@ -1,0 +1,25 @@
+Primary
+- abstract out actions and senses to make it easier to add them
+- add enemy units which have scripts like the warrior
+- add attack action
+- add feel sense to detect if there's something near
+- fill level readme adding more info about available abilities and units on level
+- add wall boundaries so player can't move outside them
+- ensure only one action is called per turn on a unit
+- add more generic documentation for those just getting started
+
+
+Secondary
+- use proxy whenever sending unit to Player to avoid hacking
+- handle errors cleanly stating if it's in the user's Player script
+- add a more in-depth help doc if they get stuck
+
+
+Ideas
+- the ability to pick up and equip items
+- remember state across levels to keep score, health, etc.
+- some actions take multiple turns (such as swinging a large axe) other units may be able to detect this and get out of the way
+- units turns are taken in the order of their speed attribute
+- add taunt ability to force other units to walk towards you
+- reward remembering state between turns - such as where an enemy is, what he is doing, what his stats are, etc.
+- pick up items on fallen enemy ?
