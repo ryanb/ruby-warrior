@@ -25,5 +25,9 @@ module RubyWarrior
     def stairs(options)
       @level.goal = [options[:x], options[:y]]
     end
+    
+    def warrior(options)
+      @level.add(Warrior.new, options[:x], options[:y], options[:facing])
+    end
   end
 end

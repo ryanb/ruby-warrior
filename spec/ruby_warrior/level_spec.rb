@@ -6,22 +6,22 @@ describe RubyWarrior::Level do
   end
   
   it "should call turn on each object specified number of times" do
-    object = stub
+    object = RubyWarrior::Warrior.new
     object.expects(:turn).times(2)
-    @level.add(object, 0, 0)
+    @level.add(object, 0, 0, :north)
     @level.play(2)
   end
   
   it "should return immediately when passed" do
-    object = stub
+    object = RubyWarrior::Warrior.new
     object.expects(:turn).times(0)
-    @level.add(object, 0, 0)
+    @level.add(object, 0, 0, :north)
     @level.stubs(:passed?).returns(true)
     @level.play(2)
   end
   
   it "should consider passed when warrior is on goal" do
-    @level.add(RubyWarrior::Warrior.new, 0, 0)
+    @level.add(RubyWarrior::Warrior.new, 0, 0, :north)
     @level.goal = [0, 0]
     @level.should be_passed
   end

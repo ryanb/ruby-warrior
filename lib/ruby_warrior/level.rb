@@ -1,7 +1,7 @@
 module RubyWarrior
   class Level
     attr_reader :number
-    attr_accessor :description, :tip, :goal
+    attr_accessor :description, :tip, :goal, :warrior
     
     def initialize(number, width, height)
       @number = number
@@ -23,7 +23,7 @@ module RubyWarrior
       end
     end
     
-    def add(obj, x, y)
+    def add(obj, x, y, direction)
       @floor.set(obj, x, y)
     end
     

@@ -8,6 +8,4 @@ tip "Return Walk.new from the 'turn' method to walk forward."
 
 stairs :x => 7, :y => 0
 
-# warrior :x => 0, :y => 0, :facing => :east do |w|
-#   w.abilities = [Wait, Walk]
-# end
+warrior :x => 0, :y => 0, :facing => :east
