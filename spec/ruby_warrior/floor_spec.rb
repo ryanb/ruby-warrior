@@ -6,7 +6,7 @@ describe RubyWarrior::Floor do
   end
   
   it "should be able to add a unit and fetch it at that position" do
-    unit = RubyWarrior::Warrior.new
+    unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 0, 1, :north)
     @floor.get(0, 1).should == unit
   end

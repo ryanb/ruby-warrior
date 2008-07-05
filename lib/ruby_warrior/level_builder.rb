@@ -27,7 +27,7 @@ module RubyWarrior
     end
     
     def warrior(options)
-      @level.add(Warrior.new, options[:x], options[:y], options[:facing])
+      @level.add(Units::Warrior.new, options[:x], options[:y], options[:facing])
     end
   end
 end

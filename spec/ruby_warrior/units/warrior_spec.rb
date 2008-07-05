@@ -1,8 +1,8 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe RubyWarrior::Warrior do
+describe RubyWarrior::Units::Warrior do
   before(:each) do
-    @warrior = RubyWarrior::Warrior.new
+    @warrior = RubyWarrior::Units::Warrior.new
   end
   
   # TODO pass proxy instead of warrior so player can't hack it as easily
@@ -19,5 +19,17 @@ describe RubyWarrior::Warrior do
     2.times do
       @warrior.player.should == 'player'
     end
+  end
+  
+  it "should not have walk ability initially" do
+    @warrior.should_not respond_to(:walk!)
+  end
+  
+  it "should have walk ability once added" do
+    @warrior.add_action(:walk)
+    walk = stub
+    RubyWarrior::Abilities::Walk.expects(:new).with(@warrior).returns(walk)
+    walk.expects(:perform).with(:forward)
+    @warrior.walk! :forward
   end
 end

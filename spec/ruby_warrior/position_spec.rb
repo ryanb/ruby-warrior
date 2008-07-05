@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe RubyWarrior::Position do
   before(:each) do
-    @unit = RubyWarrior::Warrior.new
+    @unit = RubyWarrior::Units::Warrior.new
     @floor = RubyWarrior::Floor.new(6, 5)
     @floor.add(@unit, 1, 2, :north)
     @position = @unit.position
@@ -25,26 +25,26 @@ describe RubyWarrior::Position do
   end
   
   it "should get relative object in front" do
-    unit = RubyWarrior::Warrior.new
+    unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 1, 1)
     @position.get_relative(1).should == unit
   end
   
   it "should get relative object in front when rotated" do
-    unit = RubyWarrior::Warrior.new
+    unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 2, 2)
     @position.rotate(1)
     @position.get_relative(1).should == unit
   end
   
   it "should get relative object diagonally" do
-    unit = RubyWarrior::Warrior.new
+    unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 0, 1)
     @position.get_relative(1, -1).should == unit
   end
   
   it "should get relative object diagonally when rotating" do
-    unit = RubyWarrior::Warrior.new
+    unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 0, 1)
     @position.rotate(2)
     @position.get_relative(-1, 1).should == unit

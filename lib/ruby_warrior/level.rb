@@ -30,7 +30,7 @@ module RubyWarrior
     end
     
     def passed?
-      @floor.get(*goal).kind_of? Warrior if goal
+      @floor.get(*goal).kind_of? Units::Warrior if goal
     end
   end
 end
