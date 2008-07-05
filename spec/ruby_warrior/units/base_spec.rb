@@ -41,7 +41,8 @@ describe RubyWarrior::Units::Base do
     lambda { @unit.walk! }.should raise_error(Exception)
   end
   
-  it "should be able to action twice if on separate turn" do
+  it "should be able to perform action twice if on separate turn" do
+    @unit.position = stub_everything
     @unit.add_actions(:walk)
     @unit.walk!
     @unit.perform_turn
@@ -54,5 +55,28 @@ describe RubyWarrior::Units::Base do
     RubyWarrior::Abilities::Feel.expects(:new).with(@unit).returns(feel)
     feel.expects(:perform).with(:forward)
     @unit.feel :forward
+  end
+  
+  it "should subtract health when taking damage" do
+    @unit.health = 10
+    @unit.take_damage(3)
+    @unit.health.should == 7
+  end
+  
+  it "should do nothing when taking damage if health isn't set" do
+    lambda { @unit.take_damage(3) }.should_not raise_error(Exception)
+  end
+  
+  it "should set position to nil when running out of health" do
+    @unit.position = stub
+    @unit.health = 10
+    @unit.take_damage(10)
+    @unit.position.should be_nil
+  end
+  
+  it "should not call turn if position isn't set" do
+    @unit.position = nil
+    @unit.stubs(:turn).raises('should not be called')
+    lambda { @unit.perform_turn }.should_not raise_error(Exception)
   end
 end

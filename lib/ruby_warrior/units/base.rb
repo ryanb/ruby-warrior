@@ -8,12 +8,21 @@ module RubyWarrior
       end
       
       def perform_turn
-        @action_called = false
-        turn
+        if @position
+          @action_called = false
+          turn
+        end
       end
       
       def turn
         # to be overriden by subclass
+      end
+      
+      def take_damage(amount)
+        if @health
+          @health -= amount
+          @position = nil if @health <= 0
+        end
       end
       
       # TODO there may be a better way to do this

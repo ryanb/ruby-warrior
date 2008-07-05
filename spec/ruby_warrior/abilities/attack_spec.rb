@@ -7,7 +7,8 @@ describe RubyWarrior::Abilities::Attack do
   end
   
   it "should subtract attack power amount from health" do
-    receiver = Struct.new(:health).new(5)
+    receiver = RubyWarrior::Units::Base.new
+    receiver.health = 5
     @attack.stubs(:get).returns(receiver)
     @attack.perform
     receiver.health.should == 2
