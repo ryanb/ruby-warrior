@@ -28,4 +28,12 @@ describe RubyWarrior::Floor do
     @floor.clear(0, 0).should == obj
     @floor.get(0, 0).should be_nil
   end
+  
+  it "should return all objects" do
+    a = Object.new
+    b = Object.new
+    @floor.set(a, 0, 0)
+    @floor.set(b, 0, 1)
+    @floor.objects.should == [a, b]
+  end
 end

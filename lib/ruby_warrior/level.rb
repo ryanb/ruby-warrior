@@ -15,5 +15,11 @@ module RubyWarrior
     def height
       @floor.height
     end
+    
+    def play(turns = 1000)
+      turns.times do
+        floor.objects.each { |obj| obj.turn }
+      end
+    end
   end
 end

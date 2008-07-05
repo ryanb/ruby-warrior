@@ -21,5 +21,10 @@ module RubyWarrior
       @grid[row][col] = nil
       obj
     end
+    
+    # TODO make sure the objects returned are in a consistant order
+    def objects
+      @grid.flatten.compact
+    end
   end
 end

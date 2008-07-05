@@ -5,26 +5,40 @@ module RubyWarrior
       
       if player_levels.empty?
         # TODO ask before making level
-        generate_level(1)
+        generate_player_files(current_level)
         puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
-        puts "Player files found, it looks like you're on level #{current_level_number}"
-        puts tower.build_level(current_level_number).inspect
+        puts "Starting Level #{current_level.number}"
+        current_level.play
+        if level.passed?
+          if next_level
+            generate_player_files_for_level(next_level)
+            puts "Success! See the ruby-warrior directory for the next level."
+          else
+            puts "CONGRATULATIONS! You have climbed to the top of the tower."
+          end
+        else
+          puts "Sorry, you failed the level. Change your script and try again."
+        end
       end
     end
     
-    def current_level_number
-      player_levels.last
+    def current_level
+      @level ||= tower.build_level(player_levels.last || 1)
+    end
+    
+    def next_level
+      tower.build_level(current_level.number+1)
     end
     
     def player_levels
       Dir["#{player_path}/level-*"].map do |level|
-        level[/[0-9]+^/].to_i
+        level[/[0-9]+$/].to_i
       end
     end
     
-    def generate_level(number)
-      PlayerGenerator.new(player_path, tower.build_level(number)).generate
+    def generate_player_files(level)
+      PlayerGenerator.new(player_path, level).generate
     end
     
     def tower_name

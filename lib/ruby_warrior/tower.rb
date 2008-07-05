@@ -19,7 +19,7 @@ module RubyWarrior
     end
     
     def build_level(number)
-      LevelBuilder.build(file_for_level(number))
+      LevelBuilder.build(file_for_level(number)) if file_for_level(number)
     end
   end
 end
