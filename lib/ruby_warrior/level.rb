@@ -18,8 +18,17 @@ module RubyWarrior
     
     def play(turns = 1000)
       turns.times do
-        floor.objects.each { |obj| obj.turn }
+        return if passed?
+        @floor.objects.each { |obj| obj.turn }
       end
+    end
+    
+    def add(obj, x, y)
+      @floor.set(obj, x, y)
+    end
+    
+    def passed?
+      @floor.get(*goal).kind_of? Warrior if goal
     end
   end
 end
