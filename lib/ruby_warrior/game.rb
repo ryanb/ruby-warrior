@@ -5,8 +5,6 @@ module RubyWarrior
       
       if player_levels.empty?
         # TODO ask before making directory
-        Dir.mkdir('ruby-warrior')
-        Dir.mkdir("ruby-warrior/#{tower.name}")
         generate_level(1)
       else
         puts "Player files found, it looks like you're on level #{current_level_number}"
@@ -19,13 +17,13 @@ module RubyWarrior
     end
     
     def player_levels
-      Dir["ruby-warrior/#{tower}/level-*"].map do |level|
+      Dir["#{player_path}/level-*"].map do |level|
         level[/[0-9]+^/].to_i
       end
     end
     
     def generate_level(number)
-      Dir.mkdir("ruby-warrior/#{tower.name}/level-00#{number}")
+      PlayerGenerator.new(player_path, tower.build_level(number)).generate
     end
     
     def tower_name
@@ -34,6 +32,10 @@ module RubyWarrior
     
     def tower
       @tower ||= Tower.new(tower_name)
+    end
+    
+    def player_path
+      "ruby-warrior/#{tower_name}"
     end
   end
 end
