@@ -29,4 +29,8 @@ describe RubyWarrior::LevelBuilder do
     level.goal.should == [1, 2]
   end
   
+  it "build on class should eval the file and return the result" do
+    File.expects(:read).with('/foo/bar').returns("@level = 'level'")
+    RubyWarrior::LevelBuilder.build('/foo/bar').should == 'level'
+  end
 end

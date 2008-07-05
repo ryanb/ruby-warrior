@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../lib/ruby_warrior'
+
+game = RubyWarrior::Game.new # TODO pass options into game when initializing
+game.start

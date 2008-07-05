@@ -1,6 +1,9 @@
 module RubyWarrior
   class LevelBuilder
-    def initialize
+    def self.build(file)
+      builder = new
+      builder.instance_eval(File.read(file))
+      builder.result
     end
     
     def level(number, options)
