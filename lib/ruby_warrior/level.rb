@@ -23,8 +23,8 @@ module RubyWarrior
       end
     end
     
-    def add(obj, x, y, direction)
-      @floor.add(obj, x, y, direction)
+    def add(*args)
+      @floor.add(*args)
     end
     
     def passed?

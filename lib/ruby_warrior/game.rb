@@ -8,9 +8,11 @@ module RubyWarrior
         generate_player_files(current_level)
         puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
+        puts "Loading your player.rb file."
+        load player_level_paths.last + '/player.rb'
         puts "Starting Level #{current_level.number}"
         current_level.play
-        if level.passed?
+        if current_level.passed?
           if next_level
             generate_player_files_for_level(next_level)
             puts "Success! See the ruby-warrior directory for the next level."
@@ -31,8 +33,12 @@ module RubyWarrior
       tower.build_level(current_level.number+1)
     end
     
+    def player_level_paths
+      Dir["#{player_path}/level-*"]
+    end
+    
     def player_levels
-      Dir["#{player_path}/level-*"].map do |level|
+      player_level_paths.map do |level|
         level[/[0-9]+$/].to_i
       end
     end
