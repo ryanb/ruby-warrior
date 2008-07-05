@@ -1,28 +1,28 @@
 module RubyWarrior
   class Game
     def start
-      puts "Welcome to Ruby Warrior"
+      UI.puts "Welcome to Ruby Warrior"
       
       if player_levels.empty?
         # TODO ask before making level
         generate_player_files(current_level)
-        puts "First level has been generated. See the ruby-warrior directory for instructions."
+        UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
-        puts "Loading your player.rb file."
+        UI.puts "Loading your player.rb file."
         load player_level_paths.last + '/player.rb'
-        puts "Starting Level #{current_level.number}"
+        UI.puts "Starting Level #{current_level.number}"
         current_level.play do
           sleep 0.5
         end
         if current_level.passed?
           if next_level
             generate_player_files_for_level(next_level)
-            puts "Success! See the ruby-warrior directory for the next level."
+            UI.puts "Success! See the ruby-warrior directory for the next level."
           else
-            puts "CONGRATULATIONS! You have climbed to the top of the tower."
+            UI.puts "CONGRATULATIONS! You have climbed to the top of the tower."
           end
         else
-          puts "Sorry, you failed the level. Change your script and try again."
+          UI.puts "Sorry, you failed the level. Change your script and try again."
         end
       end
     end

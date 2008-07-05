@@ -12,7 +12,7 @@ module RubyWarrior
     
     def walk
       position.move(1)
-      puts "Warrior walks forward."
+      UI.puts "Warrior walks forward."
     end
   end
 end

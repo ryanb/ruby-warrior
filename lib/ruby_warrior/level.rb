@@ -19,7 +19,7 @@ module RubyWarrior
     def play(turns = 1000)
       turns.times do |n|
         return if passed?
-        puts "- turn #{n+1} -"
+        UI.puts "- turn #{n+1} -"
         @floor.units.each { |unit| unit.turn }
         yield if block_given?
       end
