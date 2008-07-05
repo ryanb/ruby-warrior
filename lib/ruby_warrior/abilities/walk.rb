@@ -13,7 +13,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
-        @unit.position.move(*DIRECTIONS[direction])
+        @unit.position.move(*DIRECTIONS[direction]) if @unit.position
       end
     end
   end

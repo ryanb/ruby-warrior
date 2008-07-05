@@ -1,11 +1,9 @@
 Primary
-- abstract out actions and senses to make it easier to add them
 - add enemy units which have scripts like the warrior
 - add attack action
 - add feel sense to detect if there's something near
 - fill level readme adding more info about available abilities and units on level
 - add wall boundaries so player can't move outside them
-- ensure only one action is called per turn on a unit
 - add more generic documentation for those just getting started
 
 
