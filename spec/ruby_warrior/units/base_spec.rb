@@ -79,4 +79,9 @@ describe RubyWarrior::Units::Base do
     @unit.stubs(:turn).raises('should not be called')
     lambda { @unit.perform_turn }.should_not raise_error(Exception)
   end
+  
+  it "should print out line with name when speaking" do
+    RubyWarrior::UI.expects(:puts).with("Base foo")
+    @unit.say "foo"
+  end
 end

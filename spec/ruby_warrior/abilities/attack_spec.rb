@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe RubyWarrior::Abilities::Attack do
   before(:each) do
-    @attacker = stub(:position => stub, :attack_power => 3)
+    @attacker = stub(:position => stub, :attack_power => 3, :say => nil)
     @attack = RubyWarrior::Abilities::Attack.new(@attacker)
   end
   

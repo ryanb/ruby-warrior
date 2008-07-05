@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe RubyWarrior::Abilities::Feel do
   before(:each) do
-    @unit = stub(:position => stub)
+    @unit = stub(:position => stub, :say => nil)
     @feel = RubyWarrior::Abilities::Feel.new(@unit)
   end
   

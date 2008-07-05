@@ -47,6 +47,14 @@ module RubyWarrior
           EOS
         end
       end
+      
+      def say(msg)
+        UI.puts "#{name} #{msg}"
+      end
+      
+      def name
+        self.class.name.split('::').last
+      end
     end
   end
 end

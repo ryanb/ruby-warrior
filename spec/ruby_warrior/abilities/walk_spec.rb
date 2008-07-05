@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 describe RubyWarrior::Abilities::Walk do
   before(:each) do
     @position = stub
-    @walk = RubyWarrior::Abilities::Walk.new(stub(:position => @position))
+    @walk = RubyWarrior::Abilities::Walk.new(stub(:position => @position, :say => nil))
   end
   
   it "should move position forward when calling perform" do
