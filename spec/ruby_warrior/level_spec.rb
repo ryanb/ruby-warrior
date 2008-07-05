@@ -25,4 +25,12 @@ describe RubyWarrior::Level do
     @level.goal = [0, 0]
     @level.should be_passed
   end
+  
+  it "should yield to block in play method for each turn" do
+    int = 0
+    @level.play(2) do
+      int += 1
+    end
+    int.should == 2
+  end
 end

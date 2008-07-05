@@ -20,6 +20,7 @@ module RubyWarrior
       turns.times do
         return if passed?
         @floor.units.each { |unit| unit.turn }
+        yield if block_given?
       end
     end
     

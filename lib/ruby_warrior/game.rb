@@ -11,7 +11,9 @@ module RubyWarrior
         puts "Loading your player.rb file."
         load player_level_paths.last + '/player.rb'
         puts "Starting Level #{current_level.number}"
-        current_level.play
+        current_level.play do
+          sleep 0.5
+        end
         if current_level.passed?
           if next_level
             generate_player_files_for_level(next_level)
