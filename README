@@ -3,3 +3,130 @@ RUBY WARRIOR
 This is a game designed to teach the Ruby language and artificial intelligence in a fun, interactive way.
 
 You play as a warrior climbing a tall tower to reach the precious Ruby at the top level. On each floor, you need to write a Ruby script to instruct the warrior how to get to the stairs. You have some idea of what each floor contains, but you never know for sure how the obstacles are laid out and what will happen. You must give the Warrior enough artificial intelligence to find his own way.
+
+Note: the documentation below is not fully correct and may likely change in the future. I'm simply defining the game requirements.
+
+
+
+Playing Turns
+-------------
+
+Once you run the "rubywarrior" command, it will create a ruby-warrior directory in your current directory. In here you will find a tower folder with a level folder inside. Open the player.rb file in there to edit your class. You should see something like this:
+
+  class Player
+    def turn(warrior)
+      # your code goes here
+    end
+  end
+
+Your objective is to fill this "turn" method with commands to instruct the warrior what to do. With each level your abilities will grow along with the difficulty. See the README for details on what abilities your warrior has available.
+
+Once you are done, save the file and run the "rubywarrior" command again to start playing the level to see how you did. It will start playing a series of turns. On each one, your "turn" method is called along with the enemy's. You cannot interact with it or change your code in the middle of a level, you must take into account everything that may happen on that level and give your warrior the proper instructions at the very beginning.
+
+You can fail the level by losing all of your health. You are not punished by this, you simply need to go back to your class, improve your code, and try again.
+
+Once you pass a level (by reaching the stairs), a new level folder will be created and your player files will be copied across. Remember to check out the README to see what is new in this level.
+
+
+Scoring
+-------
+
+Your objective is to not only reach the goal, but to get the highest score you can. There are many ways you can earn points, here are some of them.
+
+  - defeat an enemy to add his max health to your score
+  - rescue a captive to earn 50 points
+  - pass the level within the bonus time to earn the amount of bonus time remaining
+  - defeat all enemies and rescue all captives to receive a 10% bonus
+
+The score is only added once you pass the level. If you die your score for that level is lost.
+
+
+Perspective
+-----------
+
+Even though this is a text-based game, think of it as two-dimensional where you are viewing from overhead. Each level is always rectangular in shape and is made up of a number of squares. Only one unit can be on a given square, and your objective is to find the square with the stairs. When you perform actions, you perform them in squares.
+
+
+Commanding the Warrior
+----------------------
+
+When you first start your warrior will only have a few abilities, but with each level your abilities will grow. A warrior has two kinds of abilities: actions and senses.
+
+An action is something that effects the game in some way. You can easily tell an action because it ends in an exclamation mark. Only one action can be performed per turn, so choose wisely. Here are some examples of actions.
+
+  warrior.walk!
+    Move the warrior in some direction around the game.
+  
+  warrior.attack!
+    Swing your sword to attack the enemy in specified direction.
+  
+  warrior.rest!
+    Gain 10% of max health back, but do nothing more.
+  
+  warrior.rescue!
+    Rescue a captive from his chains (earning 50 points).
+  
+  warrior.light!
+    Light the torch to enable "look" sense. Only lasts 7 turns.
+  
+  warrior.pivot!
+    Rotate in a certain direction. Abilities usually perform better in front of you.
+  
+  warrior.shoot!
+    Shoot your bow & arrow forward.
+  
+  warrior.throw!
+    Throw a bomb. This ignites a 3x3 square hurting everything in it.
+
+
+A sense is something which gathers information about the floor. You can perform senses as often as you want per turn to gather information about your surroundings to aid you in choosing the proper action. Senses do NOT end in an exclamation mark.
+
+  warrior.feel
+    Feel what is one square away from yourself.
+  
+  warrior.look
+    Lets you see exactly what is in a given direction. Can only be used after lighting a torch.
+  
+  warrior.listen
+    Tells you what units are near by, but not exactly where.
+  
+  warrior.health
+    Tells you how much health you have.
+  
+  warrior.distance
+    The distance you are away from reaching your goal (the stairs)
+
+Since what you sense will change each turn, you should record what information you gather to use on the next turn. This way, for example, you can determine which direction an enemy is moving, or if you are losing health.
+
+
+Spaces
+------
+
+Whenever you sense an area, either one space or multiple spaces (in an array) will be returned. A space is simply an object representing that location in the level. You can call methods on a space to gather information about that location. Here are some examples.
+
+  space.empty?
+    If true, this means that nothing (except maybe stairs) is at this location and you can walk here.
+  
+  space.stairs?
+    Determine if stairs are at that location
+  
+  space.enemy?
+    Determine if an enemy unit is at this location.
+  
+  space.captive?
+    Determine if a captive is at this location.
+  
+  space.wall?
+    Returns true if this is the edge of the level. You can't walk here.
+  
+
+Tips
+----
+
+If you ever get stuck on a level, review the README documentation and be sure you're trying each ability out. If you can't keep your health up, be sure to "rest" when no enemy is around - and keep an eye on your health. Also, try to use far-ranged weapons whenever possible (bow and bomb).
+
+Remember, you're working in Ruby here. Don't simply fill up the "turn" method with lots of code. Make methods and classes to help organize things. Your level's directory is set up as a load path so you can load whatever other ruby files you want in there from your player.rb file.
+
+You will know the size of the level, but you have no idea where you are placed. use the look ability to find out where the walls are to give you some idea.
+
+If you're aiming for points, remember to sweep the area. Even if you're close to the stairs, don't go in until you've gotten everything (if you have the health). Use listen to find out what units are nearby.
