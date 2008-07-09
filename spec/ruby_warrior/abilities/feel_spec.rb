@@ -7,7 +7,7 @@ describe RubyWarrior::Abilities::Feel do
   end
   
   it "should get object at position from offset" do
-    @unit.position.expects(:get_relative).with(1, 0)
+    @unit.position.expects(:relative_space).with(1, 0)
     @feel.perform(:forward)
   end
 end

@@ -42,7 +42,7 @@ describe RubyWarrior::Units::Base do
   end
   
   it "should be able to perform action twice if on separate turn" do
-    @unit.position = stub_everything
+    @unit.position = stub(:relative_space => stub(:empty? => true), :move => nil)
     @unit.add_actions(:walk)
     @unit.walk!
     @unit.perform_turn

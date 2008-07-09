@@ -23,8 +23,8 @@ module RubyWarrior
       @direction_index += 4 while @direction_index < 0
     end
     
-    def get_relative(forward, right = 0)
-      @floor.get(*translate_offset(forward, right))
+    def relative_space(forward, right = 0)
+      @floor.space(*translate_offset(forward, right))
     end
     
     def move(forward, right = 0)

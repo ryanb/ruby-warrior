@@ -24,30 +24,30 @@ describe RubyWarrior::Position do
     end
   end
   
-  it "should get relative object in front" do
+  it "should get relative space in front" do
     unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 1, 1)
-    @position.get_relative(1).should == unit
+    @position.relative_space(1).should be_warrior
   end
   
   it "should get relative object in front when rotated" do
     unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 2, 2)
     @position.rotate(1)
-    @position.get_relative(1).should == unit
+    @position.relative_space(1).should be_warrior
   end
   
   it "should get relative object diagonally" do
     unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 0, 1)
-    @position.get_relative(1, -1).should == unit
+    @position.relative_space(1, -1).should be_warrior
   end
   
   it "should get relative object diagonally when rotating" do
     unit = RubyWarrior::Units::Warrior.new
     @floor.add(unit, 0, 1)
     @position.rotate(2)
-    @position.get_relative(-1, 1).should == unit
+    @position.relative_space(-1, 1).should be_warrior
   end
   
   it "should move object on floor relatively" do

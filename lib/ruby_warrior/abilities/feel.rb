@@ -2,7 +2,7 @@ module RubyWarrior
   module Abilities
     class Feel < Base
       def perform(direction = :forward)
-        get(direction)
+        space(direction)
       end
     end
   end

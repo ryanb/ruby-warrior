@@ -9,18 +9,18 @@ describe RubyWarrior::Abilities::Attack do
   it "should subtract attack power amount from health" do
     receiver = RubyWarrior::Units::Base.new
     receiver.health = 5
-    @attack.stubs(:get).returns(receiver)
+    @attack.stubs(:unit).returns(receiver)
     @attack.perform
     receiver.health.should == 2
   end
   
   it "should do nothing if recipient doesn't respond to take damage" do
-    @attack.stubs(:get).returns(Object.new)
+    @attack.stubs(:unit).returns(Object.new)
     lambda { @attack.perform }.should_not raise_error(Exception)
   end
   
   it "should get object at position from offset" do
-    @attacker.position.expects(:get_relative).with(1, 0)
-    @attack.get(:forward)
+    @attacker.position.expects(:relative_space).with(1, 0)
+    @attack.space(:forward)
   end
 end

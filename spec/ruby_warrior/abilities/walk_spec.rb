@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe RubyWarrior::Abilities::Walk do
   before(:each) do
-    @position = stub_everything
+    @space = stub(:empty? => true, :unit => nil)
+    @position = stub(:relative_space => @space, :move => nil)
     @walk = RubyWarrior::Abilities::Walk.new(stub(:position => @position, :say => nil))
   end
   
@@ -18,7 +19,7 @@ describe RubyWarrior::Abilities::Walk do
   
   it "should keep position if something is in the way" do
     @position.stubs(:move).raises("shouldn't be called")
-    @walk.stubs(:get).returns(stub)
+    @space.stubs(:empty?).returns(false)
     lambda { @walk.perform(:right) }.should_not raise_error(Exception)
   end
 end

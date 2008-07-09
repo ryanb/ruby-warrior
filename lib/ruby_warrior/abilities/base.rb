@@ -16,8 +16,12 @@ module RubyWarrior
         DIRECTIONS[direction]
       end
       
-      def get(direction)
-        @unit.position.get_relative(*offset(direction))
+      def space(direction)
+        @unit.position.relative_space(*offset(direction))
+      end
+      
+      def unit(direction)
+        space(direction).unit
       end
     end
   end
