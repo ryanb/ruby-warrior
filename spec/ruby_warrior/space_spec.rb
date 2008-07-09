@@ -62,6 +62,10 @@ describe RubyWarrior::Space do
     it "should not be empty" do
       @space.should_not be_enemy
     end
+    
+    it "should know what unit is on that space" do
+      @space.unit.should be_kind_of(RubyWarrior::Units::Warrior)
+    end
   end
   
   describe "with enemy" do

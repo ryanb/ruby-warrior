@@ -24,8 +24,6 @@ module RubyWarrior
       @floor.stairs_location == [@x, @y]
     end
     
-    private
-    
     def unit
       @floor.get(@x, @y)
     end

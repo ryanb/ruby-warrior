@@ -9,7 +9,7 @@ module RubyWarrior
       
       def turn
         [:forward, :left, :right, :back].each do |direction|
-          if feel(direction)
+          if feel(direction).warrior?
             attack!(direction)
             return
           end
