@@ -1,7 +1,10 @@
 Primary
+- add memoization to space object to remember method values and then clear instance variables
+- add a turn object which memoizes each sense ability (with argument) and keeps track of actions
+- makes senses always use space objects
+- add argument list to senses
 - fill level readme adding more info about available abilities and units on level
 - add wall boundaries so player can't move outside them
-- add more generic documentation for those just getting started
 
 
 Secondary
