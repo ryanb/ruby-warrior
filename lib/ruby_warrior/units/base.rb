@@ -7,17 +7,6 @@ module RubyWarrior
         0
       end
       
-      def perform_turn
-        if @position
-          @action_called = false
-          turn
-        end
-      end
-      
-      def turn
-        # to be overriden by subclass
-      end
-      
       def take_damage(amount)
         if @health
           @health -= amount
@@ -29,29 +18,6 @@ module RubyWarrior
         end
       end
       
-      # TODO there may be a better way to do this
-      def add_actions(*actions)
-        actions.each do |action|
-          instance_eval <<-EOS
-            def #{action}!(*args, &block)
-              raise "already called action this turn" if @action_called
-              Abilities::#{action.to_s.capitalize}.new(self).perform(*args, &block)
-              @action_called = true
-            end
-          EOS
-        end
-      end
-      
-      def add_senses(*senses)
-        senses.each do |sense|
-          instance_eval <<-EOS
-            def #{sense}(*args, &block)
-              Abilities::#{sense.to_s.capitalize}.new(self).perform(*args, &block)
-            end
-          EOS
-        end
-      end
-      
       def say(msg)
         UI.puts "#{name} #{msg}"
       end
@@ -60,6 +26,46 @@ module RubyWarrior
         self.class.name.split('::').last
       end
       alias_method :to_s, :name
+      
+      def add_actions(*new_actions)
+        new_actions.each do |action|
+          actions[action] = eval("Abilities::#{action.to_s.capitalize}").new(self) # TODO use something similar to constantize here
+        end
+      end
+      
+      def add_senses(*new_senses)
+        new_senses.each do |sense|
+          senses[sense] = eval("Abilities::#{sense.to_s.capitalize}").new(self) # TODO use something similar to constantize here
+        end
+      end
+      
+      def next_turn
+        Turn.new(actions.keys, senses)
+      end
+      
+      def prepare_turn
+        @current_turn = next_turn
+        play_turn(@current_turn)
+      end
+      
+      def perform_turn
+        if @current_turn.action && @position
+          name, *args = @current_turn.action
+          actions[name].perform(*args)
+        end
+      end
+      
+      def play_turn(turn)
+        # to be overriden by subclass
+      end
+      
+      def actions
+        @actions ||= {}
+      end
+      
+      def senses
+        @senses ||= {}
+      end
     end
   end
 end

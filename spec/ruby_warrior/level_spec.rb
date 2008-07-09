@@ -6,9 +6,10 @@ describe RubyWarrior::Level do
     @level.stubs(:failed?).returns(false)
   end
   
-  it "should call turn on each object specified number of times" do
+  it "should call prepare_turn and play_turn on each object specified number of times" do
     object = RubyWarrior::Units::Warrior.new
-    object.expects(:turn).times(2)
+    object.expects(:prepare_turn).times(2)
+    object.expects(:perform_turn).times(2)
     @level.add(object, 0, 0, :north)
     @level.play(2)
   end
@@ -21,10 +22,10 @@ describe RubyWarrior::Level do
     @level.play(2)
   end
   
-  it "should consider passed when warrior is on goal" do
+  it "should consider passed when warrior is on stairs" do
     @level.warrior = RubyWarrior::Units::Warrior.new
     @level.add(@level.warrior, 0, 0, :north)
-    @level.goal = [0, 0]
+    @level.place_stairs(0, 0)
     @level.should be_passed
   end
   

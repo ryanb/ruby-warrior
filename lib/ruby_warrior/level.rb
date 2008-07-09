@@ -1,7 +1,7 @@
 module RubyWarrior
   class Level
     attr_reader :number
-    attr_accessor :description, :tip, :goal, :warrior
+    attr_accessor :description, :tip, :warrior
     
     def initialize(number, width, height)
       @number = number
@@ -20,6 +20,7 @@ module RubyWarrior
       turns.times do |n|
         return if passed? || failed?
         UI.puts "- turn #{n+1} -"
+        @floor.units.each { |unit| unit.prepare_turn }
         @floor.units.each { |unit| unit.perform_turn }
         yield if block_given?
       end
@@ -29,8 +30,12 @@ module RubyWarrior
       @floor.add(*args)
     end
     
+    def place_stairs(x, y)
+      @floor.place_stairs(x, y)
+    end
+    
     def passed?
-      @floor.get(*goal) == warrior if goal
+      @floor.stairs_space.warrior?
     end
     
     def failed?

@@ -5,12 +5,12 @@ describe RubyWarrior::Units::Sludge do
     @sludge = RubyWarrior::Units::Sludge.new
   end
   
-  it "should have attack ability" do
-    @sludge.should respond_to(:attack!)
+  it "should have attack action" do
+    @sludge.actions.keys.should include(:attack)
   end
   
-  it "should have feel ability" do
-    @sludge.should respond_to(:feel)
+  it "should have feel sense" do
+    @sludge.senses.keys.should include(:feel)
   end
   
   it "should have attack power of 2" do

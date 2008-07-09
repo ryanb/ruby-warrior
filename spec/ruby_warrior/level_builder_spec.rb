@@ -26,9 +26,9 @@ describe RubyWarrior::LevelBuilder do
     end
   
     it "should be able to add stairs" do
-      @builder.stairs :x => 1, :y => 2
       level = @builder.result
-      level.goal.should == [1, 2]
+      level.expects(:place_stairs).with(1, 2)
+      @builder.stairs :x => 1, :y => 2
     end
     
     it "should yield new unit when building" do

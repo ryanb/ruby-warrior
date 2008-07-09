@@ -1,10 +1,14 @@
 Primary
-- add argument list to senses
 - fill level readme adding more info about available abilities and units on level
+- add captives
+- add light & look abilties
+- add shoot ability
+- add listen ability
+- add throw ability
 
 
 Secondary
-- use proxy whenever sending unit to Player to avoid hacking
+- use proxy whenever sending space to Player to avoid hacking
 - handle errors cleanly stating if it's in the user's Player script
 - add a more in-depth help doc if they get stuck
 

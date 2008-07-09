@@ -7,7 +7,7 @@ module RubyWarrior
       @width = width
       @height = height
       @units = []
-      @stairs_location = nil
+      @stairs_location = [-1, -1]
     end
     
     def add(unit, x, y, direction = nil)
@@ -17,6 +17,10 @@ module RubyWarrior
     
     def place_stairs(x, y)
       @stairs_location = [x, y]
+    end
+    
+    def stairs_space
+      space(*@stairs_location)
     end
     
     def units

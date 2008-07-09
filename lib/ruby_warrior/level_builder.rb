@@ -23,7 +23,7 @@ module RubyWarrior
     end
     
     def stairs(options)
-      @level.goal = [options[:x], options[:y]]
+      @level.place_stairs(options[:x], options[:y])
     end
     
     def unit(unit, options)

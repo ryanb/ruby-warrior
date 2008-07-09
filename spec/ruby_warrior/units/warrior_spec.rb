@@ -16,12 +16,11 @@ describe RubyWarrior::Units::Warrior do
     @warrior.health.should == 15
   end
   
-  # TODO pass proxy instead of warrior so player can't hack it as easily
-  it "should call player.turn and pass warrior to player" do
+  it "should call player.play_turn and pass turn to player" do
     player = stub
-    player.expects(:turn).with(@warrior)
+    player.expects(:play_turn).with('turn')
     @warrior.stubs(:player).returns(player)
-    @warrior.turn
+    @warrior.play_turn('turn')
   end
   
   it "should call Player.new the first time loading player, and return same object next time" do

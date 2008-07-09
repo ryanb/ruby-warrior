@@ -5,8 +5,8 @@ module RubyWarrior
         @health = 20
       end
       
-      def turn
-        player.turn(self)
+      def play_turn(turn)
+        player.play_turn(turn)
       end
       
       def player

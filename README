@@ -14,14 +14,14 @@ Playing Turns
 Once you run the "rubywarrior" command, it will create a ruby-warrior directory in your current directory. In here you will find a tower folder with a level folder inside. Open the player.rb file in there to edit your class. You should see something like this:
 
   class Player
-    def turn(warrior)
+    def play_turn(warrior)
       # your code goes here
     end
   end
 
-Your objective is to fill this "turn" method with commands to instruct the warrior what to do. With each level your abilities will grow along with the difficulty. See the README for details on what abilities your warrior has available.
+Your objective is to fill this "play_turn" method with commands to instruct the warrior what to do. With each level your abilities will grow along with the difficulty. See the README for details on what abilities your warrior has available.
 
-Once you are done, save the file and run the "rubywarrior" command again to start playing the level to see how you did. It will start playing a series of turns. On each one, your "turn" method is called along with the enemy's. You cannot interact with it or change your code in the middle of a level, you must take into account everything that may happen on that level and give your warrior the proper instructions at the very beginning.
+Once you are done, save the file and run the "rubywarrior" command again to start playing the level to see how you did. It will start playing a series of turns. On each one, your "play_turn" method is called along with the enemy's. You cannot interact with it or change your code in the middle of a level, you must take into account everything that may happen on that level and give your warrior the proper instructions at the very beginning.
 
 You can fail the level by losing all of your health. You are not punished by this, you simply need to go back to your class, improve your code, and try again.
 
@@ -125,7 +125,7 @@ Tips
 
 If you ever get stuck on a level, review the README documentation and be sure you're trying each ability out. If you can't keep your health up, be sure to "rest" when no enemy is around - and keep an eye on your health. Also, try to use far-ranged weapons whenever possible (bow and bomb).
 
-Remember, you're working in Ruby here. Don't simply fill up the "turn" method with lots of code. Make methods and classes to help organize things. Your level's directory is set up as a load path so you can load whatever other ruby files you want in there from your player.rb file.
+Remember, you're working in Ruby here. Don't simply fill up the "play_turn" method with lots of code. Make methods and classes to help organize things. Your level's directory is set up as a load path so you can load whatever other ruby files you want in there from your player.rb file.
 
 You will know the size of the level, but you have no idea where you are placed. use the look ability to find out where the walls are to give you some idea.
 

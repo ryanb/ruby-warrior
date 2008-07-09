@@ -7,10 +7,10 @@ module RubyWarrior
         add_senses :feel
       end
       
-      def turn
+      def play_turn(turn)
         [:forward, :left, :right, :back].each do |direction|
-          if feel(direction).warrior?
-            attack!(direction)
+          if turn.feel(direction).warrior?
+            turn.attack!(direction)
             return
           end
         end
