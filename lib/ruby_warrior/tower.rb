@@ -2,6 +2,10 @@ module RubyWarrior
   class Tower
     attr_reader :name
     
+    def self.load(path)
+      # TODO
+    end
+    
     def initialize(name)
       @name = name
     end

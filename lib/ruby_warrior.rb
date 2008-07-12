@@ -1,6 +1,7 @@
 $: << File.dirname(__FILE__)
 
 require 'ruby_warrior/game'
+require 'ruby_warrior/profile'
 require 'ruby_warrior/ui'
 require 'ruby_warrior/player_generator'
 require 'ruby_warrior/level_builder'

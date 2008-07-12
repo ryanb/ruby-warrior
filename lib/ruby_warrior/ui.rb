@@ -1,15 +1,50 @@
 module RubyWarrior
   class UI
+    def self.in_stream=(in_stream)
+      @in = in_stream
+    end
+    
     def self.out_stream=(stream)
       @out = stream
     end
     
-    def self.out
-      @out ||= StringIO.new
+    def self.puts(msg)
+      @out.puts(msg) if @out
     end
     
-    def self.puts(msg)
-      out.puts(msg)
+    def self.print(msg)
+      @out.print(msg) if @out
+    end
+    
+    def self.gets
+      @in.gets if @in
+    end
+    
+    def self.request(msg)
+      print(msg)
+      gets
+    end
+    
+    def self.ask(msg)
+      request("#{msg} [yn] ") == 'y'
+    end
+    
+    # REFACTORME
+    def self.choose(options)
+      options.each_with_index do |option, i|
+        if option.kind_of? Array
+          puts "[#{i+1}] #{option.last}"
+        else
+          puts "[#{i+1}] #{option}"
+        end
+      end
+      choice = request('Choose an option by typing the number: ')
+      response = options[choice.to_i-1]
+      if response.kind_of? Array
+        response.first
+      else
+        response
+      end
     end
   end
 end

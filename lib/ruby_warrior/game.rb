@@ -60,5 +60,57 @@ module RubyWarrior
     def player_path
       "ruby-warrior/#{tower_name}-tower"
     end
+    
+    
+    
+    # ensure the ruby-warrior directory exists and ask to create it if not
+    def make_game_directory
+      if UI.request_boolean("No ruby-warrior directory found, would you like to create one?")
+        Dir.mkdir('ruby-warrior')
+      else
+        UI.puts "Unable to continue without directory."
+        exit
+      end
+    end
+    
+    
+    # profiles
+    
+    def profiles
+      profile_paths.map { |profile| Profile.load(profile) }
+    end
+    
+    def profile_paths
+      Dir['ruby-warrior/**/.profile']
+    end
+    
+    def profile
+      if profiles.empty?
+        new_profile
+      else
+        profile = UI.choose(profiles + [[:new, 'New Profile']])
+        if profile == :new
+          new_profile
+        else
+          profile
+        end
+      end
+    end
+    
+    def new_profile
+      Profile.new(UI.choose(towers), UI.request('Enter a name for your warrior: '))
+    end
+    
+    
+    # towers
+    
+    def towers
+      tower_paths.map { |tower| Tower.load(tower) }
+    end
+    
+    def tower_paths
+      Dir[File.expand_path(File.dirname(__FILE__) + '/../../towers/*')]
+    end
+
   end
 end

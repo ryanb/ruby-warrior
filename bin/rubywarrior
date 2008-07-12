@@ -2,5 +2,6 @@
 require File.dirname(__FILE__) + '/../lib/ruby_warrior'
 
 RubyWarrior::UI.out_stream = STDOUT
+RubyWarrior::UI.in_stream = STDIN
 game = RubyWarrior::Game.new # TODO pass options into game when initializing
 game.start
