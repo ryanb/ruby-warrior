@@ -61,14 +61,14 @@ describe RubyWarrior::Game do
   
   it "should ask user to choose a tower when creating a new profile" do
     @game.stubs(:towers).returns([:tower1, :tower2])
-    RubyWarrior::UI.expects(:choose).with([:tower1, :tower2])
+    RubyWarrior::UI.expects(:choose).with([:tower1, :tower2]).returns(stub(:path => '/foo/bar'))
     @game.new_profile
   end
   
   it "should pass name and selected tower to profile" do
-    RubyWarrior::UI.stubs(:choose).returns('tower')
+    RubyWarrior::UI.stubs(:choose).returns(stub(:path => 'tower_path'))
     RubyWarrior::UI.stubs(:request).returns('name')
-    RubyWarrior::Profile.expects(:new).with('tower', 'name').returns('profile')
+    RubyWarrior::Profile.expects(:new).with('tower_path', 'name').returns('profile')
     @game.new_profile.should == 'profile'
   end
   

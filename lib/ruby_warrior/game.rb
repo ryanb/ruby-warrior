@@ -98,7 +98,7 @@ module RubyWarrior
     end
     
     def new_profile
-      Profile.new(UI.choose(towers), UI.request('Enter a name for your warrior: '))
+      Profile.new(UI.choose(towers).path, UI.request('Enter a name for your warrior: '))
     end
     
     
