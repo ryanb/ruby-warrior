@@ -21,6 +21,10 @@ module RubyWarrior
       Marshal.load(Base64.decode64(str))
     end
     
+    def self.load(path)
+      decode(File.read(path))
+    end
+    
     def tower
       Tower.new(@tower_path)
     end

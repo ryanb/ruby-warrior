@@ -38,6 +38,12 @@ describe RubyWarrior::Profile do
     RubyWarrior::Profile.decode(@profile.encode).warrior_name.should == @profile.warrior_name
   end
   
+  it "load should read file and decode" do
+    File.expects(:read).with('path/to/.profile').returns('encoded_profile')
+    RubyWarrior::Profile.expects(:decode).with('encoded_profile').returns('profile')
+    RubyWarrior::Profile.load('path/to/.profile').should == 'profile'
+  end
+  
   it "should have a nice string representation" do
     @profile.to_s.should == "Warrior - tower - level 0 - score 0"
   end
