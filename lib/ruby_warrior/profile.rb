@@ -33,6 +33,10 @@ module RubyWarrior
       "ruby-warrior/#{tower.name}-tower"
     end
     
+    def current_level_path
+      player_path + "/level-" + level_number.to_s.rjust(3, '0')
+    end
+    
     def to_s
       [warrior_name, tower.name, "level #{level_number}", "score #{score}"].join(' - ')
     end
@@ -52,6 +56,12 @@ module RubyWarrior
     def add_abilities(*abilities)
       @abilities += abilities
       @abilities.uniq!
+    end
+    
+    def generate_next_level
+      LevelFileGenerator.new(level_path, next_level).generate
+      @level_number += 1
+      save
     end
   end
 end

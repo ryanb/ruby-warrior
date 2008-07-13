@@ -14,7 +14,7 @@ module RubyWarrior
         current_level.play { sleep 0.8 }
         if current_level.passed?
           if next_level
-            generate_next_level
+            profile.generate_next_level
             UI.puts "Success! You have found the stairs. See the ruby-warrior directory for the next level."
           else
             UI.puts "CONGRATULATIONS! You have climbed to the top of the tower."
@@ -25,12 +25,12 @@ module RubyWarrior
       end
     end
     
-    def generate_next_level
-      PlayerGenerator.new(profile.player_path, next_level).generate
-      profile.level_number += 1
-      profile.save
-    end
-    
+    # def generate_next_level
+    #   PlayerGenerator.new(profile.player_path, next_level).generate
+    #   profile.level_number += 1
+    #   profile.save
+    # end
+    # 
     def make_game_directory
       if UI.ask("No ruby-warrior directory found, would you like to create one?")
         Dir.mkdir('ruby-warrior')
@@ -44,7 +44,7 @@ module RubyWarrior
     # player
     
     def load_player
-      $: << PlayerGenerator.new(profile.player_path, current_level).level_path
+      $: << profile.current_level_path
       load 'player.rb'
     end
     

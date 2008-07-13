@@ -1,5 +1,10 @@
 Primary
 - fill level readme adding more info about available abilities and units on level
+- copy player files over when generating next level
+- make sure profile only receives abilities from warrior on current level, not when building next level
+
+
+Abilities
 - add captives
 - add light & look abilties
 - add shoot ability
@@ -8,6 +13,8 @@ Primary
 
 
 Secondary
+- improve path handling for player path and levels
+- improve profile selection so it's harder to make a profile on the same tower
 - use proxy whenever sending space to Player to avoid hacking
 - handle errors cleanly stating if it's in the user's Player script
 - add a more in-depth help doc if they get stuck

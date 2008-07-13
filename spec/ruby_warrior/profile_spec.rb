@@ -60,9 +60,19 @@ describe RubyWarrior::Profile do
     @profile.player_path.should == 'ruby-warrior/tower-tower'
   end
   
+  it "should append level dir to player path" do
+    @profile.current_level_path.should == 'ruby-warrior/tower-tower/level-000'
+  end
+  
   it "should add abilities and remove duplicates" do
     @profile.add_abilities(:foo, :bar, :blah, :bar)
     @profile.abilities.should == [:foo, :bar, :blah]
+  end
+  
+  it "should increment level and call save when generating next level" do
+    @profile.expects(:save)
+    @profile.generate_next_level
+    @profile.level_number.should == 1
   end
   
   describe "with tower" do
