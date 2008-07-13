@@ -47,7 +47,7 @@ describe RubyWarrior::Space do
   
   describe "with warrior" do
     before(:each) do
-      @floor.add(RubyWarrior::Units::Warrior.new, 0, 0)
+      @floor.add(RubyWarrior::Units::Warrior.new(stub_everything), 0, 0)
       @space = @floor.space(0, 0)
     end
     

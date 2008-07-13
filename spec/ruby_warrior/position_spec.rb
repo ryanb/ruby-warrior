@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe RubyWarrior::Position do
   before(:each) do
-    @unit = RubyWarrior::Units::Warrior.new
+    @unit = RubyWarrior::Units::Base.new
     @floor = RubyWarrior::Floor.new(6, 5)
     @floor.add(@unit, 1, 2, :north)
     @position = @unit.position
@@ -25,29 +25,29 @@ describe RubyWarrior::Position do
   end
   
   it "should get relative space in front" do
-    unit = RubyWarrior::Units::Warrior.new
+    unit = RubyWarrior::Units::Base.new
     @floor.add(unit, 1, 1)
-    @position.relative_space(1).should be_warrior
+    @position.relative_space(1).should_not be_empty
   end
   
   it "should get relative object in front when rotated" do
-    unit = RubyWarrior::Units::Warrior.new
+    unit = RubyWarrior::Units::Base.new
     @floor.add(unit, 2, 2)
     @position.rotate(1)
-    @position.relative_space(1).should be_warrior
+    @position.relative_space(1).should_not be_empty
   end
   
   it "should get relative object diagonally" do
-    unit = RubyWarrior::Units::Warrior.new
+    unit = RubyWarrior::Units::Base.new
     @floor.add(unit, 0, 1)
-    @position.relative_space(1, -1).should be_warrior
+    @position.relative_space(1, -1).should_not be_empty
   end
   
   it "should get relative object diagonally when rotating" do
-    unit = RubyWarrior::Units::Warrior.new
+    unit = RubyWarrior::Units::Base.new
     @floor.add(unit, 0, 1)
     @position.rotate(2)
-    @position.relative_space(-1, 1).should be_warrior
+    @position.relative_space(-1, 1).should_not be_empty
   end
   
   it "should move object on floor relatively" do

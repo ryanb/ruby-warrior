@@ -7,7 +7,8 @@ end
 
 describe RubyWarrior::Units::Warrior do
   before(:each) do
-    @warrior = RubyWarrior::Units::Warrior.new
+    @profile = stub
+    @warrior = RubyWarrior::Units::Warrior.new(@profile)
   end
   
   it "should have a health attribute that defaults to 20" do

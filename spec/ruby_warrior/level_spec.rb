@@ -7,7 +7,7 @@ describe RubyWarrior::Level do
   end
   
   it "should call prepare_turn and play_turn on each object specified number of times" do
-    object = RubyWarrior::Units::Warrior.new
+    object = RubyWarrior::Units::Base.new
     object.expects(:prepare_turn).times(2)
     object.expects(:perform_turn).times(2)
     @level.add(object, 0, 0, :north)
@@ -15,7 +15,7 @@ describe RubyWarrior::Level do
   end
   
   it "should return immediately when passed" do
-    object = RubyWarrior::Units::Warrior.new
+    object = RubyWarrior::Units::Base.new
     object.expects(:turn).times(0)
     @level.add(object, 0, 0, :north)
     @level.stubs(:passed?).returns(true)
@@ -23,7 +23,7 @@ describe RubyWarrior::Level do
   end
   
   it "should consider passed when warrior is on stairs" do
-    @level.warrior = RubyWarrior::Units::Warrior.new
+    @level.warrior = RubyWarrior::Units::Warrior.new(stub_everything)
     @level.add(@level.warrior, 0, 0, :north)
     @level.place_stairs(0, 0)
     @level.should be_passed

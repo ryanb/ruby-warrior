@@ -1,7 +1,8 @@
 module RubyWarrior
   module Units
     class Warrior < Base
-      def initialize
+      def initialize(profile)
+        @profile = profile
         @health = 20
       end
       
