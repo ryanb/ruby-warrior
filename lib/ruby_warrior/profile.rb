@@ -49,10 +49,9 @@ module RubyWarrior
       tower.build_level(level_number+1, self)
     end
     
-    def warrior
-      warrior = Units::Warrior.new(self)
-      warrior.add_abilities(*abilities) # TODO abilities should probably be added in Warrior#initialize
-      warrior
+    def add_abilities(*abilities)
+      @abilities += abilities
+      @abilities.uniq!
     end
   end
 end

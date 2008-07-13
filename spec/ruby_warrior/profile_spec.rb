@@ -56,16 +56,13 @@ describe RubyWarrior::Profile do
     @profile.to_s.should == "Warrior - tower - level 0 - score 0"
   end
   
-  it "should make warrior and add abilities" do
-    warrior = stub
-    RubyWarrior::Units::Warrior.expects(:new).with(@profile).returns(warrior)
-    warrior.expects(:add_abilities).with(:foo, :bar)
-    @profile.abilities += [:foo, :bar]
-    @profile.warrior.should == warrior
-  end
-  
   it "should guess at the player path" do
     @profile.player_path.should == 'ruby-warrior/tower-tower'
+  end
+  
+  it "should add abilities and remove duplicates" do
+    @profile.add_abilities(:foo, :bar, :blah, :bar)
+    @profile.abilities.should == [:foo, :bar, :blah]
   end
   
   describe "with tower" do

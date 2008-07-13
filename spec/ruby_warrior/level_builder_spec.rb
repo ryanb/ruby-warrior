@@ -12,7 +12,7 @@ describe RubyWarrior::LevelBuilder do
   
   describe "with profile" do
     before(:each) do
-      @profile = stub
+      @profile = RubyWarrior::Profile.new('tower/path', 'name')
       @builder = RubyWarrior::LevelBuilder.new(@profile)
       @builder.level(1, :width => 3, :height => 7)
     end
@@ -46,10 +46,8 @@ describe RubyWarrior::LevelBuilder do
     end
     
     it "should build warrior from profile" do
-      warrior = RubyWarrior::Units::Base.new
-      @profile.expects(:warrior).returns(warrior)
       @builder.warrior :x => 1, :y => 2 do |unit|
-        unit.should == warrior
+        unit.should be_kind_of(RubyWarrior::Units::Warrior)
         unit.position.should be_at(1, 2)
       end
     end

@@ -40,7 +40,7 @@ module RubyWarrior
     end
     
     def warrior(options, &block)
-      @level.warrior = unit(@profile.warrior, options, &block)
+      @level.warrior = unit(Units::Warrior.new(@profile), options, &block)
     end
   end
 end

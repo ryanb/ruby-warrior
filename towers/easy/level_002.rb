@@ -9,7 +9,7 @@ tip "Use warrior.feel.empty? to see if there's anything in front of you, and war
 stairs :x => 7, :y => 0
 
 warrior :x => 0, :y => 0, :facing => :east do |u|
-  u.add_abilities :feel, :walk!, :attack!
+  u.add_abilities :feel, :attack!
 end
 
 unit :sludge, :x => 4, :y => 0, :facing => :west

@@ -7,7 +7,8 @@ end
 
 describe RubyWarrior::Units::Warrior do
   before(:each) do
-    @profile = stub
+    @profile = RubyWarrior::Profile.new('tower/path', 'name')
+    @profile.abilities += [:attack!]
     @warrior = RubyWarrior::Units::Warrior.new(@profile)
   end
   
@@ -33,5 +34,14 @@ describe RubyWarrior::Units::Warrior do
   
   it "should have an attack power of 5" do
     @warrior.attack_power.should == 5
+  end
+  
+  it "adding abilities should add it to profile" do
+    @profile.expects(:add_abilities).with(:walk!, :feel)
+    @warrior.add_abilities(:walk!, :feel)
+  end
+  
+  it "should already have profile's abilities" do
+    @warrior.abilities.keys.should == @profile.abilities
   end
 end

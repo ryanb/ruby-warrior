@@ -23,7 +23,7 @@ describe RubyWarrior::Level do
   end
   
   it "should consider passed when warrior is on stairs" do
-    @level.warrior = RubyWarrior::Units::Warrior.new(stub_everything)
+    @level.warrior = RubyWarrior::Units::Warrior.new(RubyWarrior::Profile.new('tower/path', 'name'))
     @level.add(@level.warrior, 0, 0, :north)
     @level.place_stairs(0, 0)
     @level.should be_passed
