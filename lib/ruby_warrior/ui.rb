@@ -22,7 +22,7 @@ module RubyWarrior
     
     def self.request(msg)
       print(msg)
-      gets
+      gets.chomp
     end
     
     def self.ask(msg)

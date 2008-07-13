@@ -1,9 +1,11 @@
 module RubyWarrior
   class LevelBuilder
     def self.build(file, profile)
-      builder = new(profile)
-      builder.instance_eval(File.read(file))
-      builder.result
+      unless file.nil?
+        builder = new(profile)
+        builder.instance_eval(File.read(file))
+        builder.result
+      end
     end
     
     def initialize(profile)

@@ -8,13 +8,13 @@ describe RubyWarrior::Game do
   # GAME DIR
   
   it "should make game directory if player says so" do
-    RubyWarrior::UI.stubs(:request_boolean).returns(true)
+    RubyWarrior::UI.stubs(:ask).returns(true)
     Dir.expects(:mkdir).with('ruby-warrior')
     @game.make_game_directory
   end
   
   it "should not make game and exit if player says no" do
-    RubyWarrior::UI.stubs(:request_boolean).returns(false)
+    RubyWarrior::UI.stubs(:ask).returns(false)
     Dir.stubs(:mkdir).raises('should not be called')
     lambda { @game.make_game_directory }.should raise_error(SystemExit)
   end

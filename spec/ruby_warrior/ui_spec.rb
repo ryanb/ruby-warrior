@@ -28,7 +28,7 @@ describe RubyWarrior::UI do
   it "should request text input" do
     @in.puts "bar"
     @in.rewind
-    @ui.request("foo").should == "bar\n"
+    @ui.request("foo").should == "bar"
     @out.string.should == "foo"
   end
   

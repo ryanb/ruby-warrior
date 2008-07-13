@@ -6,6 +6,10 @@ describe RubyWarrior::LevelBuilder do
     RubyWarrior::LevelBuilder.build('/foo/bar', 'profile').should == 'level'
   end
   
+  it "build on class should return nil if passed nil file path" do
+    RubyWarrior::LevelBuilder.build(nil, 'profile').should be_nil
+  end
+  
   describe "with profile" do
     before(:each) do
       @profile = stub

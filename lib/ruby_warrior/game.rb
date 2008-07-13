@@ -5,20 +5,16 @@ module RubyWarrior
       
       make_game_directory unless File.exists?('ruby-warrior')
       
-      if profile.level_number.zero?
-        # TODO ask before making level
-        generate_player_files(current_level)
+      if current_level.nil?
+        generate_next_level
         UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
-        UI.puts "Loading your player.rb file."
-        load player_level_paths.last + '/player.rb'
+        load_player
         UI.puts "Starting Level #{current_level.number}"
-        current_level.play do
-          sleep 0.8
-        end
+        current_level.play { sleep 0.8 }
         if current_level.passed?
           if next_level
-            generate_player_files(next_level)
+            generate_next_level
             UI.puts "Success! You have found the stairs. See the ruby-warrior directory for the next level."
           else
             UI.puts "CONGRATULATIONS! You have climbed to the top of the tower."
@@ -29,49 +25,25 @@ module RubyWarrior
       end
     end
     
-    def current_level
-      @level ||= tower.build_level(player_levels.last || 1)
+    def generate_next_level
+      PlayerGenerator.new(profile.player_path, next_level).generate
     end
-    
-    def next_level
-      tower.build_level(current_level.number+1)
-    end
-    
-    def player_level_paths
-      Dir["#{player_path}/level-*"]
-    end
-    
-    def player_levels
-      player_level_paths.map do |level|
-        level[/[0-9]+$/].to_i
-      end
-    end
-    
-    def generate_player_files(level)
-      PlayerGenerator.new(player_path, level).generate
-    end
-    
-    def tower_name
-      'easy' # TODO make a way to choose tower
-    end
-    
-    def tower
-      @tower ||= Tower.new(tower_name)
-    end
-    
-    def player_path
-      "ruby-warrior/#{tower_name}-tower"
-    end
-    
-    
     
     def make_game_directory
-      if UI.request_boolean("No ruby-warrior directory found, would you like to create one?")
+      if UI.ask("No ruby-warrior directory found, would you like to create one?")
         Dir.mkdir('ruby-warrior')
       else
         UI.puts "Unable to continue without directory."
         exit
       end
+    end
+    
+    
+    # player
+    
+    def load_player
+      $: << profile.player_path
+      require 'player'
     end
     
     

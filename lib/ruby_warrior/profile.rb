@@ -25,8 +25,12 @@ module RubyWarrior
       decode(File.read(path))
     end
     
+    def player_path
+      "ruby-warrior/#{tower.name}-tower"
+    end
+    
     def to_s
-      [warrior_name, File.basename(@tower_path), "level #{level_number}", "score #{score}"].join(' - ')
+      [warrior_name, tower.name, "level #{level_number}", "score #{score}"].join(' - ')
     end
     
     def tower
@@ -39,6 +43,12 @@ module RubyWarrior
     
     def next_level
       tower.build_level(level_number+1, self)
+    end
+    
+    def warrior
+      warrior = Units::Warrior.new(self)
+      warrior.add_abilities(*abilities) # TODO abilities should probably be added in Warrior#initialize
+      warrior
     end
   end
 end
