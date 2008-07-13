@@ -17,7 +17,7 @@ module RubyWarrior
     end
     
     def self.gets
-      @in.gets if @in
+      @in ? @in.gets : ''
     end
     
     def self.request(msg)

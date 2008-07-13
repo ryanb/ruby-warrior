@@ -27,20 +27,14 @@ module RubyWarrior
       end
       alias_method :to_s, :name
       
-      def add_actions(*new_actions)
-        new_actions.each do |action|
-          actions[action] = eval("Abilities::#{action.to_s.capitalize}").new(self) # TODO use something similar to constantize here
-        end
-      end
-      
-      def add_senses(*new_senses)
-        new_senses.each do |sense|
-          senses[sense] = eval("Abilities::#{sense.to_s.capitalize}").new(self) # TODO use something similar to constantize here
+      def add_abilities(*new_abilities)
+        new_abilities.each do |ability|
+          abilities[ability] = eval("Abilities::#{ability.to_s.sub('!', '').capitalize}").new(self) # TODO use something similar to constantize here
         end
       end
       
       def next_turn
-        Turn.new(actions.keys, senses)
+        Turn.new(abilities)
       end
       
       def prepare_turn
@@ -51,7 +45,7 @@ module RubyWarrior
       def perform_turn
         if @current_turn.action && @position
           name, *args = @current_turn.action
-          actions[name].perform(*args)
+          abilities[name].perform(*args)
         end
       end
       
@@ -59,12 +53,8 @@ module RubyWarrior
         # to be overriden by subclass
       end
       
-      def actions
-        @actions ||= {}
-      end
-      
-      def senses
-        @senses ||= {}
+      def abilities
+        @abilities ||= {}
       end
     end
   end

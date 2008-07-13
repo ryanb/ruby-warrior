@@ -27,6 +27,8 @@ module RubyWarrior
     
     def generate_next_level
       PlayerGenerator.new(profile.player_path, next_level).generate
+      profile.level_number += 1
+      profile.save
     end
     
     def make_game_directory
@@ -42,8 +44,7 @@ module RubyWarrior
     # player
     
     def load_player
-      $: << profile.player_path
-      require 'player'
+      load PlayerGenerator.new(profile.player_path, current_level).level_path + '/player.rb'
     end
     
     

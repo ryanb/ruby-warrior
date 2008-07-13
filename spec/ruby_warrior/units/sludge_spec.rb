@@ -6,11 +6,11 @@ describe RubyWarrior::Units::Sludge do
   end
   
   it "should have attack action" do
-    @sludge.actions.keys.should include(:attack)
+    @sludge.abilities.keys.should include(:attack!)
   end
   
   it "should have feel sense" do
-    @sludge.senses.keys.should include(:feel)
+    @sludge.abilities.keys.should include(:feel)
   end
   
   it "should have attack power of 2" do

@@ -2,8 +2,8 @@ require 'base64'
 
 module RubyWarrior
   class Profile
-    attr_accessor :score, :abilities
-    attr_reader :warrior_name, :level_number
+    attr_accessor :score, :abilities, :level_number
+    attr_reader :warrior_name
     
     def initialize(tower_path, warrior_name)
       @tower_path = tower_path
@@ -15,6 +15,10 @@ module RubyWarrior
     
     def encode
       Base64.encode64(Marshal.dump(self))
+    end
+    
+    def save
+      File.open(player_path + '/.profile', 'w') { |f| f.write(encode) }
     end
     
     def self.decode(str)
@@ -38,7 +42,7 @@ module RubyWarrior
     end
     
     def current_level
-      tower.build_level(level_number, self)
+      tower.build_level(level_number, self) unless level_number.zero?
     end
     
     def next_level

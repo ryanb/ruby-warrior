@@ -25,6 +25,11 @@ describe RubyWarrior::UI do
     @ui.gets.should == "bar\n"
   end
   
+  it "should gets should return empty string if no input" do
+    @ui.in_stream = nil
+    @ui.gets.should == ""
+  end
+  
   it "should request text input" do
     @in.puts "bar"
     @in.rewind

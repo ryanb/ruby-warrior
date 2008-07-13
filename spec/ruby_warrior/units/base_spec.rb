@@ -53,8 +53,8 @@ describe RubyWarrior::Units::Base do
   it "should perform action when calling perform on turn" do
     @unit.position = stub
     RubyWarrior::Abilities::Walk.any_instance.expects(:perform).with(:back)
-    @unit.add_actions(:walk)
-    turn = stub(:action => [:walk, :back])
+    @unit.add_abilities(:walk!)
+    turn = stub(:action => [:walk!, :back])
     @unit.stubs(:next_turn).returns(turn)
     @unit.prepare_turn
     @unit.perform_turn
@@ -63,8 +63,8 @@ describe RubyWarrior::Units::Base do
   it "should not perform action when dead (no position)" do
     @unit.position = nil
     RubyWarrior::Abilities::Walk.any_instance.stubs(:perform).raises("action should not be called")
-    @unit.add_actions(:walk)
-    turn = stub(:action => [:walk, :back])
+    @unit.add_abilities(:walk!)
+    turn = stub(:action => [:walk!, :back])
     @unit.stubs(:next_turn).returns(turn)
     @unit.prepare_turn
     @unit.perform_turn
@@ -76,28 +76,14 @@ describe RubyWarrior::Units::Base do
   end
   
   it "should pass abilities to new turn when calling next_turn" do
-    RubyWarrior::Turn.expects(:new).with({:walk => nil, :attack => nil}.keys, {:feel => 'feel'}).returns('turn')
-    @unit.stubs(:actions).returns({:walk => nil, :attack => nil})
-    @unit.stubs(:senses).returns({:feel => 'feel'})
+    RubyWarrior::Turn.expects(:new).with(:walk! => nil, :attack! => nil, :feel => nil).returns('turn')
+    @unit.stubs(:abilities).returns(:walk! => nil, :attack! => nil, :feel => nil)
     @unit.next_turn.should == 'turn'
   end
   
-  it "should add action" do
+  it "should add ability" do
     RubyWarrior::Abilities::Walk.expects(:new).with(@unit).returns('walk')
-    @unit.add_actions(:walk)
-    @unit.actions.should == { :walk => 'walk' }
-  end
-  
-  it "should add sense" do
-    RubyWarrior::Abilities::Feel.expects(:new).with(@unit).returns('feel')
-    @unit.add_senses(:feel)
-    @unit.senses.should == { :feel => 'feel' }
-  end
-  
-  it "should keep senses and actions separate" do
-    @unit.add_senses(:feel)
-    @unit.add_actions(:walk)
-    @unit.senses.keys.should == [:feel]
-    @unit.actions.keys.should == [:walk]
+    @unit.add_abilities(:walk!)
+    @unit.abilities.should == { :walk! => 'walk' }
   end
 end

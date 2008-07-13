@@ -44,6 +44,14 @@ describe RubyWarrior::Profile do
     RubyWarrior::Profile.load('path/to/.profile').should == 'profile'
   end
   
+  it "save should write file with encoded profile" do
+    file = stub
+    file.expects(:write).with('encoded_profile')
+    File.expects(:open).with(@profile.player_path + '/.profile', 'w').yields(file)
+    @profile.expects(:encode).returns('encoded_profile')
+    @profile.save
+  end
+  
   it "should have a nice string representation" do
     @profile.to_s.should == "Warrior - tower - level 0 - score 0"
   end
@@ -66,8 +74,14 @@ describe RubyWarrior::Profile do
       @profile.stubs(:tower).returns(@tower)
     end
     
+    it "should return nil if current level is zero" do
+      @tower.expects(:build_level).never
+      @profile.current_level.should be_nil
+    end
+    
     it "should fetch current level from tower" do
-      @tower.expects(:build_level).with(0, @profile)
+      @profile.level_number = 1
+      @tower.expects(:build_level).with(1, @profile)
       @profile.current_level
     end
   

@@ -3,8 +3,7 @@ module RubyWarrior
     class Sludge < Base
       def initialize
         @health = 8
-        add_actions :attack
-        add_senses :feel
+        add_abilities :attack!, :feel
       end
       
       def play_turn(turn)
