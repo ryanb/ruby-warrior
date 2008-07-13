@@ -5,12 +5,6 @@ describe RubyWarrior::Game do
     @game = RubyWarrior::Game.new
   end
   
-  it "should include tower name in player path" do
-    @game.stubs(:tower_name).returns('foo')
-    @game.player_path.should == 'ruby-warrior/foo-tower'
-  end
-  
-  
   # GAME DIR
   
   it "should make game directory if player says so" do
@@ -76,8 +70,8 @@ describe RubyWarrior::Game do
   # TOWERS
   
   it "load towers for each tower path" do
-    RubyWarrior::Tower.expects(:load).with('towers/foo').returns(1)
-    RubyWarrior::Tower.expects(:load).with('towers/bar').returns(2)
+    RubyWarrior::Tower.expects(:new).with('towers/foo').returns(1)
+    RubyWarrior::Tower.expects(:new).with('towers/bar').returns(2)
     @game.stubs(:tower_paths).returns(['towers/foo', 'towers/bar'])
     @game.towers.should == [1, 2]
   end
@@ -85,6 +79,21 @@ describe RubyWarrior::Game do
   it "should find tower paths using Dir[] search" do
     Dir.expects(:[]).with(File.expand_path(File.dirname(__FILE__) + '/../../towers/*'))
     @game.tower_paths
+  end
+  
+  
+  # LEVEL
+  
+  it "should fetch current level from profile and cache it" do
+    @game.stubs(:profile).returns(stub)
+    @game.profile.expects(:current_level).returns('foo')
+    2.times { @game.current_level.should == 'foo' }
+  end
+  
+  it "should fetch next level from profile" do
+    @game.stubs(:profile).returns(stub)
+    @game.profile.expects(:next_level).returns('bar')
+    @game.next_level.should == 'bar'
   end
   
 end

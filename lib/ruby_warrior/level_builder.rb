@@ -1,9 +1,13 @@
 module RubyWarrior
   class LevelBuilder
-    def self.build(file)
-      builder = new
+    def self.build(file, profile)
+      builder = new(profile)
       builder.instance_eval(File.read(file))
       builder.result
+    end
+    
+    def initialize(profile)
+      @profile = profile
     end
     
     def level(number, options)
@@ -27,14 +31,14 @@ module RubyWarrior
     end
     
     def unit(unit, options)
-      unit = eval("Units::#{unit.to_s.capitalize}").new
+      unit = eval("Units::#{unit.to_s.capitalize}").new unless unit.kind_of? Units::Base
       @level.add(unit, options[:x], options[:y], options[:facing])
       yield unit if block_given?
       unit
     end
     
     def warrior(options, &block)
-      @level.warrior = unit(:warrior, options, &block)
+      @level.warrior = unit(@profile.warrior, options, &block)
     end
   end
 end

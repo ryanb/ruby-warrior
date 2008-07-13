@@ -5,7 +5,6 @@ module RubyWarrior
       
       make_game_directory unless File.exists?('ruby-warrior')
       
-      
       if profile.level_number.zero?
         # TODO ask before making level
         generate_player_files(current_level)
@@ -98,12 +97,24 @@ module RubyWarrior
     # towers
     
     def towers
-      tower_paths.map { |tower| Tower.load(tower) }
+      tower_paths.map { |path| Tower.new(path) }
     end
     
     def tower_paths
       Dir[File.expand_path(File.dirname(__FILE__) + '/../../towers/*')]
     end
+    
+    
+    # levels
+    
+    def current_level
+      @current_level ||= profile.current_level
+    end
+    
+    def next_level
+      profile.next_level
+    end
+    
     
     private
     

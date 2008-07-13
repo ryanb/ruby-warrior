@@ -47,4 +47,21 @@ describe RubyWarrior::Profile do
   it "should have a nice string representation" do
     @profile.to_s.should == "Warrior - tower - level 0 - score 0"
   end
+  
+  describe "with tower" do
+    before(:each) do
+      @tower = RubyWarrior::Tower.new('foo')
+      @profile.stubs(:tower).returns(@tower)
+    end
+    
+    it "should fetch current level from tower" do
+      @tower.expects(:build_level).with(0, @profile)
+      @profile.current_level
+    end
+  
+    it "should fetch next level" do
+      @tower.expects(:build_level).with(1, @profile)
+      @profile.next_level
+    end
+  end
 end

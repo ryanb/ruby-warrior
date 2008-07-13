@@ -1,20 +1,16 @@
 module RubyWarrior
   class Tower
-    attr_reader :name
+    attr_reader :path
     
-    def self.load(path)
-      # TODO
+    def initialize(path)
+      @path = path
     end
     
-    def initialize(name)
-      @name = name
+    def name
+      File.basename(path)
     end
     
-    def path
-      File.expand_path(File.dirname(__FILE__) + "/../../towers/#{name}")
-    end
-    
-    def level_files
+    def level_paths
       Dir[path + '/level*']
     end
     
@@ -22,8 +18,8 @@ module RubyWarrior
       level_files[number - 1]
     end
     
-    def build_level(number)
-      LevelBuilder.build(file_for_level(number)) if file_for_level(number)
+    def build_level(number, profile)
+      LevelBuilder.build(level_paths[number-1], profile)
     end
   end
 end

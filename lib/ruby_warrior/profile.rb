@@ -25,12 +25,20 @@ module RubyWarrior
       decode(File.read(path))
     end
     
+    def to_s
+      [warrior_name, File.basename(@tower_path), "level #{level_number}", "score #{score}"].join(' - ')
+    end
+    
     def tower
       Tower.new(@tower_path)
     end
     
-    def to_s
-      [warrior_name, File.basename(@tower_path), "level #{level_number}", "score #{score}"].join(' - ')
+    def current_level
+      tower.build_level(level_number, self)
+    end
+    
+    def next_level
+      tower.build_level(level_number+1, self)
     end
   end
 end

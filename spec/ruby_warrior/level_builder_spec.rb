@@ -1,12 +1,15 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe RubyWarrior::LevelBuilder do
-  before(:each) do
-    @builder = RubyWarrior::LevelBuilder.new
+  it "build on class should eval the file and return the result" do
+    File.expects(:read).with('/foo/bar').returns("@level = 'level'")
+    RubyWarrior::LevelBuilder.build('/foo/bar', 'profile').should == 'level'
   end
   
-  describe "with level" do
+  describe "with profile" do
     before(:each) do
+      @profile = stub
+      @builder = RubyWarrior::LevelBuilder.new(@profile)
       @builder.level(1, :width => 3, :height => 7)
     end
     
@@ -32,15 +35,19 @@ describe RubyWarrior::LevelBuilder do
     end
     
     it "should yield new unit when building" do
-      @builder.unit :warrior, :x => 1, :y => 2 do |unit|
-        unit.should be_kind_of(RubyWarrior::Units::Warrior)
+      @builder.unit :base, :x => 1, :y => 2 do |unit|
+        unit.should be_kind_of(RubyWarrior::Units::Base)
         unit.position.should be_at(1, 2)
       end
     end
-  end
-  
-  it "build on class should eval the file and return the result" do
-    File.expects(:read).with('/foo/bar').returns("@level = 'level'")
-    RubyWarrior::LevelBuilder.build('/foo/bar').should == 'level'
+    
+    it "should build warrior from profile" do
+      warrior = RubyWarrior::Units::Base.new
+      @profile.expects(:warrior).returns(warrior)
+      @builder.warrior :x => 1, :y => 2 do |unit|
+        unit.should == warrior
+        unit.position.should be_at(1, 2)
+      end
+    end
   end
 end
