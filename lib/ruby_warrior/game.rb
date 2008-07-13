@@ -3,7 +3,10 @@ module RubyWarrior
     def start
       UI.puts "Welcome to Ruby Warrior"
       
-      if player_levels.empty?
+      make_game_directory unless File.exists?('ruby-warrior')
+      
+      
+      if profile.level_number.zero?
         # TODO ask before making level
         generate_player_files(current_level)
         UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
@@ -63,7 +66,6 @@ module RubyWarrior
     
     
     
-    # ensure the ruby-warrior directory exists and ask to create it if not
     def make_game_directory
       if UI.request_boolean("No ruby-warrior directory found, would you like to create one?")
         Dir.mkdir('ruby-warrior')
@@ -85,20 +87,11 @@ module RubyWarrior
     end
     
     def profile
-      if profiles.empty?
-        new_profile
-      else
-        profile = UI.choose(profiles + [[:new, 'New Profile']])
-        if profile == :new
-          new_profile
-        else
-          profile
-        end
-      end
+      @profile ||= choose_profile
     end
     
     def new_profile
-      Profile.new(UI.choose(towers).path, UI.request('Enter a name for your warrior: '))
+      Profile.new(UI.choose('tower', towers).path, UI.request('Enter a name for your warrior: '))
     end
     
     
@@ -111,6 +104,17 @@ module RubyWarrior
     def tower_paths
       Dir[File.expand_path(File.dirname(__FILE__) + '/../../towers/*')]
     end
-
+    
+    private
+    
+    def choose_profile
+      profile = UI.choose('profile', profiles + [[:new, 'New Profile']])
+      if profile == :new
+        new_profile
+      else
+        profile
+      end
+    end
+    
   end
 end

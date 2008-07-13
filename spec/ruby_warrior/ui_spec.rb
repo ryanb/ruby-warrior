@@ -48,8 +48,8 @@ describe RubyWarrior::UI do
   end
   
   it "should present multiple options and return selected one" do
-    @ui.stubs(:request).returns('2')
-    @ui.choose([:foo, :bar, :test]).should == :bar
+    @ui.expects(:request).with(includes('item')).returns('2')
+    @ui.choose('item', [:foo, :bar, :test]).should == :bar
     @out.string.should include('[1] foo')
     @out.string.should include('[2] bar')
     @out.string.should include('[3] test')
@@ -57,7 +57,18 @@ describe RubyWarrior::UI do
   
   it "choose should accept array as option" do
     @ui.stubs(:request).returns('3')
-    @ui.choose([:foo, :bar, [:tower, 'easy']]).should == :tower
+    @ui.choose('item', [:foo, :bar, [:tower, 'easy']]).should == :tower
     @out.string.should include('[3] easy')
+  end
+  
+  it "choose should return option without prompt if only one item" do
+    @ui.expects(:puts).never
+    @ui.expects(:gets).never
+    @ui.stubs(:request).returns('3')
+    @ui.choose('item', [:foo]).should == :foo
+  end
+  
+  it "choose should return first value in array of option if only on item" do
+    @ui.choose('item', [[:foo, :bar]]).should == :foo
   end
 end

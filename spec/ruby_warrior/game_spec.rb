@@ -46,10 +46,10 @@ describe RubyWarrior::Game do
     @game.profile.should == 'profile'
   end
   
-  it "should ask a player to choose a profile if multiple profiles are available" do
-    RubyWarrior::UI.expects(:choose).with([:profile1, [:new, 'New Profile']]).returns(:profile1)
+  it "should ask a player to choose a profile if multiple profiles are available, but only once" do
+    RubyWarrior::UI.expects(:choose).with('profile', [:profile1, [:new, 'New Profile']]).returns(:profile1)
     @game.stubs(:profiles).returns([:profile1])
-    @game.profile.should == :profile1
+    2.times { @game.profile.should == :profile1 }
   end
   
   it "should make a new profile if player chooses" do
@@ -61,7 +61,7 @@ describe RubyWarrior::Game do
   
   it "should ask user to choose a tower when creating a new profile" do
     @game.stubs(:towers).returns([:tower1, :tower2])
-    RubyWarrior::UI.expects(:choose).with([:tower1, :tower2]).returns(stub(:path => '/foo/bar'))
+    RubyWarrior::UI.expects(:choose).with('tower', [:tower1, :tower2]).returns(stub(:path => '/foo/bar'))
     @game.new_profile
   end
   
