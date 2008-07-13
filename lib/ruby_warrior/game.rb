@@ -44,7 +44,8 @@ module RubyWarrior
     # player
     
     def load_player
-      load PlayerGenerator.new(profile.player_path, current_level).level_path + '/player.rb'
+      $: << PlayerGenerator.new(profile.player_path, current_level).level_path
+      load 'player.rb'
     end
     
     
