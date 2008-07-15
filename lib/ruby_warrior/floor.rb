@@ -3,9 +3,9 @@ module RubyWarrior
     attr_accessor :width, :height, :grid
     attr_reader :stairs_location
     
-    def initialize(width, height)
-      @width = width
-      @height = height
+    def initialize
+      @width = 0
+      @height = 0
       @units = []
       @stairs_location = [-1, -1]
     end

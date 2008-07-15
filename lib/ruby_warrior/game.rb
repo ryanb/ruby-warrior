@@ -1,5 +1,7 @@
 module RubyWarrior
   class Game
+    
+    # TODO refactor and test this method
     def start
       UI.puts "Welcome to Ruby Warrior"
       
@@ -13,9 +15,15 @@ module RubyWarrior
         UI.puts "Starting Level #{current_level.number}"
         current_level.play { sleep 0.8 }
         if current_level.passed?
+          UI.puts "Success! You have found the stairs."
+          current_level.tally_points(profile)
           if next_level
-            profile.generate_next_level
-            UI.puts "Success! You have found the stairs. See the ruby-warrior directory for the next level."
+            if UI.ask("Would you like to continue on to the next level?")
+              prepare_next_level
+              UI.puts "See the ruby-warrior directory for the next level."
+            else
+              UI.puts "Staying on current level. Try to earn more points next time."
+            end
           else
             UI.puts "CONGRATULATIONS! You have climbed to the top of the tower."
           end
@@ -25,12 +33,6 @@ module RubyWarrior
       end
     end
     
-    # def generate_next_level
-    #   PlayerGenerator.new(profile.player_path, next_level).generate
-    #   profile.level_number += 1
-    #   profile.save
-    # end
-    # 
     def make_game_directory
       if UI.ask("No ruby-warrior directory found, would you like to create one?")
         Dir.mkdir('ruby-warrior')
@@ -40,11 +42,17 @@ module RubyWarrior
       end
     end
     
+    def prepare_next_level
+      PlayerGenerator.new(next_level, current_level.path).generate
+      profile.level_number += 1
+      profile.save # this saves score and new abilities too
+    end
+    
     
     # player
     
     def load_player
-      $: << profile.current_level_path
+      $: << current_level.player_path
       load 'player.rb'
     end
     
@@ -64,7 +72,10 @@ module RubyWarrior
     end
     
     def new_profile
-      Profile.new(UI.choose('tower', towers).path, UI.request('Enter a name for your warrior: '))
+      profile = Profile.new
+      profile.tower_path = UI.choose('tower', towers).path
+      profile.warrior_name = UI.request('Enter a name for your warrior: ')
+      profile
     end
     
     
@@ -86,7 +97,7 @@ module RubyWarrior
     end
     
     def next_level
-      profile.next_level
+      @next_level ||= profile.next_level
     end
     
     

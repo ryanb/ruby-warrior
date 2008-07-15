@@ -3,7 +3,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe RubyWarrior::Position do
   before(:each) do
     @unit = RubyWarrior::Units::Base.new
-    @floor = RubyWarrior::Floor.new(6, 5)
+    @floor = RubyWarrior::Floor.new
+    @floor.width = 6
+    @floor.height = 5
     @floor.add(@unit, 1, 2, :north)
     @position = @unit.position
   end

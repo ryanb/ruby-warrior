@@ -2,7 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe RubyWarrior::Space do
   before(:each) do
-    @floor = RubyWarrior::Floor.new(2, 3)
+    @floor = RubyWarrior::Floor.new
+    @floor.width = 2
+    @floor.height = 3
   end
   
   describe "with empty space" do
@@ -47,7 +49,7 @@ describe RubyWarrior::Space do
   
   describe "with warrior" do
     before(:each) do
-      warrior = RubyWarrior::Units::Warrior.new(RubyWarrior::Profile.new('tower/path', 'name'))
+      warrior = RubyWarrior::Units::Warrior.new(RubyWarrior::Profile.new)
       @floor.add(warrior, 0, 0)
       @space = @floor.space(0, 0)
     end

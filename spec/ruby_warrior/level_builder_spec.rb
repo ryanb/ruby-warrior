@@ -1,52 +1,34 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe RubyWarrior::LevelBuilder do
-  it "build on class should eval the file and return the result" do
-    File.expects(:read).with('/foo/bar').returns("@level = 'level'")
-    RubyWarrior::LevelBuilder.build('/foo/bar', 'profile').should == 'level'
-  end
-  
-  it "build on class should return nil if passed nil file path" do
-    RubyWarrior::LevelBuilder.build(nil, 'profile').should be_nil
-  end
-  
   describe "with profile" do
     before(:each) do
-      @profile = RubyWarrior::Profile.new('tower/path', 'name')
-      @builder = RubyWarrior::LevelBuilder.new(@profile)
-      @builder.level(1, :width => 3, :height => 7)
-    end
-    
-    it "should build level with number, width, and height" do
-      level = @builder.result
-      level.number.should == 1
-      level.width.should == 3
-      level.height.should == 7
+      @profile = RubyWarrior::Profile.new
+      @level = RubyWarrior::Level.new(@profile, 1)
+      @builder = RubyWarrior::LevelBuilder.new(@level)
     end
   
     it "should be able to add description and tip" do
       @builder.description "foo"
       @builder.tip "bar"
-      level = @builder.result
-      level.description.should == "foo"
-      level.tip.should == "bar"
+      @level.description.should == "foo"
+      @level.tip.should == "bar"
     end
   
     it "should be able to add stairs" do
-      level = @builder.result
-      level.expects(:place_stairs).with(1, 2)
-      @builder.stairs :x => 1, :y => 2
+      @level.expects(:place_stairs).with(1, 2)
+      @builder.stairs 1, 2
     end
     
     it "should yield new unit when building" do
-      @builder.unit :base, :x => 1, :y => 2 do |unit|
+      @builder.unit :base, 1, 2 do |unit|
         unit.should be_kind_of(RubyWarrior::Units::Base)
         unit.position.should be_at(1, 2)
       end
     end
     
     it "should build warrior from profile" do
-      @builder.warrior :x => 1, :y => 2 do |unit|
+      @builder.warrior 1, 2 do |unit|
         unit.should be_kind_of(RubyWarrior::Units::Warrior)
         unit.position.should be_at(1, 2)
       end

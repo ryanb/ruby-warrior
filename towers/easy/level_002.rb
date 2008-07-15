@@ -2,14 +2,14 @@
 #  |@    S   ^|
 #  +----------+
 
-level 2, :width => 8, :height => 1
 description "It is too dark to see anything, but you smell sludge nearby."
 tip "Use warrior.feel.empty? to see if there's anything in front of you, and warrior.attack! to fight it. Remember, you can only do one action (ending in !) per turn."
 
-stairs :x => 7, :y => 0
+size 8, 1
+stairs 7, 0
 
-warrior :x => 0, :y => 0, :facing => :east do |u|
+warrior 0, 0, :east do |u|
   u.add_abilities :feel, :attack!
 end
 
-unit :sludge, :x => 4, :y => 0, :facing => :west
+unit :sludge, 4, 0, :west

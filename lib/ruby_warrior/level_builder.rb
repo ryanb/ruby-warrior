@@ -1,19 +1,11 @@
 module RubyWarrior
   class LevelBuilder
-    def self.build(file, profile)
-      unless file.nil?
-        builder = new(profile)
-        builder.instance_eval(File.read(file))
-        builder.result
-      end
+    def initialize(level)
+      @level = level
     end
     
-    def initialize(profile)
-      @profile = profile
-    end
-    
-    def level(number, options)
-      @level = Level.new(number, options[:width], options[:height])
+    def size(width, height)
+      @level.set_size(width, height)
     end
     
     def description(desc)
@@ -24,23 +16,19 @@ module RubyWarrior
       @level.tip = tip
     end
     
-    def result
-      @level
+    def stairs(x, y)
+      @level.place_stairs(x, y)
     end
     
-    def stairs(options)
-      @level.place_stairs(options[:x], options[:y])
-    end
-    
-    def unit(unit, options)
+    def unit(unit, x, y, facing = :north)
       unit = eval("Units::#{unit.to_s.capitalize}").new unless unit.kind_of? Units::Base
-      @level.add(unit, options[:x], options[:y], options[:facing])
+      @level.add(unit, x, y, facing)
       yield unit if block_given?
       unit
     end
     
-    def warrior(options, &block)
-      @level.warrior = unit(Units::Warrior.new(@profile), options, &block)
+    def warrior(*args, &block)
+      @level.warrior = unit(Units::Warrior.new(@level.profile), *args, &block)
     end
   end
 end

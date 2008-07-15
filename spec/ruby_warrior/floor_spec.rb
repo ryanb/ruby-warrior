@@ -2,7 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe RubyWarrior::Floor do
   before(:each) do
-    @floor = RubyWarrior::Floor.new(2, 3)
+    @floor = RubyWarrior::Floor.new
+    @floor.width = 2
+    @floor.height = 3
   end
   
   it "should be able to add a unit and fetch it at that position" do

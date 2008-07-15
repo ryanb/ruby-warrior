@@ -7,7 +7,7 @@ end
 
 describe RubyWarrior::Units::Warrior do
   before(:each) do
-    @profile = RubyWarrior::Profile.new('tower/path', 'name')
+    @profile = RubyWarrior::Profile.new
     @profile.abilities += [:attack!]
     @warrior = RubyWarrior::Units::Warrior.new(@profile)
   end

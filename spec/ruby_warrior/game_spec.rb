@@ -60,10 +60,13 @@ describe RubyWarrior::Game do
   end
   
   it "should pass name and selected tower to profile" do
+    profile = stub
     RubyWarrior::UI.stubs(:choose).returns(stub(:path => 'tower_path'))
     RubyWarrior::UI.stubs(:request).returns('name')
-    RubyWarrior::Profile.expects(:new).with('tower_path', 'name').returns('profile')
-    @game.new_profile.should == 'profile'
+    RubyWarrior::Profile.expects(:new).returns(profile)
+    profile.expects(:tower_path=).with('tower_path')
+    profile.expects(:warrior_name=).with('name')
+    @game.new_profile.should == profile
   end
   
   
@@ -90,10 +93,10 @@ describe RubyWarrior::Game do
     2.times { @game.current_level.should == 'foo' }
   end
   
-  it "should fetch next level from profile" do
+  it "should fetch next level from profile and cache it" do
     @game.stubs(:profile).returns(stub)
     @game.profile.expects(:next_level).returns('bar')
-    @game.next_level.should == 'bar'
+    2.times { @game.next_level.should == 'bar' }
   end
   
 end

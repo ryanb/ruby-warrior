@@ -2,12 +2,11 @@ require 'base64'
 
 module RubyWarrior
   class Profile
-    attr_accessor :score, :abilities, :level_number
-    attr_reader :warrior_name
+    attr_accessor :score, :abilities, :level_number, :tower_path, :warrior_name
     
-    def initialize(tower_path, warrior_name)
-      @tower_path = tower_path
-      @warrior_name = warrior_name
+    def initialize
+      @tower_path = nil
+      @warrior_name = nil
       @score = 0
       @abilities = []
       @level_number = 0
@@ -56,12 +55,6 @@ module RubyWarrior
     def add_abilities(*abilities)
       @abilities += abilities
       @abilities.uniq!
-    end
-    
-    def generate_next_level
-      LevelFileGenerator.new(level_path, next_level).generate
-      @level_number += 1
-      save
     end
   end
 end

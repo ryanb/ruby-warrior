@@ -1,11 +1,22 @@
 module RubyWarrior
   class Level
-    attr_reader :number
+    attr_reader :profile, :number
     attr_accessor :description, :tip, :warrior
     
-    def initialize(number, width, height)
+    def initialize(profile, number)
+      @profile = profile
       @number = number
-      @floor = Floor.new(width, height)
+      @floor = Floor.new
+    end
+    
+    def load_level(level_path)
+      loader = LevelBuilder.new(self)
+      loader.instance_eval(File.read(level_path))
+    end
+    
+    def set_size(width, height)
+      @floor.width = width
+      @floor.height = height
     end
     
     def width
