@@ -1,11 +1,9 @@
 module RubyWarrior
   class LevelLoader
     def initialize(level)
+      @floor = RubyWarrior::Floor.new
       @level = level
-    end
-    
-    def size(width, height)
-      @level.set_size(width, height)
+      @level.floor = @floor
     end
     
     def description(desc)
@@ -16,13 +14,18 @@ module RubyWarrior
       @level.tip = tip
     end
     
+    def size(width, height)
+      @floor.width = width
+      @floor.height = height
+    end
+    
     def stairs(x, y)
-      @level.place_stairs(x, y)
+      @floor.place_stairs(x, y)
     end
     
     def unit(unit, x, y, facing = :north)
       unit = eval("Units::#{unit.to_s.capitalize}").new unless unit.kind_of? Units::Base
-      @level.add(unit, x, y, facing)
+      @floor.add(unit, x, y, facing)
       yield unit if block_given?
       unit
     end

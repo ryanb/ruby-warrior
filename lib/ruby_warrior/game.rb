@@ -7,17 +7,17 @@ module RubyWarrior
       
       make_game_directory unless File.exists?('ruby-warrior')
       
-      if current_level.nil?
-        generate_next_level
+      if !current_level.exists?
+        next_level.generate_player_files
         UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
-        load_player
+        current_level.load_player
         UI.puts "Starting Level #{current_level.number}"
         current_level.play { sleep 0.8 }
         if current_level.passed?
           UI.puts "Success! You have found the stairs."
-          current_level.tally_points(profile)
-          if next_level
+          current_level.tally_points
+          if next_level.exists?
             if UI.ask("Would you like to continue on to the next level?")
               prepare_next_level
               UI.puts "See the ruby-warrior directory for the next level."
@@ -43,17 +43,9 @@ module RubyWarrior
     end
     
     def prepare_next_level
-      PlayerGenerator.new(next_level, current_level.path).generate
+      next_level.generate_player_files
       profile.level_number += 1
       profile.save # this saves score and new abilities too
-    end
-    
-    
-    # player
-    
-    def load_player
-      $: << current_level.player_path
-      load 'player.rb'
     end
     
     

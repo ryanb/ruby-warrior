@@ -15,8 +15,14 @@ describe RubyWarrior::LevelLoader do
       @level.tip.should == "bar"
     end
     
+    it "should be able to set size" do
+      @loader.size 5, 3
+      @level.floor.width.should == 5
+      @level.floor.height.should == 3
+    end
+    
     it "should be able to add stairs" do
-      @level.expects(:place_stairs).with(1, 2)
+      @level.floor.expects(:place_stairs).with(1, 2)
       @loader.stairs 1, 2
     end
     

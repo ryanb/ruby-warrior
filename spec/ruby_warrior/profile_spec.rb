@@ -45,6 +45,16 @@ describe RubyWarrior::Profile do
     @profile.add_abilities(:foo, :bar, :blah, :bar)
     @profile.abilities.should == [:foo, :bar, :blah]
   end
+    
+  it "should fetch new level with current number" do
+    @profile.level_number = 1
+    @profile.current_level.number.should == 1
+  end
+
+  it "should fetch next level" do
+    @profile.level_number = 1
+    @profile.next_level.number.should == 2
+  end
   
   describe "with tower path" do
     before(:each) do
@@ -75,29 +85,6 @@ describe RubyWarrior::Profile do
     it "should load tower from path" do
       RubyWarrior::Tower.expects(:new).with('path/to/tower').returns('tower')
       @profile.tower.should == 'tower'
-    end
-  end
-  
-  describe "with tower" do
-    before(:each) do
-      @tower = RubyWarrior::Tower.new('foo')
-      @profile.stubs(:tower).returns(@tower)
-    end
-    
-    it "should return nil if current level is zero" do
-      @tower.expects(:build_level).never
-      @profile.current_level.should be_nil
-    end
-    
-    it "should fetch current level from tower" do
-      @profile.level_number = 1
-      @tower.expects(:build_level).with(1, @profile)
-      @profile.current_level
-    end
-  
-    it "should fetch next level" do
-      @tower.expects(:build_level).with(1, @profile)
-      @profile.next_level
     end
   end
 end

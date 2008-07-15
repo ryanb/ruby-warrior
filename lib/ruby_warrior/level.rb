@@ -1,22 +1,56 @@
 module RubyWarrior
   class Level
     attr_reader :profile, :number
-    attr_accessor :description, :tip, :warrior
+    attr_accessor :description, :tip, :warrior, :floor
     
     def initialize(profile, number)
       @profile = profile
       @number = number
-      @floor = Floor.new
     end
     
-    def load_level(level_path)
-      loader = LevelLoader.new(self)
-      loader.instance_eval(File.read(level_path))
+    def player_path
+      @profile.player_path + "/level-" + @number.to_s.rjust(3, '0')
     end
     
-    def set_size(width, height)
-      @floor.width = width
-      @floor.height = height
+    def load_path
+      @profile.tower_path + "/level_" + @number.to_s.rjust(3, '0') + ".rb"
+    end
+    
+    def load_level
+      LevelLoader.new(self).instance_eval(File.read(load_path))
+    end
+    
+    def load_player
+      $: << player_path
+      load 'player.rb'
+    end
+    
+    def generate_player_files
+      load_level
+      PlayerGenerator.new(self).generate
+    end
+    
+    def play(turns = 1000)
+      load_level
+      turns.times do |n|
+        return if passed? || failed?
+        UI.puts "- turn #{n+1} -"
+        @floor.units.each { |unit| unit.prepare_turn }
+        @floor.units.each { |unit| unit.perform_turn }
+        yield if block_given?
+      end
+    end
+    
+    def tally_points
+      
+    end
+    
+    def passed?
+      @floor.stairs_space.warrior?
+    end
+    
+    def failed?
+      !@floor.units.include?(warrior)
     end
     
     def width
@@ -27,30 +61,8 @@ module RubyWarrior
       @floor.height
     end
     
-    def play(turns = 1000)
-      turns.times do |n|
-        return if passed? || failed?
-        UI.puts "- turn #{n+1} -"
-        @floor.units.each { |unit| unit.prepare_turn }
-        @floor.units.each { |unit| unit.perform_turn }
-        yield if block_given?
-      end
-    end
-    
-    def add(*args)
-      @floor.add(*args)
-    end
-    
-    def place_stairs(x, y)
-      @floor.place_stairs(x, y)
-    end
-    
-    def passed?
-      @floor.stairs_space.warrior?
-    end
-    
-    def failed?
-      !@floor.units.include?(warrior)
+    def exists?
+      File.exist? load_path
     end
   end
 end

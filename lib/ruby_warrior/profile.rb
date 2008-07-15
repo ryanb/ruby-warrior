@@ -45,11 +45,11 @@ module RubyWarrior
     end
     
     def current_level
-      tower.build_level(level_number, self) unless level_number.zero?
+      Level.new(self, level_number)
     end
     
     def next_level
-      tower.build_level(level_number+1, self)
+      Level.new(self, level_number+1)
     end
     
     def add_abilities(*abilities)
