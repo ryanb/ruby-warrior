@@ -1,6 +1,5 @@
 Primary
 - fill level readme adding more info about available abilities and units on level
-- copy player files over when generating next level
 - make sure profile only receives abilities from warrior on current level, not when building next level
 
 
@@ -13,7 +12,6 @@ Abilities
 
 
 Secondary
-- improve path handling for player path and levels
 - improve profile selection so it's harder to make a profile on the same tower
 - use proxy whenever sending space to Player to avoid hacking
 - handle errors cleanly stating if it's in the user's Player script
@@ -28,43 +26,3 @@ Ideas
 - add taunt ability to force other units to walk towards you
 - reward remembering state between turns - such as where an enemy is, what he is doing, what his stats are, etc.
 - pick up items on fallen enemy ?
-
-
-
-Responsibilities
-----------------
-
-Start Game
-- needs to know game path to create directory
-
-Setup Profile
-- game path to find profiles
-- towers when creating profile
-
-Load Level
-- current level number profile is on
-- path to level file for loading
-- profile for loading name, abilities into warrior
-
-Load Player
-- path to player directory for loading player
-
-Play Level
-- floor for playing unit turns
-- level to know if won
-
-Tally Score When Won
-- warrior to know total score, new abilities, etc.
-- floor to know if all enemies/captives are gone
-- profile to add score, abilities to
-
-Load Next Level
-- next level number profile is on
-- path to level file for loading
-- profile for loading name, abilities into warrior
-
-Next Level Generator
-- profile to increment level and save.
-- player path to generate next level directory
-- template path or some way to generate readme
-- previous level directory to copy player files from

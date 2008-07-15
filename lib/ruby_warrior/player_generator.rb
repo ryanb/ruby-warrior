@@ -4,8 +4,7 @@ require 'erb'
 
 module RubyWarrior
   class PlayerGenerator
-    def initialize(path, level)
-      @player_path = path
+    def initialize(level)
       @level = level
     end
     
@@ -13,36 +12,30 @@ module RubyWarrior
       @level
     end
     
-    def level_name
-      "level-" + @level.number.to_s.rjust(3, '0')
+    def previous_level
+      @previous_level ||= Level.new(level.profile, level.number-1)
     end
     
-    def level_path(other_path = nil)
-      if other_path
-        File.join(level_path, File.basename(other_path, '.*'))
-      else
-        File.join(@player_path, level_name)
-      end
-    end
-    
+    # TODO refactor and test this method
     def generate
-      FileUtils.mkdir_p(level_path)
-      Dir[templates_path + '/*.erb'].each do |path|
-        copy_template(path) unless File.exist?(level_path(path))
+      if File.exist? previous_level.player_path
+        FileUtils.cp_r(previous_level.player_path, level.player_path)
+        FileUtils.rm(level.player_path + '/README')
+      else
+        FileUtils.mkdir_p(level.player_path)
+        FileUtils.cp(templates_path + '/player.rb', level.player_path)
+      end
+      
+      File.open(level.player_path + '/README', 'w') do |f|
+        f.write read_template(templates_path + '/README.erb')
       end
     end
-    
-    private
     
     def templates_path
       File.expand_path(File.dirname(__FILE__) + "/../../templates")
     end
     
-    def copy_template(path)
-      File.open level_path(path), 'w' do |f|
-        f.write read_template(path)
-      end
-    end
+    private
     
     def read_template(path)
       ERB.new(File.read(path), nil, '-').result(binding)

@@ -7,8 +7,8 @@ module RubyWarrior
       
       make_game_directory unless File.exists?('ruby-warrior')
       
-      if !current_level.exists?
-        next_level.generate_player_files
+      if current_level.number.zero?
+        prepare_next_level
         UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
       else
         current_level.load_player
