@@ -19,7 +19,7 @@ module RubyWarrior
     end
     
     def build_level(number, profile)
-      LevelBuilder.build(level_paths[number-1], profile)
+      LevelLoader.build(level_paths[number-1], profile)
     end
   end
 end

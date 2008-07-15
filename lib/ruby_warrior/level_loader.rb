@@ -1,5 +1,5 @@
 module RubyWarrior
-  class LevelBuilder
+  class LevelLoader
     def initialize(level)
       @level = level
     end

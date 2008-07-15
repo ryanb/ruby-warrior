@@ -10,7 +10,7 @@ module RubyWarrior
     end
     
     def load_level(level_path)
-      loader = LevelBuilder.new(self)
+      loader = LevelLoader.new(self)
       loader.instance_eval(File.read(level_path))
     end
     

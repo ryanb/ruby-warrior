@@ -16,7 +16,7 @@ describe RubyWarrior::Tower do
   
   it "should build specified level" do
     @tower.stubs(:level_paths).returns(['foo', 'bar', 'blah'])
-    RubyWarrior::LevelBuilder.expects(:build).with('bar', 'profile')
+    RubyWarrior::LevelLoader.expects(:build).with('bar', 'profile')
     @tower.build_level(2, 'profile')
   end
   
@@ -35,9 +35,9 @@ describe RubyWarrior::Tower do
   #   @tower.path
   # end
   # 
-  # it "call LevelBuilder.build for building file" do
+  # it "call LevelLoader.build for building file" do
   #   @tower.stubs(:level_files).returns(['foo', 'bar', 'blah'])
-  #   RubyWarrior::LevelBuilder.expects(:build).with('bar')
+  #   RubyWarrior::LevelLoader.expects(:build).with('bar')
   #   @tower.build_level(2)
   # end
 end
