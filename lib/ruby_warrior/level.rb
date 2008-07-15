@@ -42,7 +42,10 @@ module RubyWarrior
     end
     
     def tally_points
-      
+      UI.puts "Score for this level: #{warrior.score}"
+      @profile.score += warrior.score
+      @profile.abilities = warrior.abilities.keys
+      UI.puts "Total Score: #{@profile.score}"
     end
     
     def passed?
@@ -53,16 +56,14 @@ module RubyWarrior
       !@floor.units.include?(warrior)
     end
     
-    def width
-      @floor.width
-    end
-    
-    def height
-      @floor.height
-    end
-    
     def exists?
       File.exist? load_path
+    end
+    
+    def setup_warrior(warrior)
+      @warrior = warrior
+      @warrior.add_abilities(*profile.abilities)
+      # add name, etc.
     end
   end
 end

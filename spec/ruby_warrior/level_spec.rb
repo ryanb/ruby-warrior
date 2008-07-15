@@ -28,7 +28,7 @@ describe RubyWarrior::Level do
   end
   
   it "should consider passed when warrior is on stairs" do
-    @level.warrior = RubyWarrior::Units::Warrior.new(RubyWarrior::Profile.new)
+    @level.warrior = RubyWarrior::Units::Warrior.new
     @floor.add(@level.warrior, 0, 0, :north)
     @floor.place_stairs(0, 0)
     @level.should be_passed
@@ -45,10 +45,9 @@ describe RubyWarrior::Level do
   
   it "should load file contents into level" do
     @level.stubs(:load_path).returns('path/to/level.rb')
-    File.expects(:read).with('path/to/level.rb').returns("size 2, 8")
+    File.expects(:read).with('path/to/level.rb').returns("description 'foo'")
     @level.load_level
-    @level.width.should == 2
-    @level.height.should == 8
+    @level.description.should == 'foo'
   end
   
   it "should have a player path from profile with level number in it" do
@@ -82,7 +81,29 @@ describe RubyWarrior::Level do
     @level.generate_player_files
   end
   
-  it "should tally points on profile" do
-    @level.tally_points # TODO
+  it "should setup warrior with profile abilities" do
+    @profile.abilities = [:foo, :bar]
+    warrior = stub
+    warrior.expects(:add_abilities).with(:foo, :bar)
+    @level.setup_warrior(warrior)
+  end
+  
+  describe "tallying points" do
+    before(:each) do
+      @warrior = stub(:score => 0, :abilities => {})
+      @level.stubs(:warrior).returns(@warrior)
+    end
+    
+    it "should add warrior score to profile" do
+      @warrior.stubs(:score).returns(30)
+      @level.tally_points
+      @profile.score.should == 30
+    end
+    
+    it "should apply warrior abilities to profile" do
+      @warrior.stubs(:abilities).returns({:foo => nil, :bar => nil})
+      @level.tally_points
+      @profile.abilities.should == [:foo, :bar]
+    end
   end
 end

@@ -49,7 +49,7 @@ describe RubyWarrior::Space do
   
   describe "with warrior" do
     before(:each) do
-      warrior = RubyWarrior::Units::Warrior.new(RubyWarrior::Profile.new)
+      warrior = RubyWarrior::Units::Warrior.new
       @floor.add(warrior, 0, 0)
       @space = @floor.space(0, 0)
     end

@@ -31,7 +31,7 @@ module RubyWarrior
     end
     
     def warrior(*args, &block)
-      @level.warrior = unit(Units::Warrior.new(@level.profile), *args, &block)
+      @level.setup_warrior unit(Units::Warrior.new, *args, &block)
     end
   end
 end

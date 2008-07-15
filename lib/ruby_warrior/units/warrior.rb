@@ -1,11 +1,11 @@
 module RubyWarrior
   module Units
     class Warrior < Base
-      def initialize(profile)
-        @profile = profile
+      attr_reader :score
+      
+      def initialize
         @health = 20
-        
-        add_abilities_without_profile(*profile.abilities)
+        @score = 100 # TODO make score dynamic
       end
       
       def play_turn(turn)
@@ -19,13 +19,6 @@ module RubyWarrior
       def attack_power
         5
       end
-      
-      def add_abilities_with_profile(*abilities)
-        @profile.add_abilities(*abilities)
-        add_abilities_without_profile(*abilities)
-      end
-      alias_method :add_abilities_without_profile, :add_abilities
-      alias_method :add_abilities, :add_abilities_with_profile
     end
   end
 end

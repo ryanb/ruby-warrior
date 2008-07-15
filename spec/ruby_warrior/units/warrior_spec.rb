@@ -7,9 +7,7 @@ end
 
 describe RubyWarrior::Units::Warrior do
   before(:each) do
-    @profile = RubyWarrior::Profile.new
-    @profile.abilities += [:attack!]
-    @warrior = RubyWarrior::Units::Warrior.new(@profile)
+    @warrior = RubyWarrior::Units::Warrior.new
   end
   
   it "should have a health attribute that defaults to 20" do
@@ -34,14 +32,5 @@ describe RubyWarrior::Units::Warrior do
   
   it "should have an attack power of 5" do
     @warrior.attack_power.should == 5
-  end
-  
-  it "adding abilities should add it to profile" do
-    @profile.expects(:add_abilities).with(:walk!, :feel)
-    @warrior.add_abilities(:walk!, :feel)
-  end
-  
-  it "should already have profile's abilities" do
-    @warrior.abilities.keys.should == @profile.abilities
   end
 end
