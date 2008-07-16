@@ -5,20 +5,31 @@ describe RubyWarrior::Units::Base do
     @unit = RubyWarrior::Units::Base.new
   end
   
-  it "should have a health attribute that defaults to nil" do
-    @unit.health.should be_nil
-  end
-  
-  it "should have a position attribute that defaults to nil" do
-    @unit.position.should be_nil
-  end
-  
   it "should have an attack power which defaults to zero" do
     @unit.attack_power.should be_zero
   end
   
+  it "should consider itself dead when no position" do
+    @unit.position.should be_nil
+    @unit.should_not be_alive
+  end
+  
+  it "should consider itself alive with position" do
+    @unit.position = stub
+    @unit.should be_alive
+  end
+  
+  it "should default max health to 10" do
+    @unit.max_health.should be_zero
+  end
+  
+  it "should default health to max health" do
+    @unit.stubs(:max_health).returns(10)
+    @unit.health.should == 10
+  end
+  
   it "should subtract health when taking damage" do
-    @unit.health = 10
+    @unit.stubs(:max_health).returns(10)
     @unit.take_damage(3)
     @unit.health.should == 7
   end
@@ -29,7 +40,7 @@ describe RubyWarrior::Units::Base do
   
   it "should set position to nil when running out of health" do
     @unit.position = stub
-    @unit.health = 10
+    @unit.stubs(:max_health).returns(10)
     @unit.take_damage(10)
     @unit.position.should be_nil
   end

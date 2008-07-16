@@ -5,8 +5,7 @@ module RubyWarrior
       attr_reader :score
       
       def initialize
-        @health = 20
-        @score = 100 # TODO make score dynamic
+        @score = 0 # TODO make score dynamic
       end
       
       def play_turn(turn)
@@ -17,8 +16,17 @@ module RubyWarrior
         @player ||= Player.new
       end
       
+      def earn_points(points)
+        @score += points
+        say "earns #{points} points"
+      end
+      
       def attack_power
         5
+      end
+      
+      def max_health
+        20
       end
       
       def name

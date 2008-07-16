@@ -17,7 +17,7 @@ describe RubyWarrior::Units::Sludge do
     @sludge.attack_power.should == 2
   end
   
-  it "should have 8 health power at beginning" do
-    @sludge.health.should == 8
+  it "should have 8 max health" do
+    @sludge.max_health.should == 8
   end
 end

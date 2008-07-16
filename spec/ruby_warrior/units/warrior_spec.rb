@@ -22,10 +22,14 @@ describe RubyWarrior::Units::Warrior do
     @warrior.to_s.should == "Joe"
   end
   
-  it "should have a health attribute that defaults to 20" do
-    @warrior.health.should == 20
-    @warrior.health -= 5
-    @warrior.health.should == 15
+  it "should have 20 max health" do
+    @warrior.max_health.should == 20
+  end
+  
+  it "should have 0 score at beginning and be able to earn points" do
+    @warrior.score.should be_zero
+    @warrior.earn_points(5)
+    @warrior.score.should == 5
   end
   
   it "should call player.play_turn and pass turn to player" do

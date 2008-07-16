@@ -1,21 +1,34 @@
 module RubyWarrior
   module Units
     class Base
-      attr_accessor :position, :health
+      attr_writer :health
+      attr_accessor :position
       
       def attack_power
         0
       end
       
       def take_damage(amount)
-        if @health
-          @health -= amount
-          say "takes #{amount} damage, #{@health} health power left"
-          if @health <= 0
+        if health
+          self.health -= amount
+          say "takes #{amount} damage, #{health} health power left"
+          if health <= 0
             @position = nil
             say "dies"
           end
         end
+      end
+      
+      def alive?
+        !position.nil?
+      end
+      
+      def health
+        @health ||= max_health
+      end
+      
+      def max_health
+        0
       end
       
       def say(msg)

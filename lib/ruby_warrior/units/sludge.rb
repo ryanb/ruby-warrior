@@ -2,7 +2,6 @@ module RubyWarrior
   module Units
     class Sludge < Base
       def initialize
-        @health = 8
         add_abilities :attack!, :feel
       end
       
@@ -17,6 +16,10 @@ module RubyWarrior
       
       def attack_power
         2
+      end
+      
+      def max_health
+        8
       end
     end
   end
