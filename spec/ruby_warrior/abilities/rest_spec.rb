@@ -12,8 +12,4 @@ describe RubyWarrior::Abilities::Rest do
     @rest.perform
     @warrior.health.should == 12
   end
-  
-  it "should have no possible arguments" do
-    @rest.possible_arguments.should == [[]]
-  end
 end
