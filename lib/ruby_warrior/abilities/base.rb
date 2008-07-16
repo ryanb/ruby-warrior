@@ -20,8 +20,8 @@ module RubyWarrior
         @unit.position.relative_space(*offset(direction, amount))
       end
       
-      def unit(direction)
-        space(direction).unit
+      def unit(direction, amount = 1)
+        space(direction, amount).unit
       end
       
       def damage(receiver, amount)

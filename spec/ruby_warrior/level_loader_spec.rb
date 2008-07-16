@@ -33,6 +33,10 @@ describe RubyWarrior::LevelLoader do
       end
     end
     
+    it "should be able to add multi-word units" do
+      lambda { @loader.unit :thick_sludge, 1, 2 }.should_not raise_error
+    end
+    
     it "should build warrior from profile" do
       @loader.warrior 1, 2 do |unit|
         unit.should be_kind_of(RubyWarrior::Units::Warrior)

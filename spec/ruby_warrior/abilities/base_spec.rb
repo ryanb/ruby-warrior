@@ -12,4 +12,9 @@ describe RubyWarrior::Abilities::Base do
     @ability.offset(:back).should == [-1, 0]
     @ability.offset(:left).should == [0, -1]
   end
+  
+  it "should fetch unit at given direction with distance" do
+    @ability.expects(:space).with(:right, 3).returns(stub(:unit => 'unit'))
+    @ability.unit(:right, 3).should == 'unit'
+  end
 end

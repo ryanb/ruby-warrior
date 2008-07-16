@@ -16,6 +16,7 @@ require 'ruby_warrior/units/base'
 require 'ruby_warrior/units/warrior'
 require 'ruby_warrior/units/sludge'
 require 'ruby_warrior/units/archer'
+require 'ruby_warrior/units/thick_sludge'
 
 require 'ruby_warrior/abilities/base'
 require 'ruby_warrior/abilities/walk'

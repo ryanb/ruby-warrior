@@ -28,7 +28,7 @@ module RubyWarrior
     end
     
     def unit(unit, x, y, facing = :north)
-      unit = eval("Units::#{unit.to_s.capitalize}").new unless unit.kind_of? Units::Base
+      unit = unit_to_constant(unit).new unless unit.kind_of? Units::Base
       @floor.add(unit, x, y, facing)
       yield unit if block_given?
       unit
@@ -36,6 +36,13 @@ module RubyWarrior
     
     def warrior(*args, &block)
       @level.setup_warrior unit(Units::Warrior.new, *args, &block)
+    end
+    
+    private
+    
+    def unit_to_constant(name)
+      camel = name.to_s.split('_').map { |s| s.capitalize }.join
+      eval("Units::#{camel}")
     end
   end
 end

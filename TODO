@@ -1,12 +1,10 @@
 Primary
 - fill level readme adding more info about available abilities and units on level
-- make sure profile only receives abilities from warrior on current level, not when building next level
 
 
 Abilities
 - add captives
-- add light & look abilities
-- add shoot ability
+- add light ability
 - add listen ability
 - add throw ability
 

@@ -7,7 +7,7 @@ module RubyWarrior
       
       def play_turn(turn)
         [:forward, :left, :right].each do |direction|
-          look(direction).each do |space|
+          turn.look(direction).each do |space|
             if space.warrior?
               turn.shoot!(direction)
               return
