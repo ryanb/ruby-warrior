@@ -22,7 +22,7 @@ describe RubyWarrior::Turn do
     
     it "should not be able to call multiple actions per turn" do
       @turn.walk! :forward
-      lambda { @turn.attack! }.should raise_error(Exception)
+      lambda { @turn.attack! }.should raise_error
     end
   end
   
@@ -52,7 +52,7 @@ describe RubyWarrior::Turn do
     end
     
     it "should raise an exception for unexpected argument" do
-      lambda { @turn.feel(:bad) }.should raise_error(Exception)
+      lambda { @turn.feel(:bad) }.should raise_error
     end
   end
 end

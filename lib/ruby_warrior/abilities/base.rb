@@ -23,6 +23,11 @@ module RubyWarrior
       def unit(direction)
         space(direction).unit
       end
+      
+      def damage(receiver, amount)
+        receiver.take_damage(amount)
+        @unit.earn_points(receiver.max_health) unless receiver.alive?
+      end
     end
   end
 end

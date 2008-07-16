@@ -39,7 +39,7 @@ describe RubyWarrior::Units::Base do
   end
   
   it "should do nothing when taking damage if health isn't set" do
-    lambda { @unit.take_damage(3) }.should_not raise_error(Exception)
+    lambda { @unit.take_damage(3) }.should_not raise_error
   end
   
   it "should set position to nil when running out of health" do
@@ -87,7 +87,7 @@ describe RubyWarrior::Units::Base do
   
   it "should not raise an exception when calling perform_turn when there's no action" do
     @unit.prepare_turn
-    lambda { @unit.perform_turn }.should_not raise_error(Exception)
+    lambda { @unit.perform_turn }.should_not raise_error
   end
   
   it "should pass abilities to new turn when calling next_turn" do

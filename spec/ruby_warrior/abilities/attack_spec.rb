@@ -15,9 +15,9 @@ describe RubyWarrior::Abilities::Attack do
     receiver.health.should == 2
   end
   
-  it "should do nothing if recipient doesn't respond to take damage" do
-    @attack.stubs(:unit).returns(Object.new)
-    lambda { @attack.perform }.should_not raise_error(Exception)
+  it "should do nothing if recipient is nil" do
+    @attack.stubs(:unit).returns(nil)
+    lambda { @attack.perform }.should_not raise_error
   end
   
   it "should get object at position from offset" do

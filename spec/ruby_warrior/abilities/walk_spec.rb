@@ -20,6 +20,6 @@ describe RubyWarrior::Abilities::Walk do
   it "should keep position if something is in the way" do
     @position.stubs(:move).raises("shouldn't be called")
     @space.stubs(:empty?).returns(false)
-    lambda { @walk.perform(:right) }.should_not raise_error(Exception)
+    lambda { @walk.perform(:right) }.should_not raise_error
   end
 end
