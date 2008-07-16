@@ -14,6 +14,10 @@ module RubyWarrior
       @level.tip = tip
     end
     
+    def time_bonus(bonus)
+      @level.time_bonus = bonus
+    end
+    
     def size(width, height)
       @floor.width = width
       @floor.height = height

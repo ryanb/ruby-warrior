@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+require 'set'
 
 describe RubyWarrior::Level do
   before(:each) do
@@ -9,24 +10,6 @@ describe RubyWarrior::Level do
     @level.stubs(:failed?).returns(false)
   end
   
-  it "should call prepare_turn and play_turn on each object specified number of times" do
-    @level.expects(:load_level)
-    object = RubyWarrior::Units::Base.new
-    object.expects(:prepare_turn).times(2)
-    object.expects(:perform_turn).times(2)
-    @floor.add(object, 0, 0, :north)
-    @level.play(2)
-  end
-  
-  it "should return immediately when passed" do
-    @level.expects(:load_level)
-    object = RubyWarrior::Units::Base.new
-    object.expects(:turn).times(0)
-    @floor.add(object, 0, 0, :north)
-    @level.stubs(:passed?).returns(true)
-    @level.play(2)
-  end
-  
   it "should consider passed when warrior is on stairs" do
     @level.warrior = RubyWarrior::Units::Warrior.new
     @floor.add(@level.warrior, 0, 0, :north)
@@ -34,13 +17,8 @@ describe RubyWarrior::Level do
     @level.should be_passed
   end
   
-  it "should yield to block in play method for each turn" do
-    @level.expects(:load_level)
-    int = 0
-    @level.play(2) do
-      int += 1
-    end
-    int.should == 2
+  it "should default time bonus to zero" do
+    @level.time_bonus.should be_zero
   end
   
   it "should load file contents into level" do
@@ -88,6 +66,53 @@ describe RubyWarrior::Level do
     @level.setup_warrior(warrior)
   end
   
+  describe "playing" do
+    before(:each) do
+      @level.stubs(:load_level)
+    end
+    
+    it "should load level once when playing multiple turns" do
+      @level.expects(:load_level)
+      @level.play(2)
+    end
+    
+    it "should call prepare_turn and play_turn on each object specified number of times" do
+      object = RubyWarrior::Units::Base.new
+      object.expects(:prepare_turn).times(2)
+      object.expects(:perform_turn).times(2)
+      @floor.add(object, 0, 0, :north)
+      @level.play(2)
+    end
+  
+    it "should return immediately when passed" do
+      object = RubyWarrior::Units::Base.new
+      object.expects(:turn).times(0)
+      @floor.add(object, 0, 0, :north)
+      @level.stubs(:passed?).returns(true)
+      @level.play(2)
+    end
+  
+    it "should yield to block in play method for each turn" do
+      int = 0
+      @level.play(2) do
+        int += 1
+      end
+      int.should == 2
+    end
+  
+    it "should count down time_bonus once each turn" do
+      @level.time_bonus = 10
+      @level.play(3)
+      @level.time_bonus.should == 7
+    end
+  
+    it "should count down time_bonus below 0" do
+      @level.time_bonus = 2
+      @level.play(5)
+      @level.time_bonus.should be_zero
+    end
+  end
+  
   describe "tallying points" do
     before(:each) do
       @warrior = stub(:score => 0, :abilities => {})
@@ -103,7 +128,13 @@ describe RubyWarrior::Level do
     it "should apply warrior abilities to profile" do
       @warrior.stubs(:abilities).returns({:foo => nil, :bar => nil})
       @level.tally_points
-      @profile.abilities.should == [:foo, :bar]
+      @profile.abilities.to_set.should == [:foo, :bar].to_set
+    end
+    
+    it "should apply time bonus to profile score" do
+      @level.time_bonus = 20
+      @level.tally_points
+      @profile.score.should == 20
     end
   end
 end

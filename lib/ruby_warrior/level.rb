@@ -1,11 +1,12 @@
 module RubyWarrior
   class Level
     attr_reader :profile, :number
-    attr_accessor :description, :tip, :warrior, :floor
+    attr_accessor :description, :tip, :warrior, :floor, :time_bonus
     
     def initialize(profile, number)
       @profile = profile
       @number = number
+      @time_bonus = 0
     end
     
     def player_path
@@ -38,13 +39,19 @@ module RubyWarrior
         @floor.units.each { |unit| unit.prepare_turn }
         @floor.units.each { |unit| unit.perform_turn }
         yield if block_given?
+        @time_bonus -= 1 if @time_bonus > 0
       end
     end
     
     def tally_points
+      @profile.abilities = warrior.abilities.keys
+      
       UI.puts "Score for this level: #{warrior.score}"
       @profile.score += warrior.score
-      @profile.abilities = warrior.abilities.keys
+      
+      UI.puts "Time Bonus: #{time_bonus}"
+      @profile.score += @time_bonus
+      
       UI.puts "Total Score: #{@profile.score}"
     end
     

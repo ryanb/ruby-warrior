@@ -39,5 +39,10 @@ describe RubyWarrior::LevelLoader do
         unit.position.should be_at(1, 2)
       end
     end
+    
+    it "should be able to set time bonus" do
+      @loader.time_bonus 100
+      @level.time_bonus.should == 100
+    end
   end
 end
