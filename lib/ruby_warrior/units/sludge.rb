@@ -15,11 +15,11 @@ module RubyWarrior
       end
       
       def attack_power
-        2
+        3
       end
       
       def max_health
-        8
+        12
       end
     end
   end

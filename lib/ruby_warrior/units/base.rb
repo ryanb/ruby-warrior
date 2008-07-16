@@ -8,6 +8,17 @@ module RubyWarrior
         0
       end
       
+      def max_health
+        0
+      end
+      
+      def earn_points(points)
+      end
+      
+      def health
+        @health ||= max_health
+      end
+      
       def take_damage(amount)
         if health
           self.health -= amount
@@ -21,14 +32,6 @@ module RubyWarrior
       
       def alive?
         !position.nil?
-      end
-      
-      def health
-        @health ||= max_health
-      end
-      
-      def max_health
-        0
       end
       
       def say(msg)

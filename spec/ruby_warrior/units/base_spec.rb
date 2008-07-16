@@ -23,6 +23,10 @@ describe RubyWarrior::Units::Base do
     @unit.max_health.should be_zero
   end
   
+  it "should do nothing when earning points" do
+    lambda { @unit.earn_points(10) }.should_not raise_error
+  end
+  
   it "should default health to max health" do
     @unit.stubs(:max_health).returns(10)
     @unit.health.should == 10

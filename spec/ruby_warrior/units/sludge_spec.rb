@@ -13,11 +13,11 @@ describe RubyWarrior::Units::Sludge do
     @sludge.abilities.keys.should include(:feel)
   end
   
-  it "should have attack power of 2" do
-    @sludge.attack_power.should == 2
+  it "should have attack power of 3" do
+    @sludge.attack_power.should == 3
   end
   
-  it "should have 8 max health" do
-    @sludge.max_health.should == 8
+  it "should have 12 max health" do
+    @sludge.max_health.should == 12
   end
 end
