@@ -90,6 +90,21 @@ describe RubyWarrior::Space do
     end
   end
   
+  describe "with captive" do
+    before(:each) do
+      @floor.add(RubyWarrior::Units::Captive.new, 0, 0)
+      @space = @floor.space(0, 0)
+    end
+    
+    it "should be captive" do
+      @space.should be_captive
+    end
+    
+    it "should not be enemy" do
+      @space.should_not be_enemy
+    end
+  end
+  
   describe "at stairs" do
     before(:each) do
       @floor.place_stairs(0, 0)

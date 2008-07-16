@@ -13,7 +13,11 @@ module RubyWarrior
     end
     
     def enemy?
-      unit && !warrior?
+      unit && !warrior? && !captive?
+    end
+    
+    def captive?
+      unit.kind_of? Units::Captive
     end
     
     def empty?
