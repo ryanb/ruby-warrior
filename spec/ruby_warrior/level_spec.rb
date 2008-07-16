@@ -124,6 +124,7 @@ describe RubyWarrior::Level do
     before(:each) do
       @warrior = stub(:score => 0, :abilities => {})
       @level.stubs(:warrior).returns(@warrior)
+      @level.floor.stubs(:other_units).returns([stub])
     end
     
     it "should add warrior score to profile" do
@@ -142,6 +143,14 @@ describe RubyWarrior::Level do
       @level.time_bonus = 20
       @level.tally_points
       @profile.score.should == 20
+    end
+    
+    it "should give 10% bonus when no other units left" do
+      @level.floor.stubs(:other_units).returns([])
+      @warrior.stubs(:score).returns(10)
+      @level.time_bonus = 10
+      @level.tally_points
+      @profile.score.should == 22
     end
   end
 end

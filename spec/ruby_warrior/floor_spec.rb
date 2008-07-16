@@ -20,6 +20,15 @@ describe RubyWarrior::Floor do
     @floor.units.should_not include(unit)
   end
   
+  it "should fetch other units not warrior" do
+    unit = RubyWarrior::Units::Base.new
+    warrior = RubyWarrior::Units::Warrior.new
+    @floor.add(unit, 0, 0, :north)
+    @floor.add(warrior, 1, 0, :north)
+    @floor.other_units.should_not include(warrior)
+    @floor.other_units.should include(unit)
+  end
+  
   it "should not consider corners out of bounds" do
     @floor.should_not be_out_of_bounds(0, 0)
     @floor.should_not be_out_of_bounds(1, 0)

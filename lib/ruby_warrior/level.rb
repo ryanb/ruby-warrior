@@ -46,13 +46,22 @@ module RubyWarrior
     def tally_points
       @profile.abilities = warrior.abilities.keys
       
-      UI.puts "Score for this level: #{warrior.score}"
+      UI.puts "Score during level: #{warrior.score}"
       @profile.score += warrior.score
       
       UI.puts "Time Bonus: #{time_bonus}"
       @profile.score += @time_bonus
       
+      if floor.other_units.empty?
+        UI.puts "Clear Bonus: #{clear_bonus}"
+        @profile.score += clear_bonus
+      end
+      
       UI.puts "Total Score: #{@profile.score}"
+    end
+    
+    def clear_bonus
+      ((warrior.score + time_bonus)*0.1).round
     end
     
     def passed?

@@ -27,6 +27,10 @@ module RubyWarrior
       @units.reject { |u| u.position.nil? }
     end
     
+    def other_units
+      units.reject { |u| u.kind_of? Units::Warrior }
+    end
+    
     def get(x, y)
       units.detect do |unit|
         unit.position.at?(x, y)
