@@ -61,7 +61,7 @@ module RubyWarrior
     end
     
     def clear_bonus
-      ((warrior.score + time_bonus)*0.1).round
+      ((warrior.score + time_bonus)*0.2).round
     end
     
     def passed?

@@ -145,12 +145,12 @@ describe RubyWarrior::Level do
       @profile.score.should == 20
     end
     
-    it "should give 10% bonus when no other units left" do
+    it "should give 20% bonus when no other units left" do
       @level.floor.stubs(:other_units).returns([])
       @warrior.stubs(:score).returns(10)
       @level.time_bonus = 10
       @level.tally_points
-      @profile.score.should == 22
+      @profile.score.should == 24
     end
   end
 end
