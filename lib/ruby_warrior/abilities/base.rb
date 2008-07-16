@@ -12,12 +12,12 @@ module RubyWarrior
         @unit = unit
       end
       
-      def offset(direction)
-        DIRECTIONS[direction]
+      def offset(direction, amount = 1)
+        DIRECTIONS[direction].map { |i| i*amount }
       end
       
-      def space(direction)
-        @unit.position.relative_space(*offset(direction))
+      def space(direction, amount = 1)
+        @unit.position.relative_space(*offset(direction, amount))
       end
       
       def unit(direction)

@@ -36,7 +36,7 @@ Your objective is to not only reach the goal, but to get the highest score you c
   - defeat an enemy to add his max health to your score
   - rescue a captive to earn 50 points
   - pass the level within the bonus time to earn the amount of bonus time remaining
-  - defeat all enemies and rescue all captives to receive a 10% bonus
+  - defeat all enemies and rescue all captives to receive a 20% bonus
 
 The score is only added once you pass the level. If you die your score for that level is lost.
 
@@ -50,7 +50,7 @@ Even though this is a text-based game, think of it as two-dimensional where you 
 Commanding the Warrior
 ----------------------
 
-When you first start your warrior will only have a few abilities, but with each level your abilities will grow. A warrior has two kinds of abilities: actions and senses.
+When you first start, your warrior will only have a few abilities, but with each level your abilities will grow. A warrior has two kinds of abilities: actions and senses.
 
 An action is something that effects the game in some way. You can easily tell an action because it ends in an exclamation mark. Only one action can be performed per turn, so choose wisely. Here are some examples of actions.
 
