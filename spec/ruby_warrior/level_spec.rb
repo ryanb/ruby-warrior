@@ -61,8 +61,15 @@ describe RubyWarrior::Level do
   
   it "should setup warrior with profile abilities" do
     @profile.abilities = [:foo, :bar]
-    warrior = stub
+    warrior = stub_everything
     warrior.expects(:add_abilities).with(:foo, :bar)
+    @level.setup_warrior(warrior)
+  end
+  
+  it "should setup warrior with profile name" do
+    @profile.warrior_name = "Joe"
+    warrior = stub_everything
+    warrior.expects(:name=).with("Joe")
     @level.setup_warrior(warrior)
   end
   

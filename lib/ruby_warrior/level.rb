@@ -70,7 +70,7 @@ module RubyWarrior
     def setup_warrior(warrior)
       @warrior = warrior
       @warrior.add_abilities(*profile.abilities)
-      # add name, etc.
+      @warrior.name = profile.warrior_name
     end
   end
 end

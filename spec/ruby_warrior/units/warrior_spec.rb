@@ -10,6 +10,18 @@ describe RubyWarrior::Units::Warrior do
     @warrior = RubyWarrior::Units::Warrior.new
   end
   
+  it "should default name to warrior" do
+    @warrior.name.should == "Warrior"
+    @warrior.name = ''
+    @warrior.name.should == "Warrior"
+  end
+  
+  it "should be able to set name" do
+    @warrior.name = "Joe"
+    @warrior.name.should == "Joe"
+    @warrior.to_s.should == "Joe"
+  end
+  
   it "should have a health attribute that defaults to 20" do
     @warrior.health.should == 20
     @warrior.health -= 5
