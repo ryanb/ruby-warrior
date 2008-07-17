@@ -13,7 +13,7 @@ module RubyWarrior
       else
         current_level.load_player
         UI.puts "Starting Level #{current_level.number}"
-        current_level.play { sleep 0.8 }
+        current_level.play
         if current_level.passed?
           UI.puts "Success! You have found the stairs."
           current_level.tally_points

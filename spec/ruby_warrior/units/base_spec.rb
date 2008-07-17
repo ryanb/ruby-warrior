@@ -50,7 +50,7 @@ describe RubyWarrior::Units::Base do
   end
   
   it "should print out line with name when speaking" do
-    RubyWarrior::UI.expects(:puts).with("Base foo")
+    RubyWarrior::UI.expects(:puts_with_delay).with("Base foo")
     @unit.say "foo"
   end
   

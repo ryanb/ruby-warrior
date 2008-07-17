@@ -9,6 +9,10 @@ describe RubyWarrior::UI do
     @ui.in_stream = @in
   end
   
+  after(:each) do
+    @ui.delay = nil
+  end
+  
   it "should add puts to out stream" do
     @ui.puts "hello"
     @out.string.should == "hello\n"
@@ -75,5 +79,18 @@ describe RubyWarrior::UI do
   
   it "choose should return first value in array of option if only on item" do
     @ui.choose('item', [[:foo, :bar]]).should == :foo
+  end
+  
+  it "should delay after puts when specified" do
+    @ui.delay = 1.3
+    @ui.expects(:puts).with("foo")
+    @ui.expects(:sleep).with(1.3)
+    @ui.puts_with_delay("foo")
+  end
+  
+  it "should not delay puts when delay isn't specified" do
+    @ui.expects(:puts).with("foo")
+    @ui.expects(:sleep).never
+    @ui.puts_with_delay("foo")
   end
 end
