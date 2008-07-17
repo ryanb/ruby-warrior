@@ -12,7 +12,7 @@ describe RubyWarrior::Abilities::Feel do
   end
   
   it "should have all directions as possible arguments" do
-    [[], :forward, :back, :left, :right].each do |arg|
+    [[], :forward, :backward, :left, :right].each do |arg|
       @feel.possible_arguments.should include(arg)
     end
   end

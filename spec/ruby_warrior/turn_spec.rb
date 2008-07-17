@@ -30,25 +30,25 @@ describe RubyWarrior::Turn do
     before(:each) do
       @feel = RubyWarrior::Abilities::Feel.new(Object.new)
       @feel.stubs(:space).returns(Object.new)
-      @feel.stubs(:space).with(:back).returns(Object.new)
+      @feel.stubs(:space).with(:backward).returns(Object.new)
       @turn = RubyWarrior::Turn.new({:feel => @feel})
     end
     
     it "should be able to call sense with any argument and return expected results" do
       @turn.feel.should == @feel.perform
-      @turn.feel(:back).should == @feel.perform(:back)
+      @turn.feel(:backward).should == @feel.perform(:backward)
     end
     
     it "should have memorized result" do
-      result = @feel.perform(:back)
-      @feel.stubs(:space).with(:back).returns(nil)
-      @turn.feel(:back).should == result
+      result = @feel.perform(:backward)
+      @feel.stubs(:space).with(:backward).returns(nil)
+      @turn.feel(:backward).should == result
     end
     
     it "should have memorized result" do
-      result = @feel.perform(:back)
-      @feel.stubs(:space).with(:back).returns(nil)
-      @turn.feel(:back).should == result
+      result = @feel.perform(:backward)
+      @feel.stubs(:space).with(:backward).returns(nil)
+      @turn.feel(:backward).should == result
     end
     
     it "should raise an exception for unexpected argument" do

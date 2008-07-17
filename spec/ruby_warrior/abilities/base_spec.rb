@@ -9,7 +9,7 @@ describe RubyWarrior::Abilities::Base do
   it "should have offset for directions" do
     @ability.offset(:forward).should == [1, 0]
     @ability.offset(:right).should == [0, 1]
-    @ability.offset(:back).should == [-1, 0]
+    @ability.offset(:backward).should == [-1, 0]
     @ability.offset(:left).should == [0, -1]
   end
   
