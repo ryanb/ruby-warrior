@@ -2,7 +2,7 @@ module RubyWarrior
   module Abilities
     class Shoot < Base
       def perform(direction = :forward)
-        receiver = multi_unit(direction, 1..10).compact.first
+        receiver = multi_unit(direction, 1..3).compact.first
         if receiver
           @unit.say "shoots #{receiver}"
           damage(receiver, @unit.shoot_power)

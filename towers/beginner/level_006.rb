@@ -1,5 +1,5 @@
 #  +-----------+
-#  |C @  SA A ^|
+#  |C @  S AA ^|
 #  +-----------+
 
 description "The wall behind you feels a bit further away in this room. And you hear more cries for help."
@@ -13,5 +13,5 @@ warrior 2, 0, :east
 
 unit :captive, 0, 0, :east
 unit :thick_sludge, 4, 0, :west
-unit :archer, 5, 0, :west
 unit :archer, 6, 0, :west
+unit :archer, 7, 0, :west
