@@ -51,4 +51,14 @@ describe RubyWarrior::Floor do
     @floor.place_stairs(1, 2)
     @floor.stairs_location.should == [1, 2]
   end
+  
+  it "should print empty floor in ascii" do
+    @floor.to_map.should == <<-MAP
+ --
+|  |
+|  |
+|  |
+ --
+MAP
+  end
 end

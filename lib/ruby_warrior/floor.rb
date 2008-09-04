@@ -44,5 +44,15 @@ module RubyWarrior
     def out_of_bounds?(x, y)
       x < 0 || y < 0 || x > @width-1 || y > @height-1
     end
+    
+    def to_map
+      rows = []
+      rows << " " + ("-" * @width)
+      @height.times do
+        rows << "|" + (" " * @width) + "|"
+      end
+      rows << " " + ("-" * @width)
+      rows.join("\n") + "\n"
+    end
   end
 end
