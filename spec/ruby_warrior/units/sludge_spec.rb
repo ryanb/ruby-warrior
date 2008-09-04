@@ -20,4 +20,8 @@ describe RubyWarrior::Units::Sludge do
   it "should have 12 max health" do
     @sludge.max_health.should == 12
   end
+  
+  it "should appear as s on map" do
+    @sludge.to_map.should == "s"
+  end
 end

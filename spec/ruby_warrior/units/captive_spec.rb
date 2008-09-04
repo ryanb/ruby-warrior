@@ -8,4 +8,8 @@ describe RubyWarrior::Units::ThickSludge do
   it "should have 1 max health" do
     @captive.max_health.should == 1
   end
+  
+  it "should appear as C on map" do
+    @captive.to_map.should == "C"
+  end
 end

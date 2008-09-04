@@ -72,6 +72,10 @@ module RubyWarrior
       def abilities
         @abilities ||= {}
       end
+      
+      def to_map
+        "?"
+      end
     end
   end
 end

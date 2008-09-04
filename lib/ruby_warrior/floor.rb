@@ -48,8 +48,13 @@ module RubyWarrior
     def to_map
       rows = []
       rows << " " + ("-" * @width)
-      @height.times do
-        rows << "|" + (" " * @width) + "|"
+      @height.times do |y|
+        str = "|"
+        @width.times do |x|
+          str << space(x, y).to_map
+        end
+        str << "|"
+        rows << str
       end
       rows << " " + ("-" * @width)
       rows.join("\n") + "\n"

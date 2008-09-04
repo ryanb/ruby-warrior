@@ -40,6 +40,10 @@ module RubyWarrior
       def to_s
         name
       end
+      
+      def to_map
+        "W"
+      end
     end
   end
 end

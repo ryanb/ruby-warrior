@@ -49,4 +49,8 @@ describe RubyWarrior::Units::Warrior do
   it "should have an attack power of 5" do
     @warrior.attack_power.should == 5
   end
+  
+  it "should appear as W on map" do
+    @warrior.to_map.should == "W"
+  end
 end

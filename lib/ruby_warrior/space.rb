@@ -31,5 +31,15 @@ module RubyWarrior
     def unit
       @floor.get(@x, @y)
     end
+    
+    def to_map
+      if unit
+        unit.to_map
+      elsif stairs?
+        ">"
+      else
+        " "
+      end
+    end
   end
 end

@@ -101,4 +101,8 @@ describe RubyWarrior::Units::Base do
     @unit.add_abilities(:walk!)
     @unit.abilities.should == { :walk! => 'walk' }
   end
+  
+  it "should appear as question mark on map" do
+    @unit.to_map.should == "?"
+  end
 end

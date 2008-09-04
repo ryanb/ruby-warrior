@@ -25,6 +25,10 @@ module RubyWarrior
       def max_health
         7
       end
+      
+      def to_map
+        "a"
+      end
     end
   end
 end
