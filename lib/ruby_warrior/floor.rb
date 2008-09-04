@@ -49,12 +49,12 @@ module RubyWarrior
       rows = []
       rows << " " + ("-" * @width)
       @height.times do |y|
-        str = "|"
+        row = "|"
         @width.times do |x|
-          str << space(x, y).to_map
+          row << space(x, y).to_map
         end
-        str << "|"
-        rows << str
+        row << "|"
+        rows << row
       end
       rows << " " + ("-" * @width)
       rows.join("\n") + "\n"
