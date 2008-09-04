@@ -1,6 +1,10 @@
 module RubyWarrior
   module Abilities
     class Walk < Base
+      def description
+        "Move in given direction (forward by default)."
+      end
+      
       def perform(direction = :forward)
         if @unit.position
           if space(direction).empty?

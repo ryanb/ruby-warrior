@@ -1,6 +1,10 @@
 module RubyWarrior
   module Abilities
     class Look < Base
+      def description
+        "Returns an array of Spaces in given direction (forward by default)."
+      end
+      
       def possible_arguments
         [[], :forward, :left, :right]
       end

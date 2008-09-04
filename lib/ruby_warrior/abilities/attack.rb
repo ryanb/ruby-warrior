@@ -1,6 +1,10 @@
 module RubyWarrior
   module Abilities
     class Attack < Base
+      def description
+        "Attack the enemy in given direction (forward by default)."
+      end
+      
       def perform(direction = :forward)
         receiver = unit(direction)
         if receiver

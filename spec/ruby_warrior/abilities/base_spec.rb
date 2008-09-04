@@ -17,4 +17,8 @@ describe RubyWarrior::Abilities::Base do
     @ability.expects(:space).with(:right, 3).returns(stub(:unit => 'unit'))
     @ability.unit(:right, 3).should == 'unit'
   end
+  
+  it "should have no description" do
+    @ability.description.should be_nil
+  end
 end

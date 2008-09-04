@@ -2,10 +2,10 @@ module RubyWarrior
   module Abilities
     class Base
       DIRECTIONS = {
-        :forward => [1, 0],
-        :right   => [0, 1],
-        :backward    => [-1, 0],
-        :left    => [0, -1]
+        :forward  => [1, 0],
+        :right    => [0, 1],
+        :backward => [-1, 0],
+        :left     => [0, -1]
       }
       
       def initialize(unit)
@@ -27,6 +27,9 @@ module RubyWarrior
       def damage(receiver, amount)
         receiver.take_damage(amount)
         @unit.earn_points(receiver.max_health) unless receiver.alive?
+      end
+      
+      def description
       end
     end
   end

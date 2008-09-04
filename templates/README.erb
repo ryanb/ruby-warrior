@@ -10,3 +10,11 @@ Tip: <%= level.tip %>
 <%- for unit in level.floor.unique_units -%>
   <%= unit.to_map %> = <%= unit.name %> (<%= unit.max_health %> HP)
 <%- end -%>
+
+
+Available Abilities:
+<%- level.warrior.abilities.each do |name, ability| -%>
+
+  warrior.<%= name %>
+    <%= ability.description %>
+<%- end -%>

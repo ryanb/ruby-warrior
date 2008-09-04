@@ -1,6 +1,10 @@
 module RubyWarrior
   module Abilities
     class Shoot < Base
+      def description
+        "Shoot your bow & arrow in given direction (forward by default)."
+      end
+      
       def perform(direction = :forward)
         receiver = multi_unit(direction, 1..3).compact.first
         if receiver
