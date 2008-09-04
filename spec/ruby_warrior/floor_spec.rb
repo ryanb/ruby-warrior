@@ -68,7 +68,14 @@ describe RubyWarrior::Floor do
  ---
 |W >|
  ---
-  MAP
+MAP
+    end
+    
+    it "should return unique units" do
+      u1 = RubyWarrior::Units::Base.new
+      @floor.add(u1, 0, 0)
+      @floor.add(RubyWarrior::Units::Base.new, 1, 0)
+      @floor.unique_units.should == [u1]
     end
   end
 end

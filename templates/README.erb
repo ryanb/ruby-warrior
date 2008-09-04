@@ -4,4 +4,9 @@ Level <%= level.number %>
 
 Tip: <%= level.tip %>
 
-<%= level.floor.to_map %>
+<%= level.floor.to_map -%>
+
+  > = Stairs
+<%- for unit in level.floor.unique_units -%>
+  <%= unit.to_map %> = <%= unit.name %> (<%= unit.max_health %> HP)
+<%- end -%>

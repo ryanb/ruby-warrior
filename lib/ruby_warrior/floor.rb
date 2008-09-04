@@ -59,5 +59,13 @@ module RubyWarrior
       rows << " " + ("-" * @width)
       rows.join("\n") + "\n"
     end
+    
+    def unique_units
+      unique_units = []
+      units.each do |unit|
+        unique_units << unit unless unique_units.map { |u| u.class }.include?(unit.class)
+      end
+      unique_units
+    end
   end
 end
