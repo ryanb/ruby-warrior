@@ -7,8 +7,8 @@ module RubyWarrior
       
       def perform
         amount = (@unit.max_health*0.1).round
-        @unit.say "receives #{amount} health from resting"
         @unit.health += amount
+        @unit.say "receives #{amount} health from resting, up to #{@unit.health} health"
       end
     end
   end

@@ -1,13 +1,10 @@
 Primary
-- fill level readme adding more info about available abilities and units on level
-
+- add level 7 with pivot
 
 Abilities
-- add captives
 - add light ability
 - add listen ability
 - add throw ability
-
 
 Secondary
 - improve profile selection so it's harder to make a profile on the same tower
@@ -15,12 +12,10 @@ Secondary
 - handle errors cleanly stating if it's in the user's Player script
 - add a more in-depth help doc if they get stuck
 
-
 Ideas
-- the ability to pick up and equip items
-- remember state across levels to keep score, health, etc.
+- invalidate old player.rb when generating a new level so they don't accidentally edit that one.
 - some actions take multiple turns (such as swinging a large axe) other units may be able to detect this and get out of the way
 - units turns are taken in the order of their speed attribute
 - add taunt ability to force other units to walk towards you
 - reward remembering state between turns - such as where an enemy is, what he is doing, what his stats are, etc.
-- pick up items on fallen enemy ?
+- after climbing the tower, re-run the last script on all levels
