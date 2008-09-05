@@ -1,6 +1,6 @@
-#  +----------+
-#  |@ T A  S ^|
-#  +----------+
+#  -------
+# |W Sa S>|
+#  -------
 
 description "You can hear bow strings being stretched."
 tip "No new abilities this time, but you must be careful not to rest while taking damage. Save a @health instance variable and compare it on each turn to see if you're taking damage."

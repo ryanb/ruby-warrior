@@ -1,6 +1,6 @@
-#  +--------+
-#  |@ CSAC ^|
-#  +--------+
+#  -------
+# |W CaaSC|
+#  -------
 
 description "You hear cries for help. Captives must need rescuing."
 tip "Use warrior.feel.captive? to see if there's a captive, and warrior.rescue! to rescue him. Don't attack captives."

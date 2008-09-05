@@ -1,6 +1,6 @@
-#  +-----------+
-#  |C @  S AA ^|
-#  +-----------+
+#  --------
+# |C W S aa|
+#  --------
 
 description "The wall behind you feels a bit further away in this room. And you hear more cries for help."
 tip "You can walk backward by passing ':backward' as an argument to walk!. Same goes for feel, rescue! and attack!."

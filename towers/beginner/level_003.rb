@@ -1,6 +1,6 @@
-#  +----------+
-#  |@ S  S S ^|
-#  +----------+
+#  ---------
+# |W s ss s>|
+#  ---------
 
 description "The air feels thicker than before. There must be a horde of sludge."
 tip "Be careful not to die! Use warrior.health to keep an eye on your health, and warrior.rest! to earn 10% of max health back."

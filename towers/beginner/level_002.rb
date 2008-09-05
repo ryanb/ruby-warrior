@@ -1,6 +1,6 @@
-#  +----------+
-#  |@    S   ^|
-#  +----------+
+#  --------
+# |W   s  >|
+#  --------
 
 description "It is too dark to see anything, but you smell sludge nearby."
 tip "Use warrior.feel.empty? to see if there's anything in front of you, and warrior.attack! to fight it. Remember, you can only do one action (ending in !) per turn."

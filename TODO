@@ -19,3 +19,5 @@ Ideas
 - add taunt ability to force other units to walk towards you
 - reward remembering state between turns - such as where an enemy is, what he is doing, what his stats are, etc.
 - after climbing the tower, re-run the last script on all levels
+- turn an enemy into a captive as a way to freeze them. No points unless you rescue and start attacking. May need to keep in mind which enemy you turned into captive because they will then look like all other captives
+- attacking or looking backward should be less effective than forward/left/right
