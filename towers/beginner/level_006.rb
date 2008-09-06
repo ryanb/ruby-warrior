@@ -1,5 +1,5 @@
 #  --------
-# |C W S aa|
+# |C @ S aa|
 #  --------
 
 description "The wall behind you feels a bit further away in this room. And you hear more cries for help."

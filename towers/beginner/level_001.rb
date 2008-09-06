@@ -1,5 +1,5 @@
 #  --------
-# |W      >|
+# |@      >|
 #  --------
 
 description "You see before yourself a long hallway with stairs at the end. There is nothing in the way."

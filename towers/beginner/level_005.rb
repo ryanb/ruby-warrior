@@ -1,5 +1,5 @@
 #  -------
-# |W CaaSC|
+# |@ CaaSC|
 #  -------
 
 description "You hear cries for help. Captives must need rescuing."

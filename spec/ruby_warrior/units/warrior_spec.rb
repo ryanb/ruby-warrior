@@ -50,7 +50,7 @@ describe RubyWarrior::Units::Warrior do
     @warrior.attack_power.should == 5
   end
   
-  it "should appear as W on map" do
-    @warrior.to_map.should == "W"
+  it "should appear as @ on map" do
+    @warrior.to_map.should == "@"
   end
 end

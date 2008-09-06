@@ -1,5 +1,5 @@
 #  ---------
-# |W s ss s>|
+# |@ s ss s>|
 #  ---------
 
 description "The air feels thicker than before. There must be a horde of sludge."

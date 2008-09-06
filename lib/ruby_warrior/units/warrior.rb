@@ -42,7 +42,7 @@ module RubyWarrior
       end
       
       def to_map
-        "W"
+        "@"
       end
     end
   end

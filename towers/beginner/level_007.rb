@@ -1,5 +1,5 @@
 #  ------
-# |> aS W|
+# |> aS @|
 #  ------
 
 description "You feel a wall right in front of you and an opening behind you."

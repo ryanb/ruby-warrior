@@ -66,7 +66,7 @@ describe RubyWarrior::Floor do
       @floor.place_stairs(2, 0)
       @floor.to_map.should == <<-MAP
  ---
-|W >|
+|@ >|
  ---
 MAP
     end

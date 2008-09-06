@@ -1,5 +1,5 @@
 #  -------
-# |W Sa S>|
+# |@ Sa S>|
 #  -------
 
 description "You can hear bow strings being stretched."

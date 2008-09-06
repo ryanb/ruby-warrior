@@ -1,5 +1,5 @@
 #  --------
-# |W   s  >|
+# |@   s  >|
 #  --------
 
 description "It is too dark to see anything, but you smell sludge nearby."
