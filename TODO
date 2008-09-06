@@ -1,12 +1,10 @@
 Primary
-
-Abilities
-- add light ability
-- add listen ability
-- add throw ability
+- give the towers names in tower select
+- rename tower to dungeon
+- improve profile selection so you don't replace your current tower profile
+- add level with light and look abilities
 
 Secondary
-- improve profile selection so you don't replace your current tower profile
 - use proxy whenever sending space to Player to avoid hacking
 - add a more in-depth help doc if they get stuck
 - hard wrap long descriptions/tips
@@ -18,5 +16,4 @@ Ideas
 - after climbing the tower, re-run the last script on all levels
 - attacking or looking backward should be less effective than forward/left/right
 - handle errors cleanly stating if it's in the user's Player script
-- rename tower to dungeon
 - rename towers to more creative names

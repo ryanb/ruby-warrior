@@ -7,7 +7,7 @@ description "Another large room, but with several enemies blocking your way to t
 tip "Just like walking, you can attack! and feel in multiple directions (:forward, :left, :right, :backward)."
 
 time_bonus 40
-size 5, 3
+size 5, 2
 stairs 4, 1
 
 warrior 1, 0, :east do |u|
