@@ -17,7 +17,7 @@ module RubyWarrior
     end
     
     def captive?
-      unit.kind_of? Units::Captive
+      unit.bound?
     end
     
     def empty?

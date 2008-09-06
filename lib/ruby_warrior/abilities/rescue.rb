@@ -7,9 +7,12 @@ module RubyWarrior
       
       def perform(direction = :forward)
         if space(direction).captive?
-          @unit.say "rescues captive"
-          unit(direction).position = nil
-          @unit.earn_points(20)
+          recipient = unit(direction)
+          recipient.unbind
+          if recipient.kind_of? Units::Captive
+            recipient.position = nil
+            @unit.earn_points(20)
+          end
         end
       end
     end

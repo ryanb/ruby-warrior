@@ -12,4 +12,8 @@ describe RubyWarrior::Units::ThickSludge do
   it "should appear as C on map" do
     @captive.to_map.should == "C"
   end
+  
+  it "should be bound by default" do
+    @captive.should be_bound
+  end
 end

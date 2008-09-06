@@ -105,4 +105,18 @@ describe RubyWarrior::Units::Base do
   it "should appear as question mark on map" do
     @unit.to_map.should == "?"
   end
+  
+  it "should be released from bonds when taking damage" do
+    @unit.stubs(:max_health).returns(10)
+    @unit.bind
+    @unit.should be_bound
+    @unit.take_damage(2)
+    @unit.should_not be_bound
+  end
+  
+  it "should be released from bonds when calling release" do
+    @unit.bind
+    @unit.unbind
+    @unit.should_not be_bound
+  end
 end

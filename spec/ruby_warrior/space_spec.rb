@@ -88,6 +88,20 @@ describe RubyWarrior::Space do
     it "should not be empty" do
       @space.should_not be_empty
     end
+    
+    describe "bound" do
+      before(:each) do
+        @space.unit.bind
+      end
+      
+      it "should be captive" do
+        @space.should be_captive
+      end
+      
+      it "should not look like enemy" do
+        @space.should_not be_enemy
+      end
+    end
   end
   
   describe "with captive" do

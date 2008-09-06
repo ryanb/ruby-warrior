@@ -20,6 +20,7 @@ module RubyWarrior
       end
       
       def take_damage(amount)
+        unbind if bound?
         if health
           self.health -= amount
           say "takes #{amount} damage, #{health} health power left"
@@ -32,6 +33,19 @@ module RubyWarrior
       
       def alive?
         !position.nil?
+      end
+      
+      def bound?
+        @bound
+      end
+      
+      def unbind
+        say "released from bonds"
+        @bound = false
+      end
+      
+      def bind
+        @bound = true
       end
       
       def say(msg)

@@ -16,13 +16,25 @@ describe RubyWarrior::Abilities::Rescue do
     captive.position.should be_nil
   end
   
-  it "should do nothing to other unit" do
+  it "should do nothing to other unit if not bound" do
     unit = RubyWarrior::Units::Base.new
     unit.position = stub
     @rescue.expects(:space).with(:forward).returns(stub(:captive? => false))
     @rescue.expects(:unit).with(:forward).never
     @warrior.expects(:earn_points).never
     @rescue.perform
+    unit.position.should_not be_nil
+  end
+  
+  it "should release other unit when bound" do
+    unit = RubyWarrior::Units::Base.new
+    unit.bind
+    unit.position = stub
+    @rescue.expects(:space).with(:forward).returns(stub(:captive? => true))
+    @rescue.expects(:unit).with(:forward).returns(unit)
+    @warrior.expects(:earn_points).never
+    @rescue.perform
+    unit.should_not be_bound
     unit.position.should_not be_nil
   end
 end
