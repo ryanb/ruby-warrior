@@ -8,6 +8,7 @@ module RubyWarrior
       def perform(direction = :forward)
         if space(direction).captive?
           recipient = unit(direction)
+          @unit.say "unbinds #{recipient}"
           recipient.unbind
           if recipient.kind_of? Units::Captive
             recipient.position = nil

@@ -31,6 +31,10 @@ describe RubyWarrior::Space do
     it "should not be stairs" do
       @space.should_not be_stairs
     end
+    
+    it "should not be captive" do
+      @space.should_not be_captive
+    end
   end
   
   describe "out of bounds" do

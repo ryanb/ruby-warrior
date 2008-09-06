@@ -17,7 +17,7 @@ module RubyWarrior
     end
     
     def captive?
-      unit.bound?
+      unit && unit.bound?
     end
     
     def empty?
