@@ -44,6 +44,11 @@ module RubyWarrior
       def to_map
         "@"
       end
+      
+      def perform_turn
+        say "does nothing" if @current_turn.action.nil?
+        super
+      end
     end
   end
 end
