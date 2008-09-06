@@ -14,4 +14,4 @@ warrior 5, 0, :east do |u|
 end
 
 unit :archer, 2, 0, :east
-unit :sludge, 3, 0, :east
+unit :thick_sludge, 3, 0, :east
