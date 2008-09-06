@@ -119,4 +119,15 @@ describe RubyWarrior::Units::Base do
     @unit.unbind
     @unit.should_not be_bound
   end
+  
+  it "should not perform action when bound" do
+    @unit.position = stub
+    @unit.bind
+    RubyWarrior::Abilities::Walk.any_instance.stubs(:perform).raises("action should not be called")
+    @unit.add_abilities(:walk!)
+    turn = stub(:action => [:walk!, :backward])
+    @unit.stubs(:next_turn).returns(turn)
+    @unit.prepare_turn
+    @unit.perform_turn
+  end
 end

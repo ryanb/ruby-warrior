@@ -73,7 +73,7 @@ module RubyWarrior
       end
       
       def perform_turn
-        if @current_turn.action && @position
+        if @current_turn.action && @position && !bound?
           name, *args = @current_turn.action
           abilities[name].perform(*args)
         end
