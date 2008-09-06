@@ -1,5 +1,6 @@
 Primary
 - fix saying when bumping into a wall.
+- ensure warrior always says something even if nothing happens (when no action or when not releasing captive)
 
 Abilities
 - add light ability
