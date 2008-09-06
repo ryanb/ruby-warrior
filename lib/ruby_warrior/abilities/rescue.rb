@@ -14,6 +14,8 @@ module RubyWarrior
             recipient.position = nil
             @unit.earn_points(20)
           end
+        else
+          @unit.say "rescues nothing"
         end
       end
     end

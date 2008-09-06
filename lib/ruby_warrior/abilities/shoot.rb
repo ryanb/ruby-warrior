@@ -11,7 +11,7 @@ module RubyWarrior
           @unit.say "shoots #{receiver}"
           damage(receiver, @unit.shoot_power)
         else
-          @unit.say "shoots and misses"
+          @unit.say "shoots and hits nothing"
         end
       end
       
