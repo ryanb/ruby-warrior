@@ -39,7 +39,7 @@ module RubyWarrior
       end
       
       def name
-        self.class.name.split('::').last
+        self.class.name.split('::').last.gsub(/[A-Z]/, ' \0').lstrip
       end
       alias_method :to_s, :name
       
