@@ -5,7 +5,7 @@
 #  -----
 
 description "Another large room, but with several enemies blocking your way to the stairs."
-tip "You can attack and feel in multiple directions (:forward, :left, :right, :backward). Use warrior.feel(dir).wall? to determine if there's a wall there."
+tip "Just like walking, you can attack and feel in multiple directions (:forward, :left, :right, :backward)."
 
 time_bonus 60
 size 5, 3
