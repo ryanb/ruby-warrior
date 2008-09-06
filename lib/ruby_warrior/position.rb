@@ -1,5 +1,6 @@
 module RubyWarrior
   class Position
+    attr_reader :floor
     DIRECTIONS = [:north, :east, :south, :west]
     
     def initialize(floor, x, y, direction = nil)
@@ -25,6 +26,10 @@ module RubyWarrior
     
     def relative_space(forward, right = 0)
       @floor.space(*translate_offset(forward, right))
+    end
+    
+    def space
+      @floor.space(0, 0)
     end
     
     def move(forward, right = 0)
