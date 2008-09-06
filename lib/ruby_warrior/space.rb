@@ -41,5 +41,15 @@ module RubyWarrior
         " "
       end
     end
+    
+    def to_s
+      if unit
+        unit.to_s
+      elsif wall?
+        'wall'
+      else
+        'nothing'
+      end
+    end
   end
 end

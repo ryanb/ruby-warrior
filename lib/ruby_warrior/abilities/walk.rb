@@ -11,7 +11,7 @@ module RubyWarrior
             @unit.say "walks #{direction}"
             @unit.position.move(*offset(direction))
           else
-            @unit.say "bumps into #{unit(direction)}"
+            @unit.say "bumps into #{space(direction)}"
           end
         end
       end

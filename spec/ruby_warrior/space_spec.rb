@@ -35,6 +35,10 @@ describe RubyWarrior::Space do
     it "should not be captive" do
       @space.should_not be_captive
     end
+    
+    it "should say 'nothing' as name" do
+      @space.to_s.should == 'nothing'
+    end
   end
   
   describe "out of bounds" do
@@ -48,6 +52,10 @@ describe RubyWarrior::Space do
   
     it "should not be empty" do
       @space.should_not be_empty
+    end
+    
+    it "should have name of 'wall'" do
+      @space.to_s.should == 'wall'
     end
   end
   
@@ -91,6 +99,10 @@ describe RubyWarrior::Space do
     
     it "should not be empty" do
       @space.should_not be_empty
+    end
+    
+    it "should have name of unit" do
+      @space.to_s.should == "Sludge"
     end
     
     describe "bound" do
