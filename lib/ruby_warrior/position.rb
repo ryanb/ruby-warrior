@@ -31,6 +31,11 @@ module RubyWarrior
       @x, @y = *translate_offset(forward, right)
     end
     
+    def distance_from_stairs
+      stairs_x, stairs_y = *@floor.stairs_location
+      (@x - stairs_x).abs + (@y - stairs_y).abs
+    end
+    
     private
     
     def translate_offset(forward, right)

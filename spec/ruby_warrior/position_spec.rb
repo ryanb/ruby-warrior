@@ -62,4 +62,14 @@ describe RubyWarrior::Position do
     @floor.get(3, 3).should be_nil
     @floor.get(2, 3).should == @unit
   end
+  
+  it "should return distance from stairs as 0 when on stairs" do
+    @floor.place_stairs(1, 2)
+    @position.distance_from_stairs.should == 0
+  end
+  
+  it "should return distance from stairs in both directions" do
+    @floor.place_stairs(0, 3)
+    @position.distance_from_stairs.should == 2
+  end
 end
