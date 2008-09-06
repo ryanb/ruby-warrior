@@ -1,6 +1,5 @@
 Primary
-- fix saying when bumping into a wall.
-- ensure warrior always says something even if nothing happens (when no action or when not releasing captive)
+- ensure warrior says something when no actions are called
 
 Abilities
 - add light ability
@@ -8,17 +7,15 @@ Abilities
 - add throw ability
 
 Secondary
-- improve profile selection so it's harder to make a profile on the same tower
+- improve profile selection so you don't replace your current tower profile
 - use proxy whenever sending space to Player to avoid hacking
-- handle errors cleanly stating if it's in the user's Player script
 - add a more in-depth help doc if they get stuck
+- hard wrap long descriptions/tips
 
 Ideas
 - invalidate old player.rb when generating a new level so they don't accidentally edit that one.
 - some actions take multiple turns (such as swinging a large axe) other units may be able to detect this and get out of the way
-- units turns are taken in the order of their speed attribute
 - add taunt ability to force other units to walk towards you
-- reward remembering state between turns - such as where an enemy is, what he is doing, what his stats are, etc.
 - after climbing the tower, re-run the last script on all levels
-- turn an enemy into a captive as a way to freeze them. No points unless you rescue and start attacking. May need to keep in mind which enemy you turned into captive because they will then look like all other captives
 - attacking or looking backward should be less effective than forward/left/right
+- handle errors cleanly stating if it's in the user's Player script
