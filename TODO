@@ -18,3 +18,5 @@ Ideas
 - after climbing the tower, re-run the last script on all levels
 - attacking or looking backward should be less effective than forward/left/right
 - handle errors cleanly stating if it's in the user's Player script
+- rename tower to dungeon
+- rename towers to more creative names

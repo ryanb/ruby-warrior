@@ -12,7 +12,7 @@ size 3, 3
 stairs 0, 0
 
 warrior 1, 1, :east do |u|
-  u.add_abilities :bind!
+  u.add_abilities :rescue!, :bind!
 end
 
 unit :sludge, 1, 0, :west
