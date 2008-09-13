@@ -53,13 +53,13 @@ module RubyWarrior
       end
       
       def name
-        self.class.name.split('::').last.gsub(/[A-Z]/, ' \0').lstrip
+        self.class.name.split('::').last.titleize
       end
       alias_method :to_s, :name
       
       def add_abilities(*new_abilities)
         new_abilities.each do |ability|
-          abilities[ability] = eval("Abilities::#{ability.to_s.sub('!', '').capitalize}").new(self) # TODO use something similar to constantize here
+          abilities[ability] = eval("Abilities::#{ability.to_s.sub('!', '').camelize}").new(self) # TODO use something similar to constantize here
         end
       end
       
