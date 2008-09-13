@@ -17,13 +17,15 @@ describe RubyWarrior::Units::ThickSludge do
     @captive.should be_bound
   end
   
-  it "should explode when bomb time reaches 0" do
+  it "should explode when bomb time reaches 0 and unbind itself" do
     @captive.bomb_time = 3
     @captive.play_turn(stub)
     @captive.play_turn(stub)
+    @captive.should be_bound
     turn = stub
     turn.expects(:explode!)
     @captive.play_turn(turn)
+    @captive.should_not be_bound
   end
   
   it "should have explode ability" do

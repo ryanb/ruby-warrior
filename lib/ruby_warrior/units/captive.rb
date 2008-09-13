@@ -19,7 +19,10 @@ module RubyWarrior
       def play_turn(turn)
         if @bomb_time
           @bomb_time -= 1
-          turn.explode! if @bomb_time.zero?
+          if @bomb_time.zero?
+            @bound = false # unbind so it can perform an action
+            turn.explode!
+          end
         end
       end
     end
