@@ -5,7 +5,7 @@
 #  ----
 
 description "You can feel the stairs right next to you, but are you sure you want to go up them right away?"
-tip "You'll get more points for clearing the level first. Use warrior.feel.stairs? and warrior.listen."
+tip "You'll get more points for clearing the level first. Use warrior.feel.stairs? to determine where the stairs are."
 
 time_bonus 55
 size 4, 3
