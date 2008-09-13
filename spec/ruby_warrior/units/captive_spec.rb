@@ -16,4 +16,17 @@ describe RubyWarrior::Units::ThickSludge do
   it "should be bound by default" do
     @captive.should be_bound
   end
+  
+  it "should explode when bomb time reaches 0" do
+    @captive.bomb_time = 3
+    @captive.play_turn(stub)
+    @captive.play_turn(stub)
+    turn = stub
+    turn.expects(:explode!)
+    @captive.play_turn(turn)
+  end
+  
+  it "should have explode ability" do
+    @captive.abilities.keys.should include(:explode!)
+  end
 end
