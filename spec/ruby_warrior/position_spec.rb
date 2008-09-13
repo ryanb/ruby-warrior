@@ -80,17 +80,24 @@ describe RubyWarrior::Position do
   
   it "should return relative direction of given space" do
     @position.relative_direction_of(@floor.space(5, 3)).should == :right
+    @position.rotate 1
+    @position.relative_direction_of(@floor.space(1, 4)).should == :right
   end
   
   it "should be able to determine relative direction" do
     @position.relative_direction(:north).should == :forward
+    @position.relative_direction(:south).should == :backward
+    @position.relative_direction(:west).should == :left
+    @position.relative_direction(:east).should == :right
     @position.rotate 1
     @position.relative_direction(:north).should == :left
     @position.rotate 1
     @position.relative_direction(:north).should == :backward
     @position.rotate 1
     @position.relative_direction(:north).should == :right
-    @position.rotate 1
-    @position.relative_direction(:south).should == :backward
+  end
+  
+  it "should return a space at the same location as position" do
+    @position.space.location.should == [1, 2]
   end
 end

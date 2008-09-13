@@ -30,7 +30,7 @@ module RubyWarrior
     end
     
     def space
-      @floor.space(0, 0)
+      @floor.space(@x, @y)
     end
     
     def move(forward, right = 0)
@@ -51,17 +51,11 @@ module RubyWarrior
     end
     
     def direction_of(space)
-      stairs_x, stairs_y = *space.location
-      if (@x - stairs_x).abs > (@y - stairs_y).abs
-        if stairs_x > @x
-          :east
-        else
-          :west
-        end
-      elsif stairs_y > @y
-        :south
+      space_x, space_y = *space.location
+      if (@x - space_x).abs > (@y - space_y).abs
+        space_x > @x ? :east : :west
       else
-        :north
+        space_y > @y ? :south : :north
       end
     end
     
