@@ -54,9 +54,9 @@ module RubyWarrior
       stairs_x, stairs_y = *space.location
       if (@x - stairs_x).abs > (@y - stairs_y).abs
         if stairs_x > @x
-          :west
-        else
           :east
+        else
+          :west
         end
       elsif stairs_y > @y
         :south

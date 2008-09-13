@@ -79,7 +79,7 @@ describe RubyWarrior::Position do
   end
   
   it "should return relative direction of given space" do
-    @position.relative_direction_of(@floor.space(0, 0)).should == :forward
+    @position.relative_direction_of(@floor.space(5, 3)).should == :right
   end
   
   it "should be able to determine relative direction" do
