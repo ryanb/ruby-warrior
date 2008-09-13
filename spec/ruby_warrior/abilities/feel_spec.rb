@@ -10,10 +10,4 @@ describe RubyWarrior::Abilities::Feel do
     @unit.position.expects(:relative_space).with(1, 0)
     @feel.perform(:forward)
   end
-  
-  it "should have all directions as possible arguments" do
-    [[], :forward, :backward, :left, :right].each do |arg|
-      @feel.possible_arguments.should include(arg)
-    end
-  end
 end

@@ -5,10 +5,6 @@ module RubyWarrior
         "Returns the number of spaces the stairs are away."
       end
       
-      def possible_arguments
-        [[]]
-      end
-      
       def perform
         @unit.position.distance_from_stairs
       end

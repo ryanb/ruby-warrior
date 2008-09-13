@@ -29,13 +29,10 @@ module RubyWarrior
     def add_sense(name, sense)
       instance_eval <<-EOS
         def #{name}(*args)
-          @senses.fetch([:#{name}, args])
+          @senses[:#{name}].perform(*args)
         end
       EOS
-      sense.possible_arguments.each do |args|
-        args = [args].flatten # in case args aren't in array
-        @senses[[name, args]] = sense.perform(*args)
-      end
+      @senses[name] = sense
     end
   end
 end

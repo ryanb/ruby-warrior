@@ -10,8 +10,4 @@ describe RubyWarrior::Abilities::Health do
     @warrior.health = 10
     @health.perform.should == 10
   end
-  
-  it "should have no possible arguments" do
-    @health.possible_arguments.should == [[]]
-  end
 end

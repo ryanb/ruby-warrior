@@ -5,10 +5,6 @@ module RubyWarrior
         "Returns an integer representing your health."
       end
       
-      def possible_arguments
-        [[]]
-      end
-      
       def perform
         @unit.health
       end

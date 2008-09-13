@@ -38,21 +38,5 @@ describe RubyWarrior::Turn do
       @turn.feel.should == @feel.perform
       @turn.feel(:backward).should == @feel.perform(:backward)
     end
-    
-    it "should have memorized result" do
-      result = @feel.perform(:backward)
-      @feel.stubs(:space).with(:backward).returns(nil)
-      @turn.feel(:backward).should == result
-    end
-    
-    it "should have memorized result" do
-      result = @feel.perform(:backward)
-      @feel.stubs(:space).with(:backward).returns(nil)
-      @turn.feel(:backward).should == result
-    end
-    
-    it "should raise an exception for unexpected argument" do
-      lambda { @turn.feel(:bad) }.should raise_error
-    end
   end
 end

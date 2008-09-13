@@ -12,8 +12,4 @@ describe RubyWarrior::Abilities::Look do
     @unit.position.expects(:relative_space).with(3, 0).returns(3)
     @feel.perform(:forward).should == [1, 2, 3]
   end
-  
-  it "should have all directions except back as possible arguments" do
-    @feel.possible_arguments.to_set.should == [[], :forward, :left, :right].to_set
-  end
 end
