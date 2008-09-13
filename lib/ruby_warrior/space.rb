@@ -28,6 +28,10 @@ module RubyWarrior
       @floor.stairs_location == location
     end
     
+    def ticking?
+      unit.respond_to?(:bomb_time) && unit.bomb_time
+    end
+    
     def unit
       @floor.get(@x, @y)
     end

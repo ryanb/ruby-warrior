@@ -39,6 +39,10 @@ describe RubyWarrior::Space do
     it "should say 'nothing' as name" do
       @space.to_s.should == 'nothing'
     end
+    
+    it "should not be ticking" do
+      @space.should_not be_ticking
+    end
   end
   
   describe "out of bounds" do
@@ -132,6 +136,15 @@ describe RubyWarrior::Space do
     
     it "should not be enemy" do
       @space.should_not be_enemy
+    end
+    
+    it "should be ticking if captive has time bomb" do
+      @space.unit.bomb_time = 10
+      @space.should be_ticking
+    end
+    
+    it "should not be ticking if captive does not have time bomb" do
+      @space.should_not be_ticking
     end
   end
   
