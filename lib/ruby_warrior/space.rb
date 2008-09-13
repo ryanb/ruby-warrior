@@ -25,11 +25,15 @@ module RubyWarrior
     end
     
     def stairs?
-      @floor.stairs_location == [@x, @y]
+      @floor.stairs_location == location
     end
     
     def unit
       @floor.get(@x, @y)
+    end
+    
+    def location
+      [@x, @y]
     end
     
     def to_map

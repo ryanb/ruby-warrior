@@ -73,10 +73,13 @@ describe RubyWarrior::Position do
     @position.distance_from_stairs.should == 2
   end
   
-  it "should return direction and relative direction of stairs" do
+  it "should return relative direction of stairs" do
     @floor.place_stairs(0, 0)
-    @position.direction_of_stairs.should == :north
     @position.relative_direction_of_stairs.should == :forward
+  end
+  
+  it "should return relative direction of given space" do
+    @position.relative_direction_of(@floor.space(0, 0)).should == :forward
   end
   
   it "should be able to determine relative direction" do

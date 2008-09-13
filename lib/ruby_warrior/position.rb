@@ -43,11 +43,15 @@ module RubyWarrior
     end
     
     def relative_direction_of_stairs
-      relative_direction(direction_of_stairs)
+      relative_direction_of(@floor.stairs_space)
     end
     
-    def direction_of_stairs
-      stairs_x, stairs_y = *@floor.stairs_location
+    def relative_direction_of(space)
+      relative_direction(direction_of(space))
+    end
+    
+    def direction_of(space)
+      stairs_x, stairs_y = *space.location
       if (@x - stairs_x).abs > (@y - stairs_y).abs
         if stairs_x > @x
           :west
