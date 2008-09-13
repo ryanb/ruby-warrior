@@ -1,21 +1,17 @@
-#  ----
-# |C aC|
-# | S s|
-# |C>@ |
-#  ----
+#  -----
+# |    S|
+# |@> SC|
+#  -----
 
 description "You can feel the stairs right next to you, but are you sure you want to go up them right away?"
-tip "You'll get more points for clearing the level first. Use warrior.feel.stairs? to determine where the stairs are."
+tip "You'll get more points for clearing the level first. Use warrior.feel.stairs? and warrior.feel.empty? to determine where to go."
 
-time_bonus 55
-size 4, 3
-stairs 1, 2
+time_bonus 45
+size 5, 2
+stairs 1, 1
 
-warrior 2, 2, :north
+warrior 0, 1, :east
 
-unit :sludge, 2, 0, :south
-unit :sludge, 3, 1, :east
-unit :thick_sludge, 1, 1, :west
-unit :captive, 0, 0, :east
-unit :captive, 3, 0, :west
-unit :captive, 0, 2, :north
+unit :thick_sludge, 4, 0, :west
+unit :thick_sludge, 3, 1, :north
+unit :captive, 4, 1, :west

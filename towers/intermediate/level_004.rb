@@ -5,7 +5,7 @@
 #  ----
 
 description "Your ears become more in tune with the surroundings. Listen to find enemies and captives!"
-tip "Use warrior.listen to find other units, and warrior.direction_of to determine what direction they're in."
+tip "Use warrior.listen to find spaces with other units, and warrior.direction_of to determine what direction they're in."
 
 time_bonus 55
 size 4, 3
