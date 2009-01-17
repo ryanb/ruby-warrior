@@ -9,5 +9,6 @@ module RubyWarrior
     def name
       File.basename(path)
     end
+    alias_method :to_s, :name
   end
 end
