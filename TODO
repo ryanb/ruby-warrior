@@ -1,18 +1,21 @@
 Primary
-- rename tower to dungeon
 - improve profile selection so you don't replace your current tower profile
-- add level with light and look abilities
+- polish into gem
 
 Secondary
+- after climbing the tower, re-run the last script on all levels
 - use proxy whenever sending space to Player to avoid hacking
-- add a more in-depth help doc if they get stuck
 - hard wrap long descriptions/tips
+- add level with light and look abilities
+- attacking or looking backward should be less effective than forward/left/right
+- handle errors cleanly stating if it's in the user's Player script
+- make beginner tower go up to the 10th level
+- add a more in-depth help doc if they get stuck
+- update primary README to current abilities and game
 
 Ideas
+- rename tower to dungeon
 - invalidate old player.rb when generating a new level so they don't accidentally edit that one.
 - some actions take multiple turns (such as swinging a large axe) other units may be able to detect this and get out of the way
 - add taunt ability to force other units to walk towards you
-- after climbing the tower, re-run the last script on all levels
-- attacking or looking backward should be less effective than forward/left/right
-- handle errors cleanly stating if it's in the user's Player script
 - rename towers to more creative names
