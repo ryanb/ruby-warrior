@@ -14,6 +14,10 @@ module RubyWarrior
       @level.tip = tip
     end
     
+    def clue(clue)
+      @level.clue = clue
+    end
+    
     def time_bonus(bonus)
       @level.time_bonus = bonus
     end

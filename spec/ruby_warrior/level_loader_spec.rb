@@ -8,11 +8,13 @@ describe RubyWarrior::LevelLoader do
       @loader = RubyWarrior::LevelLoader.new(@level)
     end
     
-    it "should be able to add description and tip" do
+    it "should be able to add description, tip and clue" do
       @loader.description "foo"
       @loader.tip "bar"
+      @loader.clue "clue"
       @level.description.should == "foo"
       @level.tip.should == "bar"
+      @level.clue.should == "clue"
     end
     
     it "should be able to set size" do

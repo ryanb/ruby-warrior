@@ -29,6 +29,9 @@ module RubyWarrior
           end
         else
           UI.puts "Sorry, you failed the level. Change your script and try again."
+          if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
+            UI.puts current_level.clue
+          end
         end
       end
     end

@@ -1,7 +1,7 @@
 module RubyWarrior
   class Level
     attr_reader :profile, :number
-    attr_accessor :description, :tip, :warrior, :floor, :time_bonus
+    attr_accessor :description, :tip, :clue, :warrior, :floor, :time_bonus
     
     def initialize(profile, number)
       @profile = profile
