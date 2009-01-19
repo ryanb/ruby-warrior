@@ -1,5 +1,7 @@
 Primary
 - improve profile selection so you don't replace your current tower profile
+% make beginner tower go up to the 10th level
+% make intermediate tower go up to the 15th level
 - polish into gem
 
 Secondary
@@ -9,9 +11,9 @@ Secondary
 - add level with light and look abilities
 - attacking or looking backward should be less effective than forward/left/right
 - handle errors cleanly stating if it's in the user's Player script
-- make beginner tower go up to the 10th level
 - add a more in-depth help doc if they get stuck
 - update primary README to current abilities and game
+- don't require selecting tower when running command inside tower directory
 
 Ideas
 - rename tower to dungeon

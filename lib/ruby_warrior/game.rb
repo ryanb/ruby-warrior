@@ -95,10 +95,21 @@ module RubyWarrior
     
     private
     
-    def choose_profile
+    def choose_profile # REFACTORME
       profile = UI.choose('profile', profiles + [[:new, 'New Profile']])
       if profile == :new
-        new_profile
+        profile = new_profile
+        if profiles.any? { |p| p.tower_path == profile.tower_path }
+          if UI.ask("Are you sure you want to replace your existing profile for this tower?")
+            UI.puts("Replacing existing profile.")
+            profile
+          else
+            UI.puts("Not replacing profile.")
+            exit
+          end
+        else
+          profile
+        end
       else
         profile
       end
