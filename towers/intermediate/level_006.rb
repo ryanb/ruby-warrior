@@ -5,6 +5,7 @@
 
 description "What's that ticking? Some captives have a timed bomb at their feet!"
 tip "It's best to rescue captives first that have space.ticking?, they'll soon go!"
+clue "Avoid fighting enemies at first. Go around them until you've rescued all of the ticking captives."
 
 time_bonus 50
 size 6, 2

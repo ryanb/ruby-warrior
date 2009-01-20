@@ -2,6 +2,7 @@ Primary
 - after climbing the tower, re-run the last script on all levels
 - update primary README to current abilities and game
 - stick to only one player.rb file and just update readme file each time (no separate level folders)
+- attacking or looking backward should be less effective than forward/left/right
 % make beginner tower go up to the 10th level
 % make intermediate tower go up to the 15th level
 - polish into gem
@@ -13,7 +14,6 @@ Secondary
 
 Ideas
 - handle errors cleanly stating if it's in the user's Player script
-- attacking or looking backward should be less effective than forward/left/right
 - rename tower to dungeon
 - invalidate old player.rb when generating a new level so they don't accidentally edit that one.
 - some actions take multiple turns (such as swinging a large axe) other units may be able to detect this and get out of the way

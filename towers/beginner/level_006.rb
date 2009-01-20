@@ -4,6 +4,7 @@
 
 description "The wall behind you feels a bit further away in this room. And you hear more cries for help."
 tip "You can walk backward by passing ':backward' as an argument to walk!. Same goes for feel, rescue! and attack!."
+clue "Consider walking :backward to start off, and then switch to :forward when warrior.feel(:backward).wall? returns true."
 
 time_bonus 55
 size 8, 1
