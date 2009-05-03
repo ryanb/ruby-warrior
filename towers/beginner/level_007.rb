@@ -1,5 +1,5 @@
 #  ------
-# |> aS @|
+# |>a S @|
 #  ------
 
 description "You feel a wall right in front of you and an opening behind you."
@@ -13,5 +13,5 @@ warrior 5, 0, :east do |u|
   u.add_abilities :pivot!
 end
 
-unit :archer, 2, 0, :east
+unit :archer, 1, 0, :east
 unit :thick_sludge, 3, 0, :east
