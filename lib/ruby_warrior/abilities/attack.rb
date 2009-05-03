@@ -9,7 +9,12 @@ module RubyWarrior
         receiver = unit(direction)
         if receiver
           @unit.say "attacks #{receiver}"
-          damage(receiver, @unit.attack_power)
+          if direction == :backward
+            power = (@unit.attack_power/2.0).ceil
+          else
+            power = @unit.attack_power
+          end
+          damage(receiver, power)
         else
           @unit.say "attacks and hits nothing"
         end

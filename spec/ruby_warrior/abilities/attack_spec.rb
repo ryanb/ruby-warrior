@@ -39,4 +39,13 @@ describe RubyWarrior::Abilities::Attack do
     @attacker.expects(:earn_points).never
     @attack.perform
   end
+  
+  it "should reduce attack power when attacking backward" do
+    receiver = RubyWarrior::Units::Base.new
+    receiver.stubs(:alive?).returns(true)
+    receiver.health = 5
+    @attack.stubs(:unit).returns(receiver)
+    @attack.perform(:backward)
+    receiver.health.should == 3
+  end
 end
