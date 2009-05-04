@@ -55,6 +55,11 @@ describe RubyWarrior::Profile do
     @profile.level_number = 1
     @profile.next_level.number.should == 2
   end
+
+  it "should enable epic mode" do
+    @profile.enable_epic_mode
+    @profile.should be_epic
+  end
   
   describe "with tower path" do
     before(:each) do

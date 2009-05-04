@@ -56,5 +56,13 @@ module RubyWarrior
       @abilities += abilities
       @abilities.uniq!
     end
+    
+    def enable_epic_mode
+      @epic = true
+    end
+    
+    def epic?
+      @epic
+    end
   end
 end

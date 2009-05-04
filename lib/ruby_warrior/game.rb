@@ -17,15 +17,21 @@ module RubyWarrior
         if current_level.passed?
           UI.puts "Success! You have found the stairs."
           current_level.tally_points
-          if next_level.exists?
-            if UI.ask("Would you like to continue on to the next level?")
+          if profile.epic? || UI.ask("Would you like to continue on to the next level?")
+            if next_level.exists?
               prepare_next_level
-              UI.puts "See the ruby-warrior directory for the next level."
+              UI.puts "See the ruby-warrior directory for the next level." unless profile.epic?
             else
-              UI.puts "Staying on current level. Try to earn more points next time."
+              UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
+              if profile.epic?
+                profile.save # saves the score for epic mode
+              else
+                prepare_epic_mode
+                UI.puts "Run rubywarrior again to play epic mode."
+              end
             end
           else
-            UI.puts "CONGRATULATIONS! You have climbed to the top of the tower."
+            UI.puts "Staying on current level. Try to earn more points next time."
           end
         else
           UI.puts "Sorry, you failed the level. Change your script and try again."
@@ -46,9 +52,18 @@ module RubyWarrior
     end
     
     def prepare_next_level
-      next_level.generate_player_files
+      next_level.generate_player_files unless profile.epic?
       profile.level_number += 1
-      profile.save # this saves score and new abilities too
+      profile.save unless profile.epic? # this saves score and new abilities too
+    end
+    
+    def prepare_epic_mode
+      profile.enable_epic_mode
+      profile.level_number = 0
+      profile.save # this saves score too
+    end
+    
+    def finish_epic_mode
     end
     
     
