@@ -25,6 +25,10 @@ module RubyWarrior
         5
       end
       
+      def shoot_power
+        3
+      end
+      
       def max_health
         20
       end
