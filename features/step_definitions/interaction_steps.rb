@@ -47,7 +47,3 @@ end
 Then /^I should see "([^\"]*)"$/ do |phrase|
   @io.gets_until_include(phrase).should include(phrase)
 end
-
-Then /^I should find file at "([^\"]*)"$/ do |path|
-  File.exist?(path).should be_true
-end
