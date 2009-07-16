@@ -9,17 +9,17 @@ Feature: Manage Profiles
   Scenario: New profile
     When I run rubywarrior
     And I answer "y" to "create one?"
-    And I answer "1" to "tower"
+    And I choose "beginner" for "tower"
     And I answer "Joe" to "name"
     Then I should see "generated"
     And I should find file at "ruby-warrior"
 
-  Scenario: Two new profiles
+  Scenario: Another new profile
     Given a profile named "Joe"
     When I run rubywarrior
-    And I answer "2" to "profile"
-    And I answer "2" to "tower"
+    And I choose "New" for "profile"
+    And I choose "intermediate" for "tower"
     And I answer "Bob" to "name"
     Then I should see "generated"
     When I run rubywarrior
-    And I wait until it says "[2] Bob - intermediate - level 1 - score 0"
+    Then I should see "Bob - intermediate - level 1 - score 0"

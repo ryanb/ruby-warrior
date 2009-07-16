@@ -22,30 +22,31 @@ When /^I run rubywarrior$/ do
 end
 
 When /^I answer "([^\"]*)" to "([^\"]*)"$/ do |answer, question|
-  content = @io.gets
-  while !content.include?(question)
-    begin
-      content += @io.gets
-    rescue MockIO::Timeout
-      raise "Unable to find #{question} in #{content}"
-    end
-  end
+  @io.gets_until_include(question)
   @io.puts(answer)
 end
 
-When /^I wait until it says "([^\"]*)"$/ do |saying|
-  content = @io.gets
-  while !content.include?(saying)
-    begin
-      content += @io.gets
-    rescue MockIO::Timeout
-      raise "Unable to find #{saying} in #{content}"
+When /^I choose "([^\"]*)" for "([^\"]*)"$/ do |choice, phrase|
+  answer = nil
+  content = @io.gets_until_include(phrase)
+  content.split("\n").each do |line|
+    if line.include?(choice) && line =~ /\[(\d)\]/
+      answer = $1
     end
+  end
+  if answer
+    @io.puts(answer)
+  else
+    raise "Unable to find choice #{choice} in #{content}"
   end
 end
 
-Then /^I should see "([^\"]*)"$/ do |saying|
-  @io.gets.should include(saying)
+When /^I wait until it says "([^\"]*)"$/ do |phrase|
+  @io.gets_until_include(phrase)
+end
+
+Then /^I should see "([^\"]*)"$/ do |phrase|
+  @io.gets_until_include(phrase).should include(phrase)
 end
 
 Then /^I should find file at "([^\"]*)"$/ do |path|

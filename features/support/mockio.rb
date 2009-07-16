@@ -19,6 +19,18 @@ class MockIO
     raise Timeout, "MockIO Timeout: No content was received for gets."
   end
   
+  def gets_until_include(phrase)
+    content = gets
+    while !content.include?(phrase)
+      begin
+        content += gets
+      rescue Timeout
+        raise "Unable to find #{phrase} in #{content}"
+      end
+    end
+    content
+  end
+  
   # TODO make this thread safe
   def puts(str)
     @receiver << "#{str}\n"
