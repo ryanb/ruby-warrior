@@ -1,15 +1,14 @@
-Given /^a profile named "([^\"]*)"$/ do |name|
+Given /^a profile named "([^\"]*)" on "([^\"]*)"$/ do |name, tower|
   When 'I run rubywarrior'
   And 'I answer "y" to "create one?"'
-  And 'I answer "1" to "tower"'
+  And 'I choose "' + tower + '" for "tower"'
   And 'I answer "' + name + '" to "name"'
   Then 'I should see "generated"'
-  And 'I should find file at "ruby-warrior"'
 end
 
-Given /^I have no profile$/ do
-  RubyWarrior::Config.path_prefix = "tmp"
-  FileUtils.rm_rf("tmp/ruby-warrior")
+Given /^no profile at "([^\"]*)"$/ do |path|
+  RubyWarrior::Config.path_prefix = path
+  FileUtils.rm_rf("#{path}/ruby-warrior")
 end
 
 When /^I run rubywarrior$/ do
@@ -50,5 +49,5 @@ Then /^I should see "([^\"]*)"$/ do |phrase|
 end
 
 Then /^I should find file at "([^\"]*)"$/ do |path|
-  File.exist?("tmp/" + path).should be_true
+  File.exist?(path).should be_true
 end
