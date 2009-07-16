@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# File: script/console
+irb = RUBY_PLATFORM =~ /(:?mswin|mingw)/ ? 'irb.bat' : 'irb'
+
+# loading the spec_helper file even though this isn't necessarily for specs
+# it's just a convenient, quick way to load all the requirements.
+puts "Loading console"
+exec "#{irb} -r irb/completion -r #{File.dirname(__FILE__) + '/../lib/ruby_warrior.rb'}  -r #{File.dirname(__FILE__) + '/../features/support/mockio.rb'} --simple-prompt"

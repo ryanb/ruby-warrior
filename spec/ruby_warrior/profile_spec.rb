@@ -75,11 +75,11 @@ describe RubyWarrior::Profile do
     end
   
     it "should guess at the player path" do
-      @profile.player_path.should == 'ruby-warrior/tower-tower'
+      @profile.player_path.should == './ruby-warrior/tower-tower'
     end
   
     it "should append level dir to player path" do
-      @profile.current_level_path.should == 'ruby-warrior/tower-tower/level-000'
+      @profile.current_level_path.should == './ruby-warrior/tower-tower/level-000'
     end
   
     it "should load tower from path" do

@@ -29,7 +29,7 @@ module RubyWarrior
     end
     
     def player_path
-      "ruby-warrior/#{tower.name}-tower"
+      Config.path_prefix + "/ruby-warrior/#{tower.name}-tower"
     end
     
     def current_level_path

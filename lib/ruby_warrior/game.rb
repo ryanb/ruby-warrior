@@ -5,7 +5,7 @@ module RubyWarrior
     def start
       UI.puts "Welcome to Ruby Warrior"
       
-      make_game_directory unless File.exists?('ruby-warrior')
+      make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
       
       if current_level.number.zero?
         prepare_next_level
@@ -38,7 +38,7 @@ module RubyWarrior
     
     def make_game_directory
       if UI.ask("No ruby-warrior directory found, would you like to create one?")
-        Dir.mkdir('ruby-warrior')
+        Dir.mkdir(Config.path_prefix + '/ruby-warrior')
       else
         UI.puts "Unable to continue without directory."
         exit
@@ -59,7 +59,7 @@ module RubyWarrior
     end
     
     def profile_paths
-      Dir['ruby-warrior/**/.profile']
+      Dir[Config.path_prefix + '/ruby-warrior/**/.profile']
     end
     
     def profile
