@@ -1,3 +1,12 @@
+Given /^a profile named "([^\"]*)"$/ do |name|
+  When 'I run rubywarrior'
+  And 'I answer "y" to "create one?"'
+  And 'I answer "1" to "tower"'
+  And 'I answer "' + name + '" to "name"'
+  Then 'I should see "generated"'
+  And 'I should find file at "ruby-warrior"'
+end
+
 Given /^I have no profile$/ do
   RubyWarrior::Config.path_prefix = "tmp"
   FileUtils.rm_rf("tmp/ruby-warrior")
@@ -17,7 +26,7 @@ When /^I answer "([^\"]*)" to "([^\"]*)"$/ do |answer, question|
   while !content.include?(question)
     begin
       content += @io.gets
-    rescue
+    rescue MockIO::Timeout
       raise "Unable to find #{question} in #{content}"
     end
   end
@@ -29,14 +38,10 @@ When /^I wait until it says "([^\"]*)"$/ do |saying|
   while !content.include?(saying)
     begin
       content += @io.gets
-    rescue
+    rescue MockIO::Timeout
       raise "Unable to find #{saying} in #{content}"
     end
   end
-end
-
-When /^I wait 1 second$/ do
-  sleep 1
 end
 
 Then /^I should see "([^\"]*)"$/ do |saying|

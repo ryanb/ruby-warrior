@@ -1,4 +1,7 @@
 class MockIO
+  class Timeout < Exception
+  end
+  
   def initialize(receiver = nil)
     @buffer = ""
     @receiver = receiver || MockIO.new(self)
@@ -13,7 +16,7 @@ class MockIO
         return content
       end
     end
-    raise "MockIO Timeout: No content was received for gets."
+    raise Timeout, "MockIO Timeout: No content was received for gets."
   end
   
   # TODO make this thread safe
@@ -30,9 +33,13 @@ class MockIO
   end
   
   def start
-    Thread.abort_on_exception = true
-    @thread = Thread.new do
-      yield(@receiver)
+    main_thread = Thread.current
+    Thread.new do
+      begin
+        yield(@receiver)
+      rescue Exception => e
+        main_thread.raise(e)
+      end
     end
   end
 end
