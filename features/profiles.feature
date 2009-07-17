@@ -1,5 +1,5 @@
 Feature: Manage Profiles
-  In order play ruby warrior
+  In order to play ruby warrior
   As a player
   I want to create and choose profiles
   
