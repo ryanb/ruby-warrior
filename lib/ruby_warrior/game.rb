@@ -1,7 +1,6 @@
 module RubyWarrior
   class Game
     
-    # TODO refactor and test this method
     def start
       UI.puts "Welcome to Ruby Warrior"
       
@@ -14,24 +13,7 @@ module RubyWarrior
         while playing
           @current_level = @next_level = nil
           profile.level_number += 1
-          current_level.load_player
-          UI.puts "Starting Level #{current_level.number}"
-          current_level.play
-          if current_level.passed?
-            if next_level.exists?
-              UI.puts "Success! You have found the stairs."
-            else
-              UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
-              playing = false
-            end
-            current_level.tally_points
-          else
-            playing = false
-            UI.puts "Sorry, you failed the level. Change your script and try again."
-            if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
-              UI.puts current_level.clue
-            end
-          end
+          playing = play_current_level
         end
         profile.save # saves the score for epic mode
       else
@@ -39,33 +21,7 @@ module RubyWarrior
           prepare_next_level
           UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
         else
-          current_level.load_player
-          UI.puts "Starting Level #{current_level.number}"
-          current_level.play
-          if current_level.passed?
-            if next_level.exists?
-              UI.puts "Success! You have found the stairs."
-            else
-              UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
-            end
-            current_level.tally_points
-            if (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
-              if next_level.exists?
-                prepare_next_level
-                UI.puts "See the ruby-warrior directory for the next level."
-              else
-                prepare_epic_mode
-                UI.puts "Run rubywarrior again to play epic mode."
-              end
-            else
-              UI.puts "Staying on current level. Try to earn more points next time."
-            end
-          else
-            UI.puts "Sorry, you failed the level. Change your script and try again."
-            if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
-              UI.puts current_level.clue
-            end
-          end
+          play_current_level
         end
       end
     end
@@ -76,6 +32,44 @@ module RubyWarrior
       else
         UI.puts "Unable to continue without directory."
         exit
+      end
+    end
+    
+    def play_current_level
+      continue = true
+      current_level.load_player
+      UI.puts "Starting Level #{current_level.number}"
+      current_level.play
+      if current_level.passed?
+        if next_level.exists?
+          UI.puts "Success! You have found the stairs."
+        else
+          UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
+          continue = false
+        end
+        current_level.tally_points
+        request_next_level unless profile.epic?
+      else
+        continue = false
+        UI.puts "Sorry, you failed the level. Change your script and try again."
+        if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
+          UI.puts current_level.clue
+        end
+      end
+      continue
+    end
+    
+    def request_next_level
+      if (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
+        if next_level.exists?
+          prepare_next_level
+          UI.puts "See the ruby-warrior directory for the next level."
+        else
+          prepare_epic_mode
+          UI.puts "Run rubywarrior again to play epic mode."
+        end
+      else
+        UI.puts "Staying on current level. Try to earn more points next time."
       end
     end
     
