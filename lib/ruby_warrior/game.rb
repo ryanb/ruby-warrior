@@ -7,36 +7,64 @@ module RubyWarrior
       
       make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
       
-      if current_level.number.zero?
-        prepare_next_level
-        UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
-      else
-        current_level.load_player
-        UI.puts "Starting Level #{current_level.number}"
-        current_level.play
-        if current_level.passed?
-          UI.puts "Success! You have found the stairs."
-          current_level.tally_points
-          if profile.epic? || UI.ask("Would you like to continue on to the next level?")
+      if profile.epic?
+        playing = true
+        while playing
+          @current_level = @next_level = nil
+          profile.level_number += 1
+          current_level.load_player
+          UI.puts "Starting Level #{current_level.number}"
+          current_level.play
+          if current_level.passed?
             if next_level.exists?
-              prepare_next_level
-              UI.puts "See the ruby-warrior directory for the next level." unless profile.epic?
+              UI.puts "Success! You have found the stairs."
             else
               UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
-              if profile.epic?
+              playing = false
+            end
+            current_level.tally_points
+          else
+            playing = false
+            UI.puts "Sorry, you failed the level. Change your script and try again."
+            if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
+              UI.puts current_level.clue
+            end
+          end
+        end
+        profile.save # saves the score for epic mode
+      else
+        if current_level.number.zero?
+          prepare_next_level
+          UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
+        else
+          current_level.load_player
+          UI.puts "Starting Level #{current_level.number}"
+          current_level.play
+          if current_level.passed?
+            if next_level.exists?
+              UI.puts "Success! You have found the stairs."
+            else
+              UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
+            end
+            current_level.tally_points
+            if profile.epic? || (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
+              if next_level.exists?
+                prepare_next_level
+                UI.puts "See the ruby-warrior directory for the next level." unless profile.epic?
+              elsif profile.epic?
                 profile.save # saves the score for epic mode
               else
                 prepare_epic_mode
                 UI.puts "Run rubywarrior again to play epic mode."
               end
+            else
+              UI.puts "Staying on current level. Try to earn more points next time."
             end
           else
-            UI.puts "Staying on current level. Try to earn more points next time."
-          end
-        else
-          UI.puts "Sorry, you failed the level. Change your script and try again."
-          if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
-            UI.puts current_level.clue
+            UI.puts "Sorry, you failed the level. Change your script and try again."
+            if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
+              UI.puts current_level.clue
+            end
           end
         end
       end
@@ -52,18 +80,15 @@ module RubyWarrior
     end
     
     def prepare_next_level
-      next_level.generate_player_files unless profile.epic?
+      next_level.generate_player_files
       profile.level_number += 1
-      profile.save unless profile.epic? # this saves score and new abilities too
+      profile.save # this saves score and new abilities too
     end
     
     def prepare_epic_mode
       profile.enable_epic_mode
       profile.level_number = 0
       profile.save # this saves score too
-    end
-    
-    def finish_epic_mode
     end
     
     

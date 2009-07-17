@@ -45,20 +45,27 @@ module RubyWarrior
     end
     
     def tally_points
-      @profile.abilities = warrior.abilities.keys
+      score = 0
       
       UI.puts "Level Score: #{warrior.score}"
-      @profile.score += warrior.score
+      score += warrior.score
       
       UI.puts "Time Bonus: #{time_bonus}"
-      @profile.score += @time_bonus
+      score += @time_bonus
       
       if floor.other_units.empty?
         UI.puts "Clear Bonus: #{clear_bonus}"
-        @profile.score += clear_bonus
+        score += clear_bonus
       end
       
-      UI.puts "Total Score: #{@profile.score}"
+      if @profile.epic?
+        @profile.current_epic_score += score
+        UI.puts "Total Score: #{@profile.current_epic_score}"
+      else
+        @profile.score += score
+        @profile.abilities = warrior.abilities.keys
+        UI.puts "Total Score: #{@profile.score}"
+      end
     end
     
     def clear_bonus

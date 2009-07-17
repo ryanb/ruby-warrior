@@ -61,6 +61,22 @@ describe RubyWarrior::Profile do
     @profile.should be_epic
   end
   
+  it "should override epic score with current one if it is higher" do
+    @profile.enable_epic_mode
+    @profile.epic_score.should be_zero
+    @profile.current_epic_score = 123
+    @profile.update_epic_score
+    @profile.epic_score.should == 123
+  end
+  
+  it "should not override epic score with current one if it is lower" do
+    @profile.enable_epic_mode
+    @profile.epic_score = 124
+    @profile.current_epic_score = 123
+    @profile.update_epic_score
+    @profile.epic_score.should == 124
+  end
+  
   describe "with tower path" do
     before(:each) do
       @profile.tower_path = 'path/to/tower'
@@ -78,6 +94,12 @@ describe RubyWarrior::Profile do
       @profile.warrior_name = 'Joe'
       @profile.to_s.should == "Joe - tower - level 0 - score 0"
     end
+    
+    it "should include epic score in string representation" do
+      @profile.warrior_name = 'Joe'
+      @profile.enable_epic_mode
+      @profile.to_s.should == "Joe - tower - first score 0 - epic score 0"
+    end
   
     it "should guess at the player path" do
       @profile.player_path.should == './ruby-warrior/tower-tower'
@@ -85,6 +107,11 @@ describe RubyWarrior::Profile do
   
     it "should append level dir to player path" do
       @profile.current_level_path.should == './ruby-warrior/tower-tower/level-000'
+    end
+  
+    it "should use 'epic' as level directory" do
+      @profile.enable_epic_mode
+      @profile.current_level_path.should == './ruby-warrior/tower-tower/epic'
     end
   
     it "should load tower from path" do

@@ -2,12 +2,14 @@ require 'base64'
 
 module RubyWarrior
   class Profile
-    attr_accessor :score, :abilities, :level_number, :tower_path, :warrior_name
+    attr_accessor :score, :epic_score, :current_epic_score, :abilities, :level_number, :tower_path, :warrior_name
     
     def initialize
       @tower_path = nil
       @warrior_name = nil
       @score = 0
+      @current_epic_score = 0
+      @epic_score = 0
       @abilities = []
       @level_number = 0
     end
@@ -17,6 +19,8 @@ module RubyWarrior
     end
     
     def save
+      update_epic_score
+      @level_number = 0 if epic?
       File.open(player_path + '/.profile', 'w') { |f| f.write(encode) }
     end
     
@@ -33,11 +37,19 @@ module RubyWarrior
     end
     
     def current_level_path
-      player_path + "/level-" + level_number.to_s.rjust(3, '0')
+      if epic?
+        player_path + "/epic"
+      else
+        player_path + "/level-" + level_number.to_s.rjust(3, '0')
+      end
     end
     
     def to_s
-      [warrior_name, tower.name, "level #{level_number}", "score #{score}"].join(' - ')
+      if epic?
+        [warrior_name, tower.name, "first score #{score}", "epic score #{epic_score}"].join(' - ')
+      else
+        [warrior_name, tower.name, "level #{level_number}", "score #{score}"].join(' - ')
+      end
     end
     
     def tower
@@ -63,6 +75,12 @@ module RubyWarrior
     
     def epic?
       @epic
+    end
+    
+    def update_epic_score
+      if @current_epic_score > @epic_score
+        @epic_score = @current_epic_score
+      end
     end
   end
 end

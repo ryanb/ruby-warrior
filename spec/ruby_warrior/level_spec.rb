@@ -133,6 +133,13 @@ describe RubyWarrior::Level do
       @profile.score.should == 30
     end
     
+    it "should add warrior score to profile for epic mode" do
+      @profile.enable_epic_mode
+      @warrior.stubs(:score).returns(30)
+      @level.tally_points
+      @profile.current_epic_score.should == 30
+    end
+    
     it "should apply warrior abilities to profile" do
       @warrior.stubs(:abilities).returns({:foo => nil, :bar => nil})
       @level.tally_points
