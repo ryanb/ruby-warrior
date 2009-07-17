@@ -3,6 +3,6 @@ require File.dirname(__FILE__) + '/../lib/ruby_warrior'
 
 RubyWarrior::UI.out_stream = STDOUT
 RubyWarrior::UI.in_stream = STDIN
-RubyWarrior::UI.delay = 0.2 # TODO allow customization
+RubyWarrior::UI.delay = 0.8 # TODO allow customization
 game = RubyWarrior::Game.new # TODO pass options into game when initializing
 game.start
