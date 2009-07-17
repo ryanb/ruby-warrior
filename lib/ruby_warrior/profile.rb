@@ -71,6 +71,8 @@ module RubyWarrior
     
     def enable_epic_mode
       @epic = true
+      @epic_score ||= 0
+      @current_epic_score ||= 0
     end
     
     def epic?

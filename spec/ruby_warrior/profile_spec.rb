@@ -56,9 +56,13 @@ describe RubyWarrior::Profile do
     @profile.next_level.number.should == 2
   end
 
-  it "should enable epic mode" do
+  it "should enable epic mode and reset scores if nil" do
+    @profile.epic_score = nil
+    @profile.current_epic_score = nil
     @profile.enable_epic_mode
     @profile.should be_epic
+    @profile.epic_score.should be_zero
+    @profile.current_epic_score.should be_zero
   end
   
   it "should override epic score with current one if it is higher" do

@@ -47,12 +47,10 @@ module RubyWarrior
               UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
             end
             current_level.tally_points
-            if profile.epic? || (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
+            if (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
               if next_level.exists?
                 prepare_next_level
-                UI.puts "See the ruby-warrior directory for the next level." unless profile.epic?
-              elsif profile.epic?
-                profile.save # saves the score for epic mode
+                UI.puts "See the ruby-warrior directory for the next level."
               else
                 prepare_epic_mode
                 UI.puts "Run rubywarrior again to play epic mode."
