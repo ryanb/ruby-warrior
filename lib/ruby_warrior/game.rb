@@ -9,6 +9,7 @@ module RubyWarrior
       
       if profile.epic?
         UI.delay /= 4 if UI.delay # speed up UI since we're going to be doing a lot here
+        profile.current_epic_score = 0
         playing = true
         while playing
           @current_level = @next_level = nil

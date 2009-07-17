@@ -43,4 +43,7 @@ Feature: Play levels
     And I choose "Bill - short - first score 34 - epic score 0" for "profile"
     Then I should see "top of the tower"
     When I run rubywarrior
+    And I choose "Bill - short - first score 34 - epic score 34" for "profile"
+    Then I should see "top of the tower"
+    When I run rubywarrior
     Then I should see "Bill - short - first score 34 - epic score 34"
