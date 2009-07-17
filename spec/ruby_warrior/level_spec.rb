@@ -28,9 +28,9 @@ describe RubyWarrior::Level do
     @level.description.should == 'foo'
   end
   
-  it "should have a player path from profile with level number in it" do
+  it "should have a player path from profile" do
     @profile.stubs(:player_path).returns('path/to/player')
-    @level.player_path.should == 'path/to/player/level-001'
+    @level.player_path.should == 'path/to/player'
   end
   
   it "should have a load path from profile tower with level number in it" do

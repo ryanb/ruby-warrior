@@ -10,7 +10,7 @@ module RubyWarrior
     end
     
     def player_path
-      @profile.player_path + "/level-" + @number.to_s.rjust(3, '0')
+      @profile.player_path
     end
     
     def load_path

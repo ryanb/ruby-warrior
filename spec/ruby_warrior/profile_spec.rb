@@ -83,6 +83,7 @@ describe RubyWarrior::Profile do
   
   describe "with tower path" do
     before(:each) do
+      @profile.warrior_name = "John Smith"
       @profile.tower_path = 'path/to/tower'
     end
     
@@ -106,16 +107,7 @@ describe RubyWarrior::Profile do
     end
   
     it "should guess at the player path" do
-      @profile.player_path.should == './ruby-warrior/tower-tower'
-    end
-  
-    it "should append level dir to player path" do
-      @profile.current_level_path.should == './ruby-warrior/tower-tower/level-000'
-    end
-  
-    it "should use 'epic' as level directory" do
-      @profile.enable_epic_mode
-      @profile.current_level_path.should == './ruby-warrior/tower-tower/epic'
+      @profile.player_path.should == './ruby-warrior/john-smith-tower'
     end
   
     it "should load tower from path" do

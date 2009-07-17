@@ -18,10 +18,7 @@ module RubyWarrior
     
     # TODO refactor and test this method
     def generate
-      if File.exist? previous_level.player_path
-        FileUtils.cp_r(previous_level.player_path, level.player_path)
-        FileUtils.rm(level.player_path + '/README')
-      else
+      if level.number == 1
         FileUtils.mkdir_p(level.player_path)
         FileUtils.cp(templates_path + '/player.rb', level.player_path)
       end

@@ -8,12 +8,11 @@ Feature: Play levels
   
   Scenario: Pass first level, fail second level
     Given a profile named "Joe" on "beginner"
-    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/beginner-tower/level-001/player.rb"
+    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
     And I run rubywarrior
     And I choose "Joe - beginner - level 1" for "profile"
     Then I answer "y" to "next level"
     And I should see "directory for the next level"
-    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/beginner-tower/level-002/player.rb"
     And I run rubywarrior
     And I choose "Joe - beginner - level 2" for "profile"
     And I answer "y" to "clues"
@@ -21,7 +20,7 @@ Feature: Play levels
   
   Scenario: Retry first level
     Given a profile named "Joe" on "beginner"
-    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/beginner-tower/level-001/player.rb"
+    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
     And I run rubywarrior
     And I choose "Joe - beginner - level 1" for "profile"
     Then I answer "n" to "next level"
@@ -32,7 +31,7 @@ Feature: Play levels
   Scenario: Replay levels as epic when finishing last level
     When I copy fixture "short-tower" to "towers/short"
     Given a profile named "Bill" on "short"
-    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/short-tower/level-001/player.rb"
+    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/bill-short/player.rb"
     And I run rubywarrior
     And I choose "Bill - short - level 1" for "profile"
     Then I answer "y" to "next level"

@@ -33,15 +33,11 @@ module RubyWarrior
     end
     
     def player_path
-      Config.path_prefix + "/ruby-warrior/#{tower.name}-tower"
+      Config.path_prefix + "/ruby-warrior/#{directory_name}"
     end
     
-    def current_level_path
-      if epic?
-        player_path + "/epic"
-      else
-        player_path + "/level-" + level_number.to_s.rjust(3, '0')
-      end
+    def directory_name
+      [warrior_name.downcase.gsub(/[^a-z0-9]+/, '-'), tower.name].join('-')
     end
     
     def to_s
