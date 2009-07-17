@@ -7,7 +7,7 @@ module RubyWarrior
       make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
       
       if profile.epic?
-        UI.delay /= 4 if UI.delay # speed up UI since we're going to be doing a lot here
+        UI.delay /= 2 if UI.delay # speed up UI since we're going to be doing a lot here
         profile.current_epic_score = 0
         playing = true
         while playing
@@ -63,7 +63,7 @@ module RubyWarrior
       if (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
         if next_level.exists?
           prepare_next_level
-          UI.puts "See the ruby-warrior directory for the next level."
+          UI.puts "See the ruby-warrior directory for the next level README."
         else
           prepare_epic_mode
           UI.puts "Run rubywarrior again to play epic mode."
