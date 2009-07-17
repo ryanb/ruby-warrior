@@ -16,23 +16,23 @@ Feature: Manage Profiles
     When I run rubywarrior
     Then I should see "Joe - beginner - level 1 - score 0"
 
-  Scenario: Another new profile
-    Given a profile named "Joe" on "beginner"
-    When I run rubywarrior
-    And I choose "New" for "profile"
-    And I choose "intermediate" for "tower"
-    And I answer "Bob" to "name"
-    Then I should see "generated"
-    When I run rubywarrior
-    Then I should see "Bob - intermediate - level 1 - score 0"
-
-  Scenario: Replace profile in same tower (someday support multiple profiles)
+  Scenario: Another new profile on same tower
     Given a profile named "Joe" on "beginner"
     When I run rubywarrior
     And I choose "New" for "profile"
     And I choose "beginner" for "tower"
-    And I answer "Bill" to "name"
+    And I answer "Bob" to "name"
+    Then I should see "generated"
+    When I run rubywarrior
+    Then I should see "Bob - beginner - level 1 - score 0"
+
+  Scenario: Replace profile in same tower with same name
+    Given a profile named "Joe" on "beginner"
+    When I run rubywarrior
+    And I choose "New" for "profile"
+    And I choose "beginner" for "tower"
+    And I answer "Joe" to "name"
     And I answer "y" to "replace"
     Then I should see "generated"
     When I run rubywarrior
-    Then I should see "Bill - beginner - level 1 - score 0"
+    Then I should see "Joe - beginner - level 1 - score 0"
