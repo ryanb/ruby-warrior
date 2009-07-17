@@ -8,6 +8,7 @@ module RubyWarrior
       make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
       
       if profile.epic?
+        UI.delay /= 4 if UI.delay # speed up UI since we're going to be doing a lot here
         playing = true
         while playing
           @current_level = @next_level = nil
