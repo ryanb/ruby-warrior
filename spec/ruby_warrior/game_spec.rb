@@ -46,24 +46,6 @@ describe RubyWarrior::Game do
     2.times { @game.profile.should == :profile1 }
   end
   
-  it "should make a new profile if player chooses" do
-    new_profile = RubyWarrior::Profile.new
-    RubyWarrior::UI.expects(:choose).returns(:new)
-    RubyWarrior::UI.stubs(:ask).returns(true)
-    @game.stubs(:profiles).returns([RubyWarrior::Profile.new])
-    @game.expects(:new_profile).returns(new_profile)
-    @game.profile.should == new_profile
-  end
-  
-  it "should ask permission before replacing existing tower profile when creating a new one" do
-    RubyWarrior::UI.expects(:choose).returns(:new)
-    RubyWarrior::UI.expects(:ask).returns(false)
-    @game.stubs(:profiles).returns([stub(:tower_path => :tower1)])
-    @game.expects(:new_profile).returns(stub(:tower_path => :tower1))
-    @game.expects(:exit).returns(:exit)
-    @game.profile.should == :exit
-  end
-  
   it "should ask user to choose a tower when creating a new profile" do
     @game.stubs(:towers).returns([:tower1, :tower2])
     RubyWarrior::UI.expects(:choose).with('tower', [:tower1, :tower2]).returns(stub(:path => '/foo/bar'))
