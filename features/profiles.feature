@@ -36,3 +36,11 @@ Feature: Manage Profiles
     Then I should see "generated"
     When I run rubywarrior
     Then I should see "Joe - beginner - level 1 - score 0"
+  
+  Scenario: Auto select profile at given path
+    Given a profile named "Joe" on "beginner"
+    And current directory is "tmp/ruby-warrior/joe-beginner"
+    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
+    And I run rubywarrior
+    And I answer "y" to "next level"
+    Then I should see "directory for the next level"

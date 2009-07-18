@@ -34,10 +34,12 @@ describe RubyWarrior::Profile do
     RubyWarrior::Profile.decode(@profile.encode).warrior_name.should == @profile.warrior_name
   end
   
-  it "load should read file and decode" do
+  it "load should read file, decode and set player path" do
+    profile = 'profile'
+    profile.expects(:player_path=).with('path/to')
     File.expects(:read).with('path/to/.profile').returns('encoded_profile')
-    RubyWarrior::Profile.expects(:decode).with('encoded_profile').returns('profile')
-    RubyWarrior::Profile.load('path/to/.profile').should == 'profile'
+    RubyWarrior::Profile.expects(:decode).with('encoded_profile').returns(profile)
+    RubyWarrior::Profile.load('path/to/.profile').should == profile
   end
 
   
@@ -108,6 +110,11 @@ describe RubyWarrior::Profile do
   
     it "should guess at the player path" do
       @profile.player_path.should == './ruby-warrior/john-smith-tower'
+    end
+  
+    it "should use specified player path" do
+      @profile.player_path = "path/to/player"
+      @profile.player_path.should == "path/to/player"
     end
   
     it "should load tower from path" do

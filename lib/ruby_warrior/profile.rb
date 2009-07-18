@@ -2,7 +2,7 @@ require 'base64'
 
 module RubyWarrior
   class Profile
-    attr_accessor :score, :epic_score, :current_epic_score, :abilities, :level_number, :tower_path, :warrior_name
+    attr_accessor :score, :epic_score, :current_epic_score, :abilities, :level_number, :tower_path, :warrior_name, :player_path
     
     def initialize
       @tower_path = nil
@@ -29,11 +29,13 @@ module RubyWarrior
     end
     
     def self.load(path)
-      decode(File.read(path))
+      player = decode(File.read(path))
+      player.player_path = File.dirname(path)
+      player
     end
     
     def player_path
-      Config.path_prefix + "/ruby-warrior/#{directory_name}"
+      @player_path || Config.path_prefix + "/ruby-warrior/#{directory_name}"
     end
     
     def directory_name

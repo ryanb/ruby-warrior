@@ -11,9 +11,9 @@ Feature: Play levels
     When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
     And I run rubywarrior
     And I choose "Joe - beginner - level 1" for "profile"
-    Then I answer "y" to "next level"
-    And I should see "directory for the next level"
-    And I run rubywarrior
+    And I answer "y" to "next level"
+    Then I should see "directory for the next level"
+    When I run rubywarrior
     And I choose "Joe - beginner - level 2" for "profile"
     And I answer "y" to "clues"
     Then I should see "warrior.feel.empty?"
@@ -23,8 +23,8 @@ Feature: Play levels
     When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
     And I run rubywarrior
     And I choose "Joe - beginner - level 1" for "profile"
-    Then I answer "n" to "next level"
-    And I should see "current level"
+    And I answer "n" to "next level"
+    Then I should see "current level"
     When I run rubywarrior
     Then I should see "Joe - beginner - level 1"
   

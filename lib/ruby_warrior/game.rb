@@ -4,7 +4,11 @@ module RubyWarrior
     def start
       UI.puts "Welcome to Ruby Warrior"
       
-      make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
+      if File.exists?(Config.path_prefix + '/.profile')
+        @profile = Profile.load(Config.path_prefix + '/.profile')
+      else
+        make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
+      end
       
       if profile.epic?
         UI.delay /= 2 if UI.delay # speed up UI since we're going to be doing a lot here

@@ -11,6 +11,10 @@ Given /^no profile at "([^\"]*)"$/ do |path|
   FileUtils.rm_rf("#{path}/ruby-warrior")
 end
 
+Given /^current directory is "([^\"]*)"$/ do |path|
+  RubyWarrior::Config.path_prefix = path
+end
+
 When /^I run rubywarrior$/ do
   @io = MockIO.new
   @io.start do |io|
