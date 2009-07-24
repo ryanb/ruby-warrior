@@ -39,6 +39,7 @@ Feature: Play levels
     When I run rubywarrior
     And I choose "Bill - short - level 2" for "profile"
     Then I answer "y" to "epic"
+    And I should see "epic mode"
     When I run rubywarrior
     And I choose "Bill - short - first score 34 - epic score 0" for "profile"
     Then I should see "top of the tower"

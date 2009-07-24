@@ -1,6 +1,8 @@
 require 'rake'
 require 'spec'
+require 'cucumber'
 
+require 'cucumber/rake/task'
 require 'spec/rake/spectask'
 
 
@@ -12,8 +14,8 @@ Spec::Rake::SpecTask.new do |t|
   t.spec_opts = ["-c"]
 end
 
-task :cucumber do
-  system "cucumber features"
+Cucumber::Rake::Task.new(:features) do |t|
+  t.cucumber_opts = "features --format progress"
 end
 
-task :default => [:spec, :cucumber]
+task :default => [:spec, :features]
