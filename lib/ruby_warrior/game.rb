@@ -10,34 +10,7 @@ module RubyWarrior
         make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
       end
       
-      if profile.epic?
-        Config.delay /= 2 if Config.delay # speed up UI since we're going to be doing a lot here
-        profile.current_epic_score = 0
-        if Config.practice_level
-          @current_level = @next_level = nil
-          profile.level_number = Config.practice_level.to_i
-          play_current_level
-        else
-          playing = true
-          while playing
-            @current_level = @next_level = nil
-            profile.level_number += 1
-            playing = play_current_level
-          end
-          profile.save # saves the score for epic mode
-        end
-      else
-        if Config.practice_level
-          UI.puts "Unable to practice level while not in epic mode, remove -l option."
-        else
-          if current_level.number.zero?
-            prepare_next_level
-            UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
-          else
-            play_current_level
-          end
-        end
-      end
+      profile.epic? ? play_epic_mode : play_normal_mode
     end
     
     def make_game_directory
@@ -46,6 +19,37 @@ module RubyWarrior
       else
         UI.puts "Unable to continue without directory."
         exit
+      end
+    end
+    
+    def play_epic_mode
+      Config.delay /= 2 if Config.delay # speed up UI since we're going to be doing a lot here
+      profile.current_epic_score = 0
+      if Config.practice_level
+        @current_level = @next_level = nil
+        profile.level_number = Config.practice_level
+        play_current_level
+      else
+        playing = true
+        while playing
+          @current_level = @next_level = nil
+          profile.level_number += 1
+          playing = play_current_level
+        end
+        profile.save # saves the score for epic mode
+      end
+    end
+    
+    def play_normal_mode
+      if Config.practice_level
+        UI.puts "Unable to practice level while not in epic mode, remove -l option."
+      else
+        if current_level.number.zero?
+          prepare_next_level
+          UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
+        else
+          play_current_level
+        end
       end
     end
     
