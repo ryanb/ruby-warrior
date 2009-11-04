@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/../lib/ruby_warrior'
 
-RubyWarrior::UI.out_stream = STDOUT
-RubyWarrior::UI.in_stream = STDIN
-RubyWarrior::UI.delay = 0.8 # TODO allow customization
-game = RubyWarrior::Game.new # TODO pass options into game when initializing
-game.start
+runner = RubyWarrior::Runner.new(ARGV, STDIN, STDOUT)
+runner.run

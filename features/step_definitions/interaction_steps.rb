@@ -24,6 +24,15 @@ When /^I run rubywarrior$/ do
   end
 end
 
+When /^I run rubywarrior with options "([^\"]*)"$/ do |options|
+  @io = MockIO.new
+  @io.start do |io|
+    RubyWarrior::UI.out_stream = io
+    RubyWarrior::UI.in_stream = io
+    RubyWarrior::Runner.new(options.split, io, io).run
+  end
+end
+
 When /^I answer "([^\"]*)" to "([^\"]*)"$/ do |answer, question|
   @io.gets_until_include(question)
   @io.puts(answer)
