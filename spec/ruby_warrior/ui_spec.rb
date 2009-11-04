@@ -3,14 +3,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe RubyWarrior::UI do
   before(:each) do
     @ui = RubyWarrior::UI
+    @config = RubyWarrior::Config
     @out = StringIO.new
     @in = StringIO.new
-    @ui.out_stream = @out
-    @ui.in_stream = @in
-  end
-  
-  after(:each) do
-    @ui.delay = nil
+    @config.out_stream = @out
+    @config.in_stream = @in
   end
   
   it "should add puts to out stream" do
@@ -30,7 +27,7 @@ describe RubyWarrior::UI do
   end
   
   it "should gets should return empty string if no input" do
-    @ui.in_stream = nil
+    @config.in_stream = nil
     @ui.gets.should == ""
   end
   
@@ -82,7 +79,7 @@ describe RubyWarrior::UI do
   end
   
   it "should delay after puts when specified" do
-    @ui.delay = 1.3
+    @config.delay = 1.3
     @ui.expects(:puts).with("foo")
     @ui.expects(:sleep).with(1.3)
     @ui.puts_with_delay("foo")

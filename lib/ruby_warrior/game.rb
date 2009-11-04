@@ -11,7 +11,7 @@ module RubyWarrior
       end
       
       if profile.epic?
-        UI.delay /= 2 if UI.delay # speed up UI since we're going to be doing a lot here
+        Config.delay /= 2 if Config.delay # speed up UI since we're going to be doing a lot here
         profile.current_epic_score = 0
         playing = true
         while playing
@@ -56,7 +56,7 @@ module RubyWarrior
       else
         continue = false
         UI.puts "Sorry, you failed the level. Change your script and try again."
-        if current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
+        if !Config.skip_input? && current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
           UI.puts current_level.clue
         end
       end
@@ -64,7 +64,7 @@ module RubyWarrior
     end
     
     def request_next_level
-      if (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
+      if !Config.skip_input? && (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
         if next_level.exists?
           prepare_next_level
           UI.puts "See the ruby-warrior directory for the next level README."

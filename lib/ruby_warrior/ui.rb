@@ -1,32 +1,22 @@
 module RubyWarrior
   class UI
     class << self
-      attr_accessor :delay
-      
-      def in_stream=(in_stream)
-        @in = in_stream
-      end
-      
-      def out_stream=(stream)
-        @out = stream
-      end
-      
       def puts(msg)
-        @out.puts(msg) if @out
+        Config.out_stream.puts(msg) if Config.out_stream
       end
       
       def puts_with_delay(msg)
         result = puts(msg)
-        sleep(@delay) if @delay
+        sleep(Config.delay) if Config.delay
         result
       end
       
       def print(msg)
-        @out.print(msg) if @out
+        Config.out_stream.print(msg) if Config.out_stream
       end
       
       def gets
-        @in ? @in.gets : ''
+        Config.in_stream ? Config.in_stream.gets : ''
       end
       
       def request(msg)

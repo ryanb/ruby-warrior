@@ -10,9 +10,9 @@ module RubyWarrior
     end
     
     def run
-      RubyWarrior::UI.in_stream = @stdin
-      RubyWarrior::UI.out_stream = @stdout
-      RubyWarrior::UI.delay = 0.8 # TODO allow customization
+      Config.in_stream = @stdin
+      Config.out_stream = @stdout
+      Config.delay = 0.8
       parse_options
       @game.start
     end
@@ -22,9 +22,10 @@ module RubyWarrior
     def parse_options
       options = OptionParser.new 
       options.banner = "Usage: rubywarrior [options]"
-      options.on('-d', '--directory DIR', 'Run under given directory') { |dir| RubyWarrior::Config.path_prefix = dir }
-      options.on('-t', '--time SECONDS', 'Delay each turn by seconds') { |seconds| RubyWarrior::UI.delay = seconds.to_f }
-      options.on('-h', '--help', 'Show this message') { puts(options); exit }
+      options.on('-d', '--directory DIR', "Run under given directory")  { |dir| Config.path_prefix = dir }
+      options.on('-s', '--skip',          "Skip user input")            { Config.skip_input = true }
+      options.on('-t', '--time SECONDS',  "Delay each turn by seconds") { |seconds| Config.delay = seconds.to_f }
+      options.on('-h', '--help',          "Show this message")          { puts(options); exit }
       options.parse!(@arguments)
     end
   end

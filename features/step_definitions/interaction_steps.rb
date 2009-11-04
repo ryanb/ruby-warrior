@@ -18,17 +18,16 @@ end
 When /^I run rubywarrior$/ do
   @io = MockIO.new
   @io.start do |io|
-    RubyWarrior::UI.out_stream = io
-    RubyWarrior::UI.in_stream = io
+    RubyWarrior::Config.out_stream = io
+    RubyWarrior::Config.in_stream = io
     RubyWarrior::Game.new.start
   end
 end
 
 When /^I run rubywarrior with options "([^\"]*)"$/ do |options|
+  RubyWarrior::Config.reset
   @io = MockIO.new
   @io.start do |io|
-    RubyWarrior::UI.out_stream = io
-    RubyWarrior::UI.in_stream = io
     RubyWarrior::Runner.new(options.split, io, io).run
   end
 end
