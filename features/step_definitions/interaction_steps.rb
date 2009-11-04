@@ -59,3 +59,7 @@ end
 Then /^I should see "([^\"]*)"$/ do |phrase|
   @io.gets_until_include(phrase).should include(phrase)
 end
+
+Then /^I should not see "([^\"]*)" before "([^\"]*)"$/ do |first_phrase, second_phrase|
+  @io.gets_until_include(second_phrase).should_not include(first_phrase)
+end

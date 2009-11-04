@@ -23,3 +23,25 @@ Feature: Command Options
     Then I should see "directory for the next level"
     When I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -t 0 -s"
     Then I should see "failed the level"
+  
+  Scenario: Unable to practice level if not epic
+    Given a profile named "Joe" on "beginner"
+    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
+    And I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -l 2"
+    Then I should see "Unable"
+  
+  @focus
+  Scenario: Practice specific level when epic
+    When I copy fixture "short-tower" to "towers/short"
+    Given a profile named "Bill" on "short"
+    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/bill-short/player.rb"
+    And I run rubywarrior
+    And I choose "Bill - short - level 1" for "profile"
+    Then I answer "y" to "next level"
+    And I should see "next level"
+    When I run rubywarrior
+    And I choose "Bill - short - level 2" for "profile"
+    Then I answer "y" to "epic"
+    And I should see "epic mode"
+    When I run rubywarrior with options "-d tmp/ruby-warrior/bill-short -l 2"
+    Then I should not see "Level 1" before "Total Score: 17"

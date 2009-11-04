@@ -13,19 +13,29 @@ module RubyWarrior
       if profile.epic?
         Config.delay /= 2 if Config.delay # speed up UI since we're going to be doing a lot here
         profile.current_epic_score = 0
-        playing = true
-        while playing
+        if Config.practice_level
           @current_level = @next_level = nil
-          profile.level_number += 1
-          playing = play_current_level
-        end
-        profile.save # saves the score for epic mode
-      else
-        if current_level.number.zero?
-          prepare_next_level
-          UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
-        else
+          profile.level_number = Config.practice_level.to_i
           play_current_level
+        else
+          playing = true
+          while playing
+            @current_level = @next_level = nil
+            profile.level_number += 1
+            playing = play_current_level
+          end
+          profile.save # saves the score for epic mode
+        end
+      else
+        if Config.practice_level
+          UI.puts "Unable to practice level while not in epic mode, remove -l option."
+        else
+          if current_level.number.zero?
+            prepare_next_level
+            UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
+          else
+            play_current_level
+          end
         end
       end
     end
