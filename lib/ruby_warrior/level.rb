@@ -91,7 +91,11 @@ module RubyWarrior
     end
     
     def score_calculation(current_score, addition)
-      "#{current_score} + #{addition} = #{current_score + addition}"
+      if current_score.zero?
+        addition.to_s
+      else
+        "#{current_score} + #{addition} = #{current_score + addition}"
+      end
     end
     
     def passed?

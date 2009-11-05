@@ -135,8 +135,12 @@ describe RubyWarrior::Level do
       @level.time_bonus.should be_zero
     end
     
-    it "should have a pretty total score" do
+    it "should have a pretty score calculation" do
       @level.score_calculation(123, 45).should == "123 + 45 = 168"
+    end
+    
+    it "should not have a score calculation when starting score is zero" do
+      @level.score_calculation(0, 45).should == "45"
     end
   end
   
