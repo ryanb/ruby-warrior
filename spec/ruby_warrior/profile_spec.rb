@@ -119,7 +119,14 @@ describe RubyWarrior::Profile do
       @profile.enable_epic_mode
       @profile.to_s.should == "Joe - tower - first score 0 - epic score 0"
     end
-  
+    
+    it "should include epic score with grade in string representation" do
+      @profile.warrior_name = 'Joe'
+      @profile.enable_epic_mode
+      @profile.average_grade = 0.7
+      @profile.to_s.should == "Joe - tower - first score 0 - epic score 0 (C)"
+    end
+    
     it "should guess at the player path" do
       @profile.player_path.should == './ruby-warrior/john-smith-tower'
     end
