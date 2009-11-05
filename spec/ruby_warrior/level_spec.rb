@@ -133,6 +133,10 @@ describe RubyWarrior::Level do
       @level.play(5)
       @level.time_bonus.should be_zero
     end
+    
+    it "should have a pretty total score" do
+      @level.score_calculation(123, 45).should == "123 + 45 = 168"
+    end
   end
   
   describe "tallying points" do

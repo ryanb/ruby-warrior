@@ -69,13 +69,13 @@ module RubyWarrior
       
       if @profile.epic?
         UI.puts "Level Grade: #{grade_for(score)}" if grade_for(score)
+        UI.puts "Total Score: " + score_calculation(@profile.current_epic_score, score)
         @profile.current_epic_grades[@number] = (score / ace_score.to_f) if ace_score
         @profile.current_epic_score += score
-        UI.puts "Total Score: #{@profile.current_epic_score}"
       else
+        UI.puts "Total Score: " + score_calculation(@profile.score, score)
         @profile.score += score
         @profile.abilities = warrior.abilities.keys
-        UI.puts "Total Score: #{@profile.score}"
       end
     end
     
@@ -87,6 +87,10 @@ module RubyWarrior
     
     def clear_bonus
       ((warrior.score + time_bonus)*0.2).round
+    end
+    
+    def score_calculation(current_score, addition)
+      "#{current_score} + #{addition} = #{current_score + addition}"
     end
     
     def passed?
