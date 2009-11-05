@@ -7,6 +7,7 @@ tip "Watch your back."
 clue "Don't just keep shooting the bow while you are being attacked from behind."
 
 time_bonus 40
+ace_score 100
 size 11, 1
 stairs 0, 0
 

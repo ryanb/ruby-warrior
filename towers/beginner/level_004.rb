@@ -7,6 +7,7 @@ tip "No new abilities this time, but you must be careful not to rest while takin
 clue "Set @health to your current health at the end of the turn. If this is greater than your current health next turn then you know you're taking damage and shouldn't rest."
 
 time_bonus 45
+ace_score 90
 size 7, 1
 stairs 6, 0
 

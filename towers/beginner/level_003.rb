@@ -7,6 +7,7 @@ tip "Be careful not to die! Use warrior.health to keep an eye on your health, an
 clue "When there's no enemy ahead of you, call warrior.rest! until health is full before walking forward."
 
 time_bonus 35
+ace_score 71
 size 9, 1
 stairs 8, 0
 

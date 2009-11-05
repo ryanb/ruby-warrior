@@ -7,6 +7,7 @@ tip "Use warrior.look to determine your surroundings, and warrior.shoot! to fire
 clue "Wizards are deadly but low in health. Kill them before they have time to attack."
 
 time_bonus 20
+ace_score 46
 size 6, 1
 stairs 5, 0
 

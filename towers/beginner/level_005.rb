@@ -7,6 +7,7 @@ tip "Use warrior.feel.captive? to see if there's a captive, and warrior.rescue! 
 clue "Don't forget to constantly check if you're taking damage and rest until your health is full if you aren't taking damage."
 
 time_bonus 45
+ace_score 123
 size 7, 1
 stairs 6, 0
 

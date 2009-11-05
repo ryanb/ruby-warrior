@@ -7,6 +7,7 @@ tip "Use warrior.feel.empty? to see if there's anything in front of you, and war
 clue "Add an if/else condition using warrior.feel.empty? to decide whether to warrior.attack! or warrior.walk!."
 
 time_bonus 20
+ace_score 26
 size 8, 1
 stairs 7, 0
 
