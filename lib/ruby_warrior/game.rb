@@ -63,7 +63,7 @@ module RubyWarrior
         if next_level.exists?
           UI.puts "Success! You have found the stairs."
         else
-          UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescue the fair maiden Ruby."
+          UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescued the fair maiden Ruby."
           continue = false
         end
         current_level.tally_points
@@ -74,7 +74,7 @@ module RubyWarrior
         end
       else
         continue = false
-        UI.puts "Sorry, you failed the level. Change your script and try again."
+        UI.puts "Sorry, you failed level #{current_level.number}. Change your script and try again."
         if !Config.skip_input? && current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
           UI.puts current_level.clue
         end

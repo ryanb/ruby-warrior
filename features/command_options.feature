@@ -22,7 +22,7 @@ Feature: Command Options
     And I answer "y" to "next level"
     Then I should see "directory for the next level"
     When I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -t 0 -s"
-    Then I should see "failed the level"
+    Then I should see "failed level 2"
   
   Scenario: Unable to practice level if not epic
     Given a profile named "Joe" on "beginner"
