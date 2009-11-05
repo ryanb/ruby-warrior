@@ -109,4 +109,11 @@ describe RubyWarrior::Game do
     @game.final_report.should be_nil
   end
   
+  it "should have an empty final report if practice level" do
+    RubyWarrior::Config.practice_level = 2
+    profile = RubyWarrior::Profile.new
+    profile.current_epic_grades = { 1 => 0.7, 2 => 0.9 }
+    @game.stubs(:profile).returns(profile)
+    @game.final_report.should be_nil
+  end
 end

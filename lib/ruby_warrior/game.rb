@@ -153,7 +153,7 @@ module RubyWarrior
     end
     
     def final_report
-      if profile.calculate_average_grade
+      if profile.calculate_average_grade && !Config.practice_level
         report = ""
         report << "Your average grade for this tower is: #{Level.grade_letter(profile.calculate_average_grade)}\n\n"
         profile.current_epic_grades.keys.sort.each do |level|
