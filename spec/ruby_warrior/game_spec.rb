@@ -99,8 +99,7 @@ describe RubyWarrior::Game do
     @game.stubs(:profile).returns(profile)
     report = @game.final_report
     report.should include("Your average grade for this tower is: B")
-    report.should include("Level 1: C")
-    report.should include("Level 2: A")
+    report.should include("Level 1: C\n  Level 2: A")
   end
   
   it "should have an empty final report if no epic grades are available" do

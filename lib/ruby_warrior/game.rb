@@ -156,8 +156,8 @@ module RubyWarrior
       if profile.calculate_average_grade
         report = ""
         report << "Your average grade for this tower is: #{Level.grade_letter(profile.calculate_average_grade)}\n\n"
-        profile.current_epic_grades.each do |level, grade|
-          report << "  Level #{level}: #{Level.grade_letter(grade)}\n"
+        profile.current_epic_grades.keys.sort.each do |level|
+          report << "  Level #{level}: #{Level.grade_letter(profile.current_epic_grades[level])}\n"
         end
         report << "\nTo practice a level, use the -l option:\n\n  rubywarrior -l 3"
         report
