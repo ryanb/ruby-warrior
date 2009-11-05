@@ -11,7 +11,7 @@ Feature: Command Options
     When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
     And I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -t 0"
     And I answer "y" to "next level"
-    Then I should see "directory for the next level"
+    Then I should see "the updated README in the ruby-warrior/joe-beginner directory"
   
   Scenario: Skip user input with -s option
     Given a profile named "Joe" on "beginner"
@@ -20,7 +20,7 @@ Feature: Command Options
     Then I should see "current level"
     When I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -t 0"
     And I answer "y" to "next level"
-    Then I should see "directory for the next level"
+    Then I should see "the updated README in the ruby-warrior/joe-beginner directory"
     When I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -t 0 -s"
     Then I should see "failed level 2"
   
@@ -37,7 +37,7 @@ Feature: Command Options
     And I run rubywarrior
     And I choose "Bill - short - level 1" for "profile"
     Then I answer "y" to "next level"
-    And I should see "next level"
+    And I should see "the updated README in the ruby-warrior/bill-short directory"
     When I run rubywarrior
     And I choose "Bill - short - level 2" for "profile"
     Then I answer "y" to "epic"

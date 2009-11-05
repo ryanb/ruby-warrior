@@ -12,7 +12,7 @@ Feature: Play levels
     And I run rubywarrior
     And I choose "Joe - beginner - level 1" for "profile"
     And I answer "y" to "next level"
-    Then I should see "directory for the next level"
+    Then I should see "the updated README in the ruby-warrior/joe-beginner directory"
     When I run rubywarrior
     And I choose "Joe - beginner - level 2" for "profile"
     And I answer "y" to "clues"
@@ -36,7 +36,7 @@ Feature: Play levels
     And I run rubywarrior
     And I choose "Bill - short - level 1" for "profile"
     Then I answer "y" to "next level"
-    And I should see "next level"
+    And I should see "the updated README in the ruby-warrior/bill-short directory"
     When I run rubywarrior
     And I choose "Bill - short - level 2" for "profile"
     Then I answer "y" to "epic"

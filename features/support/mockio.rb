@@ -25,7 +25,7 @@ class MockIO
       begin
         content += gets
       rescue Timeout
-        raise "Unable to find #{phrase} in #{content}"
+        raise "Unable to find \"#{phrase}\" in \"#{content}\""
       end
     end
     content

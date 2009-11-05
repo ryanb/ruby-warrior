@@ -43,4 +43,4 @@ Feature: Manage Profiles
     When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
     And I run rubywarrior
     And I answer "y" to "next level"
-    Then I should see "directory for the next level"
+    Then I should see "the updated README in the ruby-warrior/joe-beginner directory"
