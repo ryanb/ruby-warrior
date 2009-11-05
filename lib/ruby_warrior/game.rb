@@ -47,7 +47,7 @@ module RubyWarrior
       else
         if current_level.number.zero?
           prepare_next_level
-          UI.puts "First level has been generated. See the ruby-warrior directory for instructions."
+          UI.puts "First level has been generated. See the ruby-warrior/#{profile.directory_name}/README for instructions."
         else
           play_current_level
         end
@@ -86,7 +86,7 @@ module RubyWarrior
       if !Config.skip_input? && (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
         if next_level.exists?
           prepare_next_level
-          UI.puts "See the ruby-warrior directory for the next level README."
+          UI.puts "See the updated README in the ruby-warrior/#{profile.directory_name} directory."
         else
           prepare_epic_mode
           UI.puts "Run rubywarrior again to play epic mode."
