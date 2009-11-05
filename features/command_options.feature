@@ -30,7 +30,6 @@ Feature: Command Options
     And I run rubywarrior with options "-d tmp/ruby-warrior/joe-beginner -l 2"
     Then I should see "Unable"
   
-  @focus
   Scenario: Practice specific level when epic
     When I copy fixture "short-tower" to "towers/short"
     Given a profile named "Bill" on "short"

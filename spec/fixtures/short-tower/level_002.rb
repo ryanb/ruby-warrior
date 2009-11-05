@@ -6,6 +6,7 @@ description "You see before yourself a long hallway with stairs at the end. Ther
 tip "Call warrior.walk! to walk forward in the Player 'play_turn' method."
 
 time_bonus 15
+ace_score 17
 size 2, 1
 stairs 1, 0
 

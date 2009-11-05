@@ -22,6 +22,10 @@ module RubyWarrior
       @level.time_bonus = bonus
     end
     
+    def ace_score(score)
+      @level.ace_score = score
+    end
+    
     def size(width, height)
       @floor.width = width
       @floor.height = height

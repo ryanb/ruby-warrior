@@ -93,4 +93,21 @@ describe RubyWarrior::Game do
     2.times { @game.next_level.should == 'bar' }
   end
   
+  it "should report final grade" do
+    profile = RubyWarrior::Profile.new
+    profile.current_epic_grades = { 1 => 0.7, 2 => 0.9 }
+    @game.stubs(:profile).returns(profile)
+    report = @game.final_report
+    report.should include("Your average grade for this tower is: B")
+    report.should include("Level 1: C")
+    report.should include("Level 2: B")
+  end
+  
+  it "should have an empty final report if no epic grades are available" do
+    profile = RubyWarrior::Profile.new
+    profile.current_epic_grades = {}
+    @game.stubs(:profile).returns(profile)
+    @game.final_report.should be_nil
+  end
+  
 end

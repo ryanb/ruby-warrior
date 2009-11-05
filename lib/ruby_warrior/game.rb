@@ -25,6 +25,7 @@ module RubyWarrior
     def play_epic_mode
       Config.delay /= 2 if Config.delay # speed up UI since we're going to be doing a lot here
       profile.current_epic_score = 0
+      profile.current_epic_grades = {}
       if Config.practice_level
         @current_level = @next_level = nil
         profile.level_number = Config.practice_level
@@ -66,7 +67,11 @@ module RubyWarrior
           continue = false
         end
         current_level.tally_points
-        request_next_level unless profile.epic?
+        if profile.epic?
+          UI.puts final_report if final_report && !continue
+        else
+          request_next_level
+        end
       else
         continue = false
         UI.puts "Sorry, you failed the level. Change your script and try again."
@@ -147,6 +152,17 @@ module RubyWarrior
       @next_level ||= profile.next_level
     end
     
+    def final_report
+      if profile.calculate_average_grade
+        report = ""
+        report << "Your average grade for this tower is: #{Level.grade_letter(profile.calculate_average_grade)}\n\n"
+        profile.current_epic_grades.each do |level, grade|
+          report << "  Level #{level}: #{Level.grade_letter(grade)}\n"
+        end
+        report << "\nTo practice a level, use the -l option:\n\n  rubywarrior -l 3"
+        report
+      end
+    end
     
     private
     
@@ -156,10 +172,10 @@ module RubyWarrior
         profile = new_profile
         if profiles.any? { |p| p.player_path == profile.player_path }
           if UI.ask("Are you sure you want to replace your existing profile for this tower?")
-            UI.puts("Replacing existing profile.")
+            UI.puts "Replacing existing profile."
             profile
           else
-            UI.puts("Not replacing profile.")
+            UI.puts "Not replacing profile."
             exit
           end
         else

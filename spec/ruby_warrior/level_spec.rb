@@ -21,6 +21,21 @@ describe RubyWarrior::Level do
     @level.time_bonus.should be_zero
   end
   
+  it "should have a grade relative to ace score" do
+    @level.ace_score = 100
+    @level.grade_for(110).should == "A"
+    @level.grade_for(100).should == "A"
+    @level.grade_for(99).should == "B"
+    @level.grade_for(79).should == "C"
+    @level.grade_for(59).should == "D"
+    @level.grade_for(39).should == "F"
+  end
+  
+  it "should have no grade if there is no ace score" do
+    @level.ace_score.should be_nil
+    @level.grade_for(100).should be_nil
+  end
+  
   it "should load file contents into level" do
     @level.stubs(:load_path).returns('path/to/level.rb')
     File.expects(:read).with('path/to/level.rb').returns("description 'foo'")
@@ -138,6 +153,22 @@ describe RubyWarrior::Level do
       @warrior.stubs(:score).returns(30)
       @level.tally_points
       @profile.current_epic_score.should == 30
+    end
+    
+    it "should add level grade percent to profile for epic mode" do
+      @level.ace_score = 100
+      @profile.enable_epic_mode
+      @warrior.stubs(:score).returns(30)
+      @level.tally_points
+      @profile.current_epic_grades.should == { 1 => 0.3 }
+    end
+    
+    it "should not add level grade if ace score is not set" do
+      @level.ace_score = nil
+      @profile.enable_epic_mode
+      @warrior.stubs(:score).returns(30)
+      @level.tally_points
+      @profile.current_epic_grades.should == {}
     end
     
     it "should apply warrior abilities to profile" do

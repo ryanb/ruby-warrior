@@ -70,17 +70,29 @@ describe RubyWarrior::Profile do
   it "should override epic score with current one if it is higher" do
     @profile.enable_epic_mode
     @profile.epic_score.should be_zero
+    @profile.average_grade.should be_nil
     @profile.current_epic_score = 123
+    @profile.current_epic_grades = { 1 => 0.7, 2 => 0.9 }
     @profile.update_epic_score
     @profile.epic_score.should == 123
+    @profile.average_grade.should == 0.8
   end
   
   it "should not override epic score with current one if it is lower" do
     @profile.enable_epic_mode
     @profile.epic_score = 124
+    @profile.average_grade = 0.9
     @profile.current_epic_score = 123
+    @profile.current_epic_grades = { 1 => 0.7, 2 => 0.9 }
     @profile.update_epic_score
     @profile.epic_score.should == 124
+    @profile.average_grade.should == 0.9
+  end
+  
+  it "should not calculate average grade if no grades are present" do
+    @profile.enable_epic_mode
+    @profile.current_epic_grades = {}
+    @profile.calculate_average_grade.should be_nil
   end
   
   describe "with tower path" do

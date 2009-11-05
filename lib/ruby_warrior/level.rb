@@ -1,7 +1,16 @@
 module RubyWarrior
   class Level
     attr_reader :profile, :number
-    attr_accessor :description, :tip, :clue, :warrior, :floor, :time_bonus
+    attr_accessor :description, :tip, :clue, :warrior, :floor, :time_bonus, :ace_score
+    
+    def self.grade_letter(percent)
+      if    percent >= 1.0 then "A"
+      elsif percent >= 0.8 then "B"
+      elsif percent >= 0.6 then "C"
+      elsif percent >= 0.4 then "D"
+      else                      "F"
+      end
+    end
     
     def initialize(profile, number)
       @profile = profile
@@ -59,12 +68,20 @@ module RubyWarrior
       end
       
       if @profile.epic?
+        UI.puts "Level Grade: #{grade_for(score)}" if grade_for(score)
+        @profile.current_epic_grades[@number] = (score / ace_score.to_f) if ace_score
         @profile.current_epic_score += score
         UI.puts "Total Score: #{@profile.current_epic_score}"
       else
         @profile.score += score
         @profile.abilities = warrior.abilities.keys
         UI.puts "Total Score: #{@profile.score}"
+      end
+    end
+    
+    def grade_for(score)
+      if ace_score
+        self.class.grade_letter(score / ace_score.to_f)
       end
     end
     

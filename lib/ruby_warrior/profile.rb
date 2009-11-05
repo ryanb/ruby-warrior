@@ -2,14 +2,16 @@ require 'base64'
 
 module RubyWarrior
   class Profile
-    attr_accessor :score, :epic_score, :current_epic_score, :abilities, :level_number, :tower_path, :warrior_name, :player_path
+    attr_accessor :score, :epic_score, :current_epic_score, :average_grade, :current_epic_grades, :abilities, :level_number, :tower_path, :warrior_name, :player_path
     
     def initialize
       @tower_path = nil
       @warrior_name = nil
       @score = 0
       @current_epic_score = 0
+      @current_epic_grades = {}
       @epic_score = 0
+      @average_grade = nil
       @abilities = []
       @level_number = 0
     end
@@ -80,6 +82,14 @@ module RubyWarrior
     def update_epic_score
       if @current_epic_score > @epic_score
         @epic_score = @current_epic_score
+        @average_grade = calculate_average_grade
+      end
+    end
+    
+    def calculate_average_grade
+      if @current_epic_grades.size > 0
+        sum = @current_epic_grades.values.inject(0) { |sum, value| sum + value }
+        sum / @current_epic_grades.size
       end
     end
   end
