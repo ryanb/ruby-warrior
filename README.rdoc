@@ -148,6 +148,8 @@ Your warrior will most likely not succeed the first time around, so use the -l o
 
 Once your warrior reaches the top again you will receive an average grade, along with a grade for each level. The grades from best to worst are S, A, B, C, D and F. Try to get S on each level for the ultimate score.
 
+Note: I'm in the process of fine-tuning the grading system. If you find the "S" grade to be too easy or too difficult to achieve on a given level, please add an issue for this on GitHub.
+
 
 == Tips
 
