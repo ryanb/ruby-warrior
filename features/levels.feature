@@ -43,7 +43,7 @@ Feature: Play levels
     And I should see "epic mode"
     When I run rubywarrior
     And I choose "Bill - short - first score 34 - epic score 0" for "profile"
-    Then I should see "Level Grade: A"
+    Then I should see "Level Grade: S"
     When I run rubywarrior
     And I choose "Bill - short - first score 34 - epic score 34" for "profile"
     Then I should see "grade for this tower"

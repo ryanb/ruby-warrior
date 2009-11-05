@@ -23,12 +23,13 @@ describe RubyWarrior::Level do
   
   it "should have a grade relative to ace score" do
     @level.ace_score = 100
-    @level.grade_for(110).should == "A"
-    @level.grade_for(100).should == "A"
-    @level.grade_for(99).should == "B"
+    @level.grade_for(110).should == "S"
+    @level.grade_for(100).should == "S"
+    @level.grade_for(99).should == "A"
+    @level.grade_for(89).should == "B"
     @level.grade_for(79).should == "C"
-    @level.grade_for(59).should == "D"
-    @level.grade_for(39).should == "F"
+    @level.grade_for(69).should == "D"
+    @level.grade_for(59).should == "F"
   end
   
   it "should have no grade if there is no ace score" do

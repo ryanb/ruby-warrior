@@ -4,10 +4,11 @@ module RubyWarrior
     attr_accessor :description, :tip, :clue, :warrior, :floor, :time_bonus, :ace_score
     
     def self.grade_letter(percent)
-      if    percent >= 1.0 then "A"
+      if    percent >= 1.0 then "S"
+      elsif percent >= 0.9 then "A"
       elsif percent >= 0.8 then "B"
-      elsif percent >= 0.6 then "C"
-      elsif percent >= 0.4 then "D"
+      elsif percent >= 0.7 then "C"
+      elsif percent >= 0.6 then "D"
       else                      "F"
       end
     end
