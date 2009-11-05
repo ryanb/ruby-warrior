@@ -37,7 +37,7 @@ You cannot change your code in the middle of a level. You must take into account
 
 Losing all of your health will cause you to fail the level. You are not punished by this, you simply need to go back to your player.rb, improve your code, and try again.
 
-Once you pass a level (by reaching the stairs), the profile README will be updated for the next level. Ruby rubywarrior again to play the next level.
+Once you pass a level (by reaching the stairs), the profile README will be updated for the next level. Alter the player.rb file and run rubywarrior again to play the next level.
 
 
 == Scoring
@@ -50,6 +50,8 @@ Your objective is to not only reach the stairs, but to get the highest score you
 * defeat all enemies and rescue all captives to receive a 20% overall bonus
 
 A total score is kept as you progress through the levels. When you pass a level, that score is added to your total.
+
+Don't be too concerned about scoring perfectly in the beginning. After you reach the top of the tower you will be able to re-run the tower and fine-tune your warrior to get the highest score. See the Epic Mode below for details.
 
 
 == Perspective
@@ -111,7 +113,7 @@ Since what you sense will change each turn, you should record what information y
 
 == Spaces
 
-Whenever you sense an area, often one  or multiple spaces (in an array) will be returned. A space is an object representing a square in the level. You can call methods on a space to gather information about what is there. Here are the various methods you can call on a space.
+Whenever you sense an area, often one or multiple spaces (in an array) will be returned. A space is an object representing a square in the level. You can call methods on a space to gather information about what is there. Here are the various methods you can call on a space.
 
   space.empty?
     If true, this means that nothing (except maybe stairs) is at this location and you can walk here.
@@ -140,7 +142,11 @@ You will often call these methods directly after a sense. For example, the "feel
   
 Once you reach the top of the tower, you will enter epic mode. When running rubywarrior again it will run your current player.rb through all levels in the tower without stopping.
 
-It might take a bit of fine-tuning to get your warrior passing all levels in one sweep, but the real challenge is getting the highest score you can.
+Your warrior will most likely not succeed the first time around, so use the -l option on levels you are having difficulty or want to fine-tune the scoring.
+
+  rubywarrior -l 3
+
+Once your warrior reaches the top again you will receive an average grade, along with a grade for each level. The grades from best to worst are S, A, B, C, D and F. Try to get S on each level for the ultimate score.
 
 
 == Tips
@@ -154,3 +160,5 @@ Senses are cheap, so use them liberally. Store the sensed information to help yo
 Running "rubywarrior" while you are in your profile directory will auto-select that profile so you don't have to each time.
 
 If you're aiming for points, remember to sweep the area. Even if you're close to the stairs, don't go in until you've gotten everything (if you have the health). Use far-ranged senses (such as look and listen) to determine if there are any enemies left.
+
+Make sure to try the different options you can pass to the rubywarrior command. Run "rubywarrior --help" to see them all.
