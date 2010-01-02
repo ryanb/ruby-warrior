@@ -8,7 +8,7 @@ end
 
 Given /^no profile at "([^\"]*)"$/ do |path|
   RubyWarrior::Config.path_prefix = path
-  FileUtils.rm_rf("#{path}/ruby-warrior")
+  FileUtils.rm_rf("#{path}/rubywarrior")
 end
 
 Given /^current directory is "([^\"]*)"$/ do |path|

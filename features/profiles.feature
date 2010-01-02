@@ -12,7 +12,7 @@ Feature: Manage Profiles
     And I choose "beginner" for "tower"
     And I answer "Joe" to "name"
     Then I should see "generated"
-    And I should find file at "tmp/ruby-warrior"
+    And I should find file at "tmp/rubywarrior"
     When I run rubywarrior
     Then I should see "Joe - beginner - level 1 - score 0"
 
@@ -39,8 +39,18 @@ Feature: Manage Profiles
   
   Scenario: Auto select profile at given path
     Given a profile named "Joe" on "beginner"
-    And current directory is "tmp/ruby-warrior/joe-beginner"
-    When I copy fixture "walking_player.rb" to "tmp/ruby-warrior/joe-beginner/player.rb"
+    And current directory is "tmp/rubywarrior/joe-beginner"
+    When I copy fixture "walking_player.rb" to "tmp/rubywarrior/joe-beginner/player.rb"
     And I run rubywarrior
     And I answer "y" to "next level"
-    Then I should see "the updated README in the ruby-warrior/joe-beginner directory"
+    Then I should see "the updated README in the rubywarrior/joe-beginner directory"
+
+  Scenario: Move legacy ruby-warrior profile
+    Given a directory at "tmp/ruby-warrior"
+    And no directory at "tmp/rubywarrior"
+    When I run rubywarrior
+    And I choose "beginner" for "tower"
+    And I answer "Joe" to "name"
+    Then I should see "generated"
+    And I should find file at "tmp/rubywarrior"
+    And I should find no file at "tmp/ruby-warrior"

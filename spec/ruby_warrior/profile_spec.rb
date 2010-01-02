@@ -128,7 +128,7 @@ describe RubyWarrior::Profile do
     end
     
     it "should guess at the player path" do
-      @profile.player_path.should == './ruby-warrior/john-smith-tower'
+      @profile.player_path.should == './rubywarrior/john-smith-tower'
     end
   
     it "should use specified player path" do

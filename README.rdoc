@@ -9,7 +9,7 @@ NOTE: The player directory structure changed on July 18, 2009. If you have an ol
 
 == Getting Started
 
-Run the "rubywarrior" executable (contained in the bin directory) to setup your profile which will create a ruby-warrior directory in your current location. There you will find a player.rb file in your profile's directory which looks like this:
+Run the "rubywarrior" executable (contained in the bin directory) to setup your profile which will create a rubywarrior directory in your current location. There you will find a player.rb file in your profile's directory which looks like this:
 
   class Player
     def play_turn(warrior)

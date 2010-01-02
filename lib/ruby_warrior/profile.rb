@@ -37,7 +37,7 @@ module RubyWarrior
     end
     
     def player_path
-      @player_path || Config.path_prefix + "/ruby-warrior/#{directory_name}"
+      @player_path || Config.path_prefix + "/rubywarrior/#{directory_name}"
     end
     
     def directory_name

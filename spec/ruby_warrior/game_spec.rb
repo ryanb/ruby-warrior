@@ -9,7 +9,7 @@ describe RubyWarrior::Game do
   
   it "should make game directory if player says so" do
     RubyWarrior::UI.stubs(:ask).returns(true)
-    Dir.expects(:mkdir).with('./ruby-warrior')
+    Dir.expects(:mkdir).with('./rubywarrior')
     @game.make_game_directory
   end
   
@@ -30,7 +30,7 @@ describe RubyWarrior::Game do
   end
   
   it "should find profile paths using Dir[] search" do
-    Dir.expects(:[]).with("./ruby-warrior/**/.profile")
+    Dir.expects(:[]).with("./rubywarrior/**/.profile")
     @game.profile_paths
   end
   

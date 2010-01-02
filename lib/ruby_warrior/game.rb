@@ -4,18 +4,21 @@ module RubyWarrior
     def start
       UI.puts "Welcome to Ruby Warrior"
       
-      if File.exists?(Config.path_prefix + '/.profile')
+      if File.exist?(Config.path_prefix + '/.profile')
         @profile = Profile.load(Config.path_prefix + '/.profile')
       else
-        make_game_directory unless File.exists?(Config.path_prefix + '/ruby-warrior')
+        if File.exist?(Config.path_prefix + '/ruby-warrior')
+          FileUtils.mv(Config.path_prefix + '/ruby-warrior', Config.path_prefix + '/rubywarrior')
+        end
+        make_game_directory unless File.exist?(Config.path_prefix + '/rubywarrior')
       end
       
       profile.epic? ? play_epic_mode : play_normal_mode
     end
     
     def make_game_directory
-      if UI.ask("No ruby-warrior directory found, would you like to create one?")
-        Dir.mkdir(Config.path_prefix + '/ruby-warrior')
+      if UI.ask("No rubywarrior directory found, would you like to create one?")
+        Dir.mkdir(Config.path_prefix + '/rubywarrior')
       else
         UI.puts "Unable to continue without directory."
         exit
@@ -47,7 +50,7 @@ module RubyWarrior
       else
         if current_level.number.zero?
           prepare_next_level
-          UI.puts "First level has been generated. See the ruby-warrior/#{profile.directory_name}/README for instructions."
+          UI.puts "First level has been generated. See the rubywarrior/#{profile.directory_name}/README for instructions."
         else
           play_current_level
         end
@@ -86,7 +89,7 @@ module RubyWarrior
       if !Config.skip_input? && (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
         if next_level.exists?
           prepare_next_level
-          UI.puts "See the updated README in the ruby-warrior/#{profile.directory_name} directory."
+          UI.puts "See the updated README in the rubywarrior/#{profile.directory_name} directory."
         else
           prepare_epic_mode
           UI.puts "Run rubywarrior again to play epic mode."
@@ -116,7 +119,7 @@ module RubyWarrior
     end
     
     def profile_paths
-      Dir[Config.path_prefix + '/ruby-warrior/**/.profile']
+      Dir[Config.path_prefix + '/rubywarrior/**/.profile']
     end
     
     def profile
