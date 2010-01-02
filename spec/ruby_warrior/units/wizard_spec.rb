@@ -18,6 +18,6 @@ describe RubyWarrior::Units::Wizard do
   end
   
   it "should appear as w on map" do
-    @wizard.to_map.should == "w"
+    @wizard.character.should == "w"
   end
 end

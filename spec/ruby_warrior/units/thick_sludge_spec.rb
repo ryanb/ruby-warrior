@@ -10,7 +10,7 @@ describe RubyWarrior::Units::ThickSludge do
   end
   
   it "should appear as S on map" do
-    @sludge.to_map.should == "S"
+    @sludge.character.should == "S"
   end
   
   it "should have the name of 'Thick Sludge'" do

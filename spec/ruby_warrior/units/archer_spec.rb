@@ -18,6 +18,6 @@ describe RubyWarrior::Units::Archer do
   end
   
   it "should appear as a on map" do
-    @archer.to_map.should == "a"
+    @archer.character.should == "a"
   end
 end

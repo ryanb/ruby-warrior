@@ -12,7 +12,7 @@ module RubyWarrior
         1
       end
       
-      def to_map
+      def character
         "C"
       end
       

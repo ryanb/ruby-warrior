@@ -40,9 +40,9 @@ module RubyWarrior
       [@x, @y]
     end
     
-    def to_map
+    def character
       if unit
-        unit.to_map
+        unit.character
       elsif stairs?
         ">"
       else

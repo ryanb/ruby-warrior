@@ -46,7 +46,7 @@ module RubyWarrior
       turns.times do |n|
         return if passed? || failed?
         UI.puts "- turn #{n+1} -"
-        UI.print @floor.to_map
+        UI.print @floor.character
         @floor.units.each { |unit| unit.prepare_turn }
         @floor.units.each { |unit| unit.perform_turn }
         yield if block_given?

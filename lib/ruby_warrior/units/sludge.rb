@@ -22,7 +22,7 @@ module RubyWarrior
         12
       end
       
-      def to_map
+      def character
         "s"
       end
     end

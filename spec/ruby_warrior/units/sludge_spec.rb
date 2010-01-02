@@ -22,6 +22,6 @@ describe RubyWarrior::Units::Sludge do
   end
   
   it "should appear as s on map" do
-    @sludge.to_map.should == "s"
+    @sludge.character.should == "s"
   end
 end

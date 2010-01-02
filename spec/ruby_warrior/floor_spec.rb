@@ -64,7 +64,7 @@ describe RubyWarrior::Floor do
     it "should print map with stairs and unit" do
       @floor.add(RubyWarrior::Units::Warrior.new, 0, 0)
       @floor.place_stairs(2, 0)
-      @floor.to_map.should == <<-MAP
+      @floor.character.should == <<-MAP
  ---
 |@ >|
  ---

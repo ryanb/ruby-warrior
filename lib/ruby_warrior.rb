@@ -1,5 +1,7 @@
 $: << File.dirname(__FILE__)
 
+require 'set'
+
 require 'ruby_warrior/core_additions'
 
 require 'ruby_warrior/runner'

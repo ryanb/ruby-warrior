@@ -45,7 +45,7 @@ module RubyWarrior
         name
       end
       
-      def to_map
+      def character
         "@"
       end
       

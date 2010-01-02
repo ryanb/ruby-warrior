@@ -5,7 +5,7 @@ module RubyWarrior
         24
       end
       
-      def to_map
+      def character
         "S"
       end
     end

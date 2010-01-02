@@ -87,7 +87,7 @@ module RubyWarrior
         @abilities ||= {}
       end
       
-      def to_map
+      def character
         "?"
       end
     end

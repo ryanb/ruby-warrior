@@ -26,7 +26,7 @@ module RubyWarrior
         3
       end
       
-      def to_map
+      def character
         "w"
       end
     end

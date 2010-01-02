@@ -45,13 +45,13 @@ module RubyWarrior
       x < 0 || y < 0 || x > @width-1 || y > @height-1
     end
     
-    def to_map
+    def character
       rows = []
       rows << " " + ("-" * @width)
       @height.times do |y|
         row = "|"
         @width.times do |x|
-          row << space(x, y).to_map
+          row << space(x, y).character
         end
         row << "|"
         rows << row

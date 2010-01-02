@@ -55,6 +55,6 @@ describe RubyWarrior::Units::Warrior do
   end
   
   it "should appear as @ on map" do
-    @warrior.to_map.should == "@"
+    @warrior.character.should == "@"
   end
 end

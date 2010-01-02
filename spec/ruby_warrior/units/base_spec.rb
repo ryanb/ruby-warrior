@@ -103,7 +103,7 @@ describe RubyWarrior::Units::Base do
   end
   
   it "should appear as question mark on map" do
-    @unit.to_map.should == "?"
+    @unit.character.should == "?"
   end
   
   it "should be released from bonds when taking damage" do
