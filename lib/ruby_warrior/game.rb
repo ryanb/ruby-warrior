@@ -13,7 +13,15 @@ module RubyWarrior
         make_game_directory unless File.exist?(Config.path_prefix + '/rubywarrior')
       end
       
-      profile.epic? ? play_epic_mode : play_normal_mode
+      if profile.epic?
+        if profile.level_after_epic?
+          go_back_to_normal_mode
+        else
+          play_epic_mode
+        end
+      else
+        play_normal_mode
+      end
     end
     
     def make_game_directory
@@ -109,6 +117,13 @@ module RubyWarrior
       profile.enable_epic_mode
       profile.level_number = 0
       profile.save # this saves score too
+    end
+    
+    def go_back_to_normal_mode
+      profile.enable_normal_mode
+      prepare_next_level
+      UI.puts "Another level has been added since you started epic, going back to normal mode."
+      UI.puts "See the updated README in the rubywarrior/#{profile.directory_name} directory."
     end
     
     

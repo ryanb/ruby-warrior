@@ -28,7 +28,6 @@ Feature: Play levels
     When I run rubywarrior
     Then I should see "Joe - beginner - level 1"
   
-  @focus
   Scenario: Replay levels as epic when finishing last level with grades
     When I copy fixture "short-tower" to "towers/short"
     Given a profile named "Bill" on "short"
@@ -49,3 +48,24 @@ Feature: Play levels
     Then I should see "grade for this tower"
     When I run rubywarrior
     Then I should see "Bill - short - first score 34 - epic score 34"
+  
+  Scenario: Continue normal mode after epic mode when level added
+    When I copy fixture "short-tower" to "towers/short"
+    Given a profile named "Bob" on "short"
+    When I copy fixture "walking_player.rb" to "tmp/rubywarrior/bob-short/player.rb"
+    And I run rubywarrior
+    And I choose "Bob - short - level 1" for "profile"
+    Then I answer "y" to "next level"
+    And I should see "the updated README in the rubywarrior/bob-short directory"
+    When I run rubywarrior
+    And I choose "Bob - short - level 2" for "profile"
+    Then I answer "y" to "epic"
+    And I should see "epic mode"
+    When I copy fixture "short-tower/level_002.rb" to "towers/short/level_003.rb"
+    And I run rubywarrior
+    And I choose "Bob - short - first score 34 - epic score 0" for "profile"
+    And I should see "Another level"
+    When I run rubywarrior
+    And I choose "Bob - short - level 3" for "profile"
+    Then I answer "y" to "epic"
+    And I should see "epic mode"

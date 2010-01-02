@@ -94,6 +94,33 @@ describe RubyWarrior::Profile do
     @profile.current_epic_grades = {}
     @profile.calculate_average_grade.should be_nil
   end
+
+  it "should remember current level number as last_level_number" do
+    @profile.level_number = 7
+    @profile.enable_epic_mode
+    @profile.last_level_number.should == 7
+  end
+
+  it "should enable normal mode by clearing epic scores and resetting last level number" do
+    @profile.last_level_number = 7
+    @profile.epic_score = 123
+    @profile.current_epic_score = 100
+    @profile.current_epic_grades = { 1 => 100 }
+    @profile.average_grade = "C"
+    @profile.enable_normal_mode
+    @profile.should_not be_epic
+    @profile.epic_score.should be_zero
+    @profile.current_epic_score.should be_zero
+    @profile.last_level_number.should be_nil
+    @profile.average_grade.should be_nil
+    @profile.current_epic_grades.should == {}
+    @profile.level_number.should == 7
+  end
+
+  it "should be no level after epic if last level isn't specified" do
+    @profile.last_level_number = nil
+    @profile.should_not be_level_after_epic
+  end
   
   describe "with tower path" do
     before(:each) do

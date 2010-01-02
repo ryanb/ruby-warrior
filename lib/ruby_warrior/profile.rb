@@ -2,7 +2,7 @@ require 'base64'
 
 module RubyWarrior
   class Profile
-    attr_accessor :score, :epic_score, :current_epic_score, :average_grade, :current_epic_grades, :abilities, :level_number, :tower_path, :warrior_name, :player_path
+    attr_accessor :score, :epic_score, :current_epic_score, :average_grade, :current_epic_grades, :abilities, :level_number, :last_level_number, :tower_path, :warrior_name, :player_path
     
     def initialize
       @tower_path = nil
@@ -14,6 +14,7 @@ module RubyWarrior
       @average_grade = nil
       @abilities = []
       @level_number = 0
+      @last_level_number = nil
     end
     
     def encode
@@ -81,10 +82,25 @@ module RubyWarrior
       @epic = true
       @epic_score ||= 0
       @current_epic_score ||= 0
+      @last_level_number ||= @level_number
+    end
+    
+    def enable_normal_mode
+      @epic = false
+      @epic_score = 0
+      @current_epic_score = 0
+      @current_epic_grades = {}
+      @average_grade = nil
+      @level_number = @last_level_number
+      @last_level_number = nil
     end
     
     def epic?
       @epic
+    end
+    
+    def level_after_epic?
+      Level.new(self, last_level_number+1).exists? if last_level_number
     end
     
     def update_epic_score

@@ -1,3 +1,6 @@
+* Keep track of last level played in profile and go back to normal mode when level is added
+
+
 0.1.0 (Jan 2, 2010)
 
 * initial release
