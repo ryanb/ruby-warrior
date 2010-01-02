@@ -1,3 +1,7 @@
+* Ticking captive explosion now kills everything on the floor, adjusting level 6 to compensate
+
+* Adding intermediate level 7
+
 * Keep track of last level played in profile and go back to normal mode when level is added
 
 

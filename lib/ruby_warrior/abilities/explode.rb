@@ -2,13 +2,15 @@ module RubyWarrior
   module Abilities
     class Explode < Base
       def description
-        "Kills you. You probably don't want to do this intentionally."
+        "Kills you and all surrounding units. You probably don't want to do this intentionally."
       end
       
       def perform
         if @unit.position
-          @unit.say "explodes"
-          @unit.take_damage(@unit.health)
+          @unit.say "explodes, collapsing the cealing and damanging every unit."
+          @unit.position.floor.units.map do |unit|
+            unit.take_damage(100)
+          end
         end
       end
     end
