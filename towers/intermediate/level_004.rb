@@ -9,6 +9,7 @@ tip "Use warrior.listen to find spaces with other units, and warrior.direction_o
 clue "Walk towards an enemy or captive with warrior.walk!(warrior.direction_of(warrior.listen.first)), once warrior.listen.empty? then head for the stairs."
 
 time_bonus 55
+ace_score 144
 size 4, 3
 stairs 3, 2
 

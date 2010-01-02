@@ -8,6 +8,7 @@ tip "It's best to rescue captives first that have space.ticking?, they'll soon g
 clue "Avoid fighting enemies at first. Go around them until you've rescued all of the ticking captives."
 
 time_bonus 50
+ace_score 130
 size 6, 2
 stairs 5, 0
 

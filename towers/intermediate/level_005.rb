@@ -8,6 +8,7 @@ tip "You'll get more points for clearing the level first. Use warrior.feel.stair
 clue "If going towards a unit is the same direction as the stairs, try moving another empty direction until you can safely move toward the enemies."
 
 time_bonus 45
+ace_score 107
 size 5, 2
 stairs 1, 1
 

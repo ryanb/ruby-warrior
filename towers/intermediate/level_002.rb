@@ -8,6 +8,7 @@ tip "Just like walking, you can attack! and feel in multiple directions (:forwar
 clue "Call warrior.feel(direction).enemy? in each direction to make sure there isn't an enemy beside you (attack if there is). Call warrior.rest! if you're low and health when there's no enemies around."
 
 time_bonus 40
+ace_score 84
 size 4, 2
 stairs 3, 1
 

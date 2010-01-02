@@ -9,6 +9,7 @@ description "Silence. The room feels large, but empty. Luckily you have a map of
 tip "Use warrior.direction_of_stairs to determine which direction stairs are located. Pass this to warrior.walk! to walk in that direction."
 
 time_bonus 20
+ace_score 19
 size 6, 4
 stairs 2, 3
 
