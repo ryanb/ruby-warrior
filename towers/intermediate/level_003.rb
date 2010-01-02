@@ -9,7 +9,7 @@ tip "Call warrior.bind!(direction) to bind an enemy to keep him from attacking. 
 clue "Count the number of enemies around you, if there's two or more, bind one."
 
 time_bonus 50
-ace_score 97
+ace_score 101
 size 3, 3
 stairs 0, 0
 
