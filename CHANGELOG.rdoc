@@ -1,3 +1,5 @@
+* Speeding up play speed a little
+
 * Ticking captive explosion now kills everything on the floor, adjusting level 6 to compensate
 
 * Adding intermediate level 7

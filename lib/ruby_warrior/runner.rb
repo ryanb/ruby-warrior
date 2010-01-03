@@ -12,7 +12,7 @@ module RubyWarrior
     def run
       Config.in_stream = @stdin
       Config.out_stream = @stdout
-      Config.delay = 0.8
+      Config.delay = 0.6
       parse_options
       @game.start
     end
