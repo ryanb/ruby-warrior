@@ -1,3 +1,5 @@
+* Hard wrapping clue text to 80 characters
+
 * Mention direction when ability is performed
 
 

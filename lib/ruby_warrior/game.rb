@@ -87,7 +87,7 @@ module RubyWarrior
         continue = false
         UI.puts "Sorry, you failed level #{current_level.number}. Change your script and try again."
         if !Config.skip_input? && current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
-          UI.puts current_level.clue
+          UI.puts current_level.clue.hard_wrap
         end
       end
       continue

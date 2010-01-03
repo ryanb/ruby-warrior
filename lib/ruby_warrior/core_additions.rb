@@ -22,4 +22,8 @@ class String
   def titleize
     underscore.humanize.gsub(/\b('?[a-z])/) { $1.capitalize }
   end
+  
+  def hard_wrap(width = 80)
+    gsub(/(.{1,#{width}})(\s+|$)/, "\\1\n").strip
+  end
 end
