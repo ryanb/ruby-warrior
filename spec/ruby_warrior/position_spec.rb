@@ -100,4 +100,9 @@ describe RubyWarrior::Position do
   it "should return a space at the same location as position" do
     @position.space.location.should == [1, 2]
   end
+  
+  it "should return distance of given space" do
+    @position.distance_of(@floor.space(5, 3)).should == 5
+    @position.distance_of(@floor.space(4, 2)).should == 3
+  end
 end

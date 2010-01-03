@@ -38,8 +38,12 @@ module RubyWarrior
     end
     
     def distance_from_stairs
-      stairs_x, stairs_y = *@floor.stairs_location
-      (@x - stairs_x).abs + (@y - stairs_y).abs
+      distance_of(@floor.stairs_space)
+    end
+    
+    def distance_of(space)
+      x, y = *space.location
+      (@x - x).abs + (@y - y).abs
     end
     
     def relative_direction_of_stairs
