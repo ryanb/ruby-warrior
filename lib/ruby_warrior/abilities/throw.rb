@@ -8,11 +8,23 @@ module RubyWarrior
       def perform(direction = :forward)
         if @unit.position
           @unit.say "throws a bomb #{direction}"
-          receiver = space(direction, 2, 0).unit
-          damage(receiver, 10) if receiver
+          bomb(direction, 2, 0, 10)
           [[2, 1], [2, -1], [3, 0], [1, 0]].each do |x, y|
-            receiver = space(direction, x, y).unit
-            damage(receiver, 1) if receiver
+            bomb(direction, x, y, 1)
+          end
+        end
+      end
+      
+      def bomb(direction, x, y, damage_amount)
+        if @unit.position
+          receiver = space(direction, x, y).unit
+          if receiver
+            if receiver.abilities[:explode!]
+              receiver.say "caught in bomb's flames which detonates ticking explosive"
+              receiver.abilities[:explode!].perform
+            else
+              damage(receiver, damage_amount)
+            end
           end
         end
       end
