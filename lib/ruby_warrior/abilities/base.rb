@@ -29,6 +29,10 @@ module RubyWarrior
       
       def description
       end
+      
+      def pass_turn
+        # callback which is triggered every turn
+      end
     end
   end
 end

@@ -29,7 +29,7 @@ module RubyWarrior
     end
     
     def ticking?
-      unit.respond_to?(:bomb_time) && unit.bomb_time
+      unit && unit.abilities.include?(:explode!)
     end
     
     def unit

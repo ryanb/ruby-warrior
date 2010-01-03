@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe RubyWarrior::Units::ThickSludge do
+describe RubyWarrior::Units::Captive do
   before(:each) do
     @captive = RubyWarrior::Units::Captive.new
   end
@@ -17,18 +17,7 @@ describe RubyWarrior::Units::ThickSludge do
     @captive.should be_bound
   end
   
-  it "should explode when bomb time reaches 0 and unbind itself" do
-    @captive.bomb_time = 3
-    @captive.play_turn(stub)
-    @captive.play_turn(stub)
-    @captive.should be_bound
-    turn = stub
-    turn.expects(:explode!)
-    @captive.play_turn(turn)
-    @captive.should_not be_bound
-  end
-  
-  it "should have explode ability" do
-    @captive.abilities.keys.should include(:explode!)
+  it "should not have explode ability by default (this should be added when needed)" do
+    @captive.abilities.should_not include(:explode!)
   end
 end

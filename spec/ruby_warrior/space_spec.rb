@@ -126,7 +126,8 @@ describe RubyWarrior::Space do
   
   describe "with captive" do
     before(:each) do
-      @floor.add(RubyWarrior::Units::Captive.new, 0, 0)
+      @captive = RubyWarrior::Units::Captive.new
+      @floor.add(@captive, 0, 0)
       @space = @floor.space(0, 0)
     end
     
@@ -139,7 +140,7 @@ describe RubyWarrior::Space do
     end
     
     it "should be ticking if captive has time bomb" do
-      @space.unit.bomb_time = 10
+      @captive.add_abilities :explode!
       @space.should be_ticking
     end
     

@@ -73,9 +73,14 @@ module RubyWarrior
       end
       
       def perform_turn
-        if @current_turn.action && @position && !bound?
-          name, *args = @current_turn.action
-          abilities[name].perform(*args)
+        if @position
+          abilities.values.each do |ability|
+            ability.pass_turn
+          end
+          if @current_turn.action && !bound?
+            name, *args = @current_turn.action
+            abilities[name].perform(*args)
+          end
         end
       end
       

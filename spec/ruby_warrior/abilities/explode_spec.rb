@@ -19,4 +19,14 @@ describe RubyWarrior::Abilities::Explode do
     @captive.health.should == -90
     unit.health.should == -80
   end
+  
+  it "should explode when bomb time reaches zero" do
+    @captive.health = 10
+    @explode.time = 3
+    @explode.pass_turn
+    @explode.pass_turn
+    @captive.health.should == 10
+    @explode.pass_turn
+    @captive.health.should == -90
+  end
 end

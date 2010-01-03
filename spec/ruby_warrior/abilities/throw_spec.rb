@@ -37,7 +37,7 @@ describe RubyWarrior::Abilities::Throw do
   it "should detonate an explosive if any unit has one" do
     captive = RubyWarrior::Units::Captive.new
     captive.health = 1
-    captive.bomb_time = 3
+    captive.add_abilities :explode!
     @floor.add(captive, 1, 2)
     @throw.perform
     captive.health.should == -99

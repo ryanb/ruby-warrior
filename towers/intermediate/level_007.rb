@@ -19,6 +19,7 @@ unit :sludge, 1, 0, :south
 unit :sludge, 1, 2, :north
 unit :sludge, 2, 1, :west
 unit :captive, 4, 1, :west do |u|
-  u.bomb_time = 10
+  u.add_abilities :explode!
+  u.abilities[:explode!].time = 10
 end
 unit :captive, 2, 0, :west
