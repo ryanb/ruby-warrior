@@ -1,3 +1,5 @@
+0.1.1 (Jan 3, 2010)
+
 * Speeding up play speed a little
 
 * Ticking captive explosion now kills everything on the floor, adjusting level 6 to compensate

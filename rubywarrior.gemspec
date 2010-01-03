@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.description = "You play as a warrior climbing a tall tower. On each floor you need to write a Ruby script to instruct the warrior to battle enemies, rescue captives, and reach the stairs."
   s.homepage = "http://github.com/ryanb/ruby-warrior"
   
-  s.version = "0.1.0"
-  s.date = "2010-01-02"
+  s.version = "0.1.1"
+  s.date = "2010-01-03"
   
   s.authors = ["Ryan Bates"]
   s.email = "ryan@railscasts.com"
