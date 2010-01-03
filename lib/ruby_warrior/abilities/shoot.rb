@@ -8,7 +8,7 @@ module RubyWarrior
       def perform(direction = :forward)
         receiver = multi_unit(direction, 1..3).compact.first
         if receiver
-          @unit.say "shoots #{receiver}"
+          @unit.say "shoots #{direction} and hits #{receiver}"
           damage(receiver, @unit.shoot_power)
         else
           @unit.say "shoots and hits nothing"

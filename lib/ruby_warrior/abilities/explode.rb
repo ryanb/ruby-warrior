@@ -7,7 +7,7 @@ module RubyWarrior
       
       def perform
         if @unit.position
-          @unit.say "explodes, collapsing the cealing and damanging every unit."
+          @unit.say "explodes, collapsing the ceiling and damanging every unit."
           @unit.position.floor.units.map do |unit|
             unit.take_damage(100)
           end

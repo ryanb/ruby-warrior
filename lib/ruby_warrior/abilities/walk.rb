@@ -2,7 +2,7 @@ module RubyWarrior
   module Abilities
     class Walk < Base
       def description
-        "Move in given direction (forward by default)."
+        "Move in the given direction (forward by default)."
       end
       
       def perform(direction = :forward)

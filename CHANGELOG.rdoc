@@ -1,3 +1,6 @@
+* Mention direction when ability is performed
+
+
 0.1.1 (Jan 3, 2010)
 
 * Speeding up play speed a little

@@ -8,14 +8,14 @@ module RubyWarrior
       def perform(direction = :forward)
         if space(direction).captive?
           recipient = unit(direction)
-          @unit.say "unbinds #{recipient}"
+          @unit.say "unbinds #{direction} and rescues #{recipient}"
           recipient.unbind
           if recipient.kind_of? Units::Captive
             recipient.position = nil
             @unit.earn_points(20)
           end
         else
-          @unit.say "rescues nothing"
+          @unit.say "unbinds #{direction} and rescues nothing"
         end
       end
     end
