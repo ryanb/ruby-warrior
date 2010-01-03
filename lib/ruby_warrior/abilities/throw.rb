@@ -7,11 +7,11 @@ module RubyWarrior
       
       def perform(direction = :forward)
         if @unit.position
-          @unit.say "throws a bomb"
-          receiver = @unit.position.relative_space(2, 0).unit
+          @unit.say "throws a bomb #{direction}"
+          receiver = space(direction, 2, 0).unit
           damage(receiver, 10) if receiver
           [[2, 1], [2, -1], [3, 0], [1, 0]].each do |x, y|
-            receiver = @unit.position.relative_space(x, y).unit
+            receiver = space(direction, x, y).unit
             damage(receiver, 1) if receiver
           end
         end

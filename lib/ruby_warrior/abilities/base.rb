@@ -1,27 +1,25 @@
 module RubyWarrior
   module Abilities
     class Base
-      DIRECTIONS = {
-        :forward  => [1, 0],
-        :right    => [0, 1],
-        :backward => [-1, 0],
-        :left     => [0, -1]
-      }
-      
       def initialize(unit)
         @unit = unit
       end
       
-      def offset(direction, amount = 1)
-        DIRECTIONS[direction].map { |i| i*amount }
+      def offset(direction, forward = 1, right = 0)
+        case direction
+        when :forward then [forward, -right]
+        when :backward then [-forward, right]
+        when :right then [right, forward]
+        when :left then [-right, -forward]
+        end
       end
       
-      def space(direction, amount = 1)
-        @unit.position.relative_space(*offset(direction, amount))
+      def space(direction, forward = 1, right = 0)
+        @unit.position.relative_space(*offset(direction, forward, right))
       end
       
-      def unit(direction, amount = 1)
-        space(direction, amount).unit
+      def unit(direction, forward = 1, right = 0)
+        space(direction, forward, right).unit
       end
       
       def damage(receiver, amount)

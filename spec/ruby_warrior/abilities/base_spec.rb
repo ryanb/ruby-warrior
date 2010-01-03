@@ -13,9 +13,17 @@ describe RubyWarrior::Abilities::Base do
     @ability.offset(:left).should == [0, -1]
   end
   
+  it "should have offset for relative forward/right amounts" do
+    @ability.offset(:forward, 2).should == [2, 0]
+    @ability.offset(:forward, 2, 1).should == [2, -1]
+    @ability.offset(:right, 2, 1).should == [1, 2]
+    @ability.offset(:backward, 2, 1).should == [-2, 1]
+    @ability.offset(:left, 2, 1).should == [-1, -2]
+  end
+  
   it "should fetch unit at given direction with distance" do
-    @ability.expects(:space).with(:right, 3).returns(stub(:unit => 'unit'))
-    @ability.unit(:right, 3).should == 'unit'
+    @ability.expects(:space).with(:right, 3, 1).returns(stub(:unit => 'unit'))
+    @ability.unit(:right, 3, 1).should == 'unit'
   end
   
   it "should have no description" do
