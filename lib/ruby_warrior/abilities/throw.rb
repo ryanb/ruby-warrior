@@ -8,9 +8,9 @@ module RubyWarrior
       def perform(direction = :forward)
         if @unit.position
           @unit.say "throws a bomb #{direction}"
-          bomb(direction, 2, 0, 10)
+          bomb(direction, 2, 0, 4)
           [[2, 1], [2, -1], [3, 0], [1, 0]].each do |x, y|
-            bomb(direction, x, y, 1)
+            bomb(direction, x, y, 2)
           end
         end
       end
