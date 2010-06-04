@@ -6,7 +6,7 @@
 
 description "Another ticking sound, but some sludge is blocking the way."
 tip "Quickly kill the sludge and rescue the captive before the bomb goes off. You can't simply go around them."
-clue "You'll need to bind the two other sludge first before killing the one blocking the way to the ticking captive."
+clue "Determine the direction of the ticking captive and kill any enemies blocking that path. You may need to bind surrounding enemies first."
 
 time_bonus 70
 ace_score 134

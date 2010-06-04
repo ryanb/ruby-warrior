@@ -1,3 +1,5 @@
+* Adding intermediate level 8 with look and detonate abilities
+
 * Raising an exception when performing an ability with a bad direction.
 
 * Hard wrapping clue text to 80 characters
