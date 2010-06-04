@@ -6,6 +6,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
+        verify_direction(direction)
         if @unit.position
           @unit.say "detonates a bomb #{direction}"
           bomb(direction, 1, 0, 8)

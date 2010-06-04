@@ -6,6 +6,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
+        verify_direction(direction)
         space(direction)
       end
     end

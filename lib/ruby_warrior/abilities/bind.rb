@@ -6,6 +6,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
+        verify_direction(direction)
         receiver = unit(direction)
         if receiver
           @unit.say "binds #{direction} and restricts #{receiver}"

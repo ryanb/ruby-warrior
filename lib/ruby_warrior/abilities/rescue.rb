@@ -6,6 +6,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
+        verify_direction(direction)
         if space(direction).captive?
           recipient = unit(direction)
           @unit.say "unbinds #{direction} and rescues #{recipient}"

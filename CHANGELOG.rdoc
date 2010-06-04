@@ -1,3 +1,5 @@
+* Raising an exception when performing an ability with a bad direction.
+
 * Hard wrapping clue text to 80 characters
 
 * Mention direction when ability is performed

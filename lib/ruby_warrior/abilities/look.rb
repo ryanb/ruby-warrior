@@ -6,6 +6,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
+        verify_direction(direction)
         [1, 2, 3].map do |amount|
           space(direction, amount)
         end

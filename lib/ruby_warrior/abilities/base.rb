@@ -33,6 +33,12 @@ module RubyWarrior
       def pass_turn
         # callback which is triggered every turn
       end
+      
+      def verify_direction(direction)
+        unless Position::RELATIVE_DIRECTIONS.include? direction
+          raise "Unknown direction \"#{direction}\". Should be :forward, :backward, :left or :right."
+        end
+      end
     end
   end
 end

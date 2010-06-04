@@ -29,4 +29,10 @@ describe RubyWarrior::Abilities::Base do
   it "should have no description" do
     @ability.description.should be_nil
   end
+  
+  it "should raise an exception if direction isn't recognized" do
+    lambda {
+      @ability.verify_direction(:foo)
+    }.should raise_error("Unknown direction \"foo\". Should be :forward, :backward, :left or :right.")
+  end
 end

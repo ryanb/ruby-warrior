@@ -6,6 +6,7 @@ module RubyWarrior
       end
       
       def perform(direction = :forward)
+        verify_direction(direction)
         receiver = multi_unit(direction, 1..3).compact.first
         if receiver
           @unit.say "shoots #{direction} and hits #{receiver}"
