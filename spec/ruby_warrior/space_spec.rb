@@ -74,6 +74,10 @@ describe RubyWarrior::Space do
       @space.should be_warrior
     end
     
+    it "should be player" do
+      @space.should be_warrior
+    end
+    
     it "should not be enemy" do
       @space.should_not be_enemy
     end
@@ -162,6 +166,10 @@ describe RubyWarrior::Space do
     
     it "should not be enemy" do
       @space.should_not be_enemy
+    end
+    
+    it "should be player" do
+      @space.should be_player
     end
   end
   

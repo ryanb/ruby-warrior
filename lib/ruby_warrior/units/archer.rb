@@ -8,7 +8,7 @@ module RubyWarrior
       def play_turn(turn)
         [:forward, :left, :right].each do |direction|
           turn.look(direction).each do |space|
-            if space.warrior?
+            if space.player?
               turn.shoot!(direction)
               return
             elsif !space.empty?

@@ -7,7 +7,7 @@ module RubyWarrior
       
       def play_turn(turn)
         [:forward, :left, :right, :backward].each do |direction|
-          if turn.feel(direction).warrior?
+          if turn.feel(direction).player?
             turn.attack!(direction)
             return
           end

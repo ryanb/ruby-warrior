@@ -16,8 +16,12 @@ module RubyWarrior
       unit.kind_of? Units::Golem
     end
     
+    def player?
+      warrior? || golem?
+    end
+    
     def enemy?
-      unit && !warrior? && !captive? && !golem?
+      unit && !player? && !captive?
     end
     
     def captive?
