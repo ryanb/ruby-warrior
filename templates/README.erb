@@ -20,6 +20,7 @@ Warrior Abilities:
 <%- end -%>
 <%- if level.warrior.has_golem? -%>
 
+
 Golem Abilities:
 <%- level.warrior.base_golem.abilities.each do |name, ability| -%>
 
@@ -27,3 +28,6 @@ Golem Abilities:
     <%= ability.description %>
 <%- end -%>
 <%- end -%>
+
+
+When you're done editing player.rb, run the rubywarrior command again.
