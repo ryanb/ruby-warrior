@@ -59,6 +59,10 @@ module RubyWarrior
         @golem_abilities += abilities
       end
       
+      def has_golem?
+        !@golem_abilities.empty?
+      end
+      
       def base_golem
         golem = Golem.new
         golem.add_abilities *@golem_abilities

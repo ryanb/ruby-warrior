@@ -12,9 +12,18 @@ Tip: <%= level.tip %>
 <%- end -%>
 
 
-Available Abilities:
+Warrior Abilities:
 <%- level.warrior.abilities.each do |name, ability| -%>
 
   warrior.<%= name %>
     <%= ability.description %>
+<%- end -%>
+<%- if level.warrior.has_golem? -%>
+
+Golem Abilities:
+<%- level.warrior.base_golem.abilities.each do |name, ability| -%>
+
+  golem.<%= name %>
+    <%= ability.description %>
+<%- end -%>
 <%- end -%>
