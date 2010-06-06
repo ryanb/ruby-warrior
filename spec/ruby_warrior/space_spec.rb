@@ -149,6 +149,22 @@ describe RubyWarrior::Space do
     end
   end
   
+  describe "with golem" do
+    before(:each) do
+      @golem = RubyWarrior::Units::Golem.new
+      @floor.add(@golem, 0, 0)
+      @space = @floor.space(0, 0)
+    end
+    
+    it "should be golem" do
+      @space.should be_golem
+    end
+    
+    it "should not be enemy" do
+      @space.should_not be_enemy
+    end
+  end
+  
   describe "at stairs" do
     before(:each) do
       @floor.place_stairs(0, 0)
