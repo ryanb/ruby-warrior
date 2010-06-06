@@ -70,8 +70,6 @@ module RubyWarrior
       RELATIVE_DIRECTIONS[offset]
     end
     
-    private
-    
     def translate_offset(forward, right)
       case direction
       when :north then [@x + right, @y - forward]

@@ -6,6 +6,7 @@ module RubyWarrior
       
       def initialize
         @score = 0 # TODO make score dynamic
+        @golem_abilities = []
       end
       
       def play_turn(turn)
@@ -52,6 +53,16 @@ module RubyWarrior
       def perform_turn
         say "does nothing" if @current_turn.action.nil?
         super
+      end
+      
+      def add_golem_abilities(*abilities)
+        @golem_abilities += abilities
+      end
+      
+      def base_golem
+        golem = Golem.new
+        golem.add_abilities *@golem_abilities
+        golem
       end
     end
   end

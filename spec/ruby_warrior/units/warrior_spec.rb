@@ -57,4 +57,9 @@ describe RubyWarrior::Units::Warrior do
   it "should appear as @ on map" do
     @warrior.character.should == "@"
   end
+  
+  it "should be able to add golem abilities which are used on base golem" do
+    @warrior.add_golem_abilities :walk!
+    @warrior.base_golem.abilities.keys.should == [:walk!]
+  end
 end
