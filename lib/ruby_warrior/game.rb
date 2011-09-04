@@ -4,7 +4,7 @@ module RubyWarrior
     def start
       UI.puts "Welcome to Ruby Warrior"
       
-      if File.exist?(Config.path_prefix + '/.profile')
+      if File.exist?(Config.path_prefix + '/.profile') and ENV['HOME'] != File.expand_path(Config.path_prefix)
         @profile = Profile.load(Config.path_prefix + '/.profile')
       else
         if File.exist?(Config.path_prefix + '/ruby-warrior')
