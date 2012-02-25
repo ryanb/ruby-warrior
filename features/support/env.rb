@@ -1,5 +1,5 @@
 require 'cucumber'
-require 'spec'
+require 'rspec'
 
 require File.dirname(__FILE__) + '/../../lib/ruby_warrior'
 
