@@ -1,9 +1,9 @@
 Given /^a profile named "([^\"]*)" on "([^\"]*)"$/ do |name, tower|
-  When 'I run rubywarrior'
-  And 'I answer "y" to "create one?"'
-  And 'I choose "' + tower + '" for "tower"'
-  And 'I answer "' + name + '" to "name"'
-  Then 'I should see "generated"'
+  step 'I run rubywarrior'
+  step 'I answer "y" to "create one?"'
+  step 'I choose "' + tower + '" for "tower"'
+  step 'I answer "' + name + '" to "name"'
+  step 'I should see "generated"'
 end
 
 Given /^no profile at "([^\"]*)"$/ do |path|
