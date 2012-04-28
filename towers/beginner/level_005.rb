@@ -3,8 +3,8 @@
 #  -------
 
 description "You hear cries for help. Captives must need rescuing."
-tip "Use warrior.feel.captive? to see if there's a captive, and warrior.rescue! to rescue him. Don't attack captives."
-clue "Don't forget to constantly check if you're taking damage and rest until your health is full if you aren't taking damage."
+tip "Use warrior.feel.captive? to see if there is a captive and warrior.rescue! to rescue him. Don't attack captives."
+clue "Don't forget to constantly check if you're taking damage. Rest until your health is full if you aren't taking damage."
 
 time_bonus 45
 ace_score 123
