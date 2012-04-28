@@ -48,7 +48,12 @@ module RubyWarrior
     def play(turns = 1000)
       load_level
       turns.times do |n|
-        return if passed? || failed?
+        if passed?
+          return true
+        elsif failed?
+          return false
+        end
+
         UI.puts "- turn #{n+1} -"
         UI.print @floor.character
         @floor.units.each { |unit| unit.prepare_turn }
@@ -56,6 +61,8 @@ module RubyWarrior
         yield if block_given?
         @time_bonus -= 1 if @time_bonus > 0
       end
+
+      return false
     end
     
     def tally_points

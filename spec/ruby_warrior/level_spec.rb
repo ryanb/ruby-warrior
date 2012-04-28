@@ -114,6 +114,16 @@ describe RubyWarrior::Level do
       @level.stubs(:passed?).returns(true)
       @level.play(2)
     end
+
+    it "should return true if the level is passed" do
+      @level.stubs(:passed?).returns(true)
+      @level.play(2).should be_true
+    end
+  
+    it "should return false if the level is not passed" do
+      @level.stubs(:failed?).returns(true)
+      @level.play(2).should be_false
+    end
   
     it "should yield to block in play method for each turn" do
       int = 0
