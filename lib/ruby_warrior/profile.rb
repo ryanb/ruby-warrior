@@ -62,7 +62,7 @@ module RubyWarrior
     end
     
     def tower
-      Tower.new(@tower_path)
+      Tower.new(File.basename @tower_path)
     end
     
     def current_level

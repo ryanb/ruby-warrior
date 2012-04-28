@@ -3,7 +3,7 @@ module RubyWarrior
     attr_reader :path
     
     def initialize(path)
-      @path = path
+      @path = File.join(File.expand_path(File.dirname(__FILE__) + '/../../towers/'), path)
     end
     
     def name

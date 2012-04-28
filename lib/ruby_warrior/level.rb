@@ -24,7 +24,11 @@ module RubyWarrior
     end
     
     def load_path
-      @profile.tower_path + "/level_" + @number.to_s.rjust(3, '0') + ".rb"
+      File.join(
+        File.expand_path(File.dirname(__FILE__) + '/../../towers/'),
+        File.basename(@profile.tower_path) + "/level_" +
+          @number.to_s.rjust(3, '0') + ".rb"
+      )
     end
     
     def load_level
