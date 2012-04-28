@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name        = "rubywarrior"
-  s.version     = "0.1.2"
+  s.version     = "0.1.3"
   s.author      = "Ryan Bates"
   s.email       = "ryan@railscasts.com"
-  s.homepage    = "http://github.com/ryanb/ruby-warrior"
+  s.homepage    = "https://github.com/ryanb/ruby-warrior"
   s.summary     = "Game written in Ruby for learning Ruby and artificial intelligence."
   s.description = "You play as a warrior climbing a tall tower. On each floor you need to write a Ruby script to instruct the warrior to battle enemies, rescue captives, and reach the stairs."
 
