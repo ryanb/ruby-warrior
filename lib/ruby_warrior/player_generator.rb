@@ -29,7 +29,7 @@ module RubyWarrior
     end
     
     def templates_path
-      File.expand_path(File.dirname(__FILE__) + "/../../templates")
+      File.expand_path("../../../templates", __FILE__)
     end
     
     private

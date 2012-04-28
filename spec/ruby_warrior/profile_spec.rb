@@ -164,7 +164,7 @@ describe RubyWarrior::Profile do
     end
   
     it "should load tower from path" do
-      RubyWarrior::Tower.expects(:new).with('path/to/tower').returns('tower')
+      RubyWarrior::Tower.expects(:new).with('tower').returns('tower')
       @profile.tower.should == 'tower'
     end
   end

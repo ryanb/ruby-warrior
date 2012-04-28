@@ -74,7 +74,7 @@ describe RubyWarrior::Game do
   end
   
   it "should find tower paths using Dir[] search" do
-    Dir.expects(:[]).with(File.expand_path(File.dirname(__FILE__) + '/../../towers/*'))
+    Dir.expects(:[]).with(File.expand_path('../../../towers/*', __FILE__))
     @game.tower_paths
   end
   

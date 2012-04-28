@@ -51,7 +51,7 @@ describe RubyWarrior::Level do
   
   it "should have a load path from profile tower with level number in it" do
     @profile.stubs(:tower_path).returns('path/to/tower')
-    @level.load_path.should == 'path/to/tower/level_001.rb'
+    @level.load_path.should == File.expand_path('towers/tower/level_001.rb')
   end
   
   it "should exist if file exists" do
