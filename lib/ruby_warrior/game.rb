@@ -10,7 +10,8 @@ module RubyWarrior
         if File.exist?(Config.path_prefix + '/ruby-warrior')
           FileUtils.mv(Config.path_prefix + '/ruby-warrior', Config.path_prefix + '/rubywarrior')
         end
-        make_game_directory unless File.exist?(Config.path_prefix + '/rubywarrior')
+        make_game_directory unless File.exist?(Config.path_prefix)
+        make_game_directory('rubywarrior') unless File.exist?(Config.path_prefix + '/rubywarrior')
       end
       
       if profile.epic?
@@ -23,16 +24,19 @@ module RubyWarrior
         play_normal_mode
       end
     end
-    
-    def make_game_directory
-      if UI.ask("No rubywarrior directory found, would you like to create one?")
-        Dir.mkdir(Config.path_prefix + '/rubywarrior')
+
+    def make_game_directory(dir_name = nil)
+      dir_path = Config.path_prefix
+      dir_path = File.join(Config.path_prefix, dir_name) if dir_name
+
+      if UI.ask("No [#{dir_name || dir_path}] directory found, would you like to create one?")
+        Dir.mkdir(dir_path)
       else
-        UI.puts "Unable to continue without directory."
+        UI.puts "Unable to continue without [#{dir_name || dir_path}] directory."
         exit
       end
     end
-    
+
     def play_epic_mode
       Config.delay /= 2 if Config.delay # speed up UI since we're going to be doing a lot here
       profile.current_epic_score = 0
