@@ -6,11 +6,17 @@ describe RubyWarrior::Game do
   end
   
   # GAME DIR
+
+  it "should make base directory if player says so" do
+    RubyWarrior::UI.stubs(:ask).returns(true)
+    Dir.expects(:mkdir).with(RubyWarrior::Config.path_prefix)
+    @game.make_game_directory
+  end
   
   it "should make game directory if player says so" do
     RubyWarrior::UI.stubs(:ask).returns(true)
     Dir.expects(:mkdir).with('./rubywarrior')
-    @game.make_game_directory
+    @game.make_game_directory('rubywarrior')
   end
   
   it "should not make game and exit if player says no" do
