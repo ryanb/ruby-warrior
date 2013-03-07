@@ -156,7 +156,7 @@ module RubyWarrior
     end
     
     def tower_paths
-      Dir[File.expand_path('../../../towers/*', __FILE__)]
+      Dir[File.expand_path('../../../towers', __FILE__) + '/*']
     end
     
     
