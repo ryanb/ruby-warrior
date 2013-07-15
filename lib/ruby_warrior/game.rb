@@ -72,7 +72,7 @@ module RubyWarrior
       current_level.play
       if current_level.passed?
         if next_level.exists?
-          UI.puts "Success! You have found the stairs."
+          UI.puts "\nSuccess! You have found the stairs."
         else
           UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescued the fair maiden Ruby."
           continue = false
