@@ -23,10 +23,12 @@ module RubyWarrior
         unbind if bound?
         if health
           self.health -= amount
-          say "takes #{amount} damage, #{health} health power left"
+          say "takes #{amount} damage, #{health} " + "health power".red \
+          + " left"
+
           if health <= 0
             @position = nil
-            say "dies"
+            say "dies".bold.red
           end
         end
       end
@@ -49,7 +51,15 @@ module RubyWarrior
       end
       
       def say(msg)
-        UI.puts_with_delay "#{name} #{msg}"
+        # Might want to just switch the color based on whether it's a Warrior
+        # or a Golem or not, rather than print the entire string in both
+        # code bodies. (i.e., Have the print below the if / else block,
+        # and just change the color in the conditional switch.)
+        if self.class == Warrior or self.class == Golem
+          UI.puts_with_delay "#{name}".green.bold + " #{msg}"
+        else
+          UI.puts_with_delay "#{name}".brown.bold + " #{msg}"
+        end
       end
       
       def name
