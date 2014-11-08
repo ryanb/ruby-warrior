@@ -7,4 +7,7 @@ RSpec.configure do |config|
   config.before(:each) do
     RubyWarrior::Config.reset
   end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should]
+  end
 end
