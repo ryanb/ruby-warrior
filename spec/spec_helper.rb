@@ -8,6 +8,6 @@ RSpec.configure do |config|
     RubyWarrior::Config.reset
   end
   config.expect_with :rspec do |c|
-    c.syntax = [:should]
+    c.syntax = [:should, :expect]
   end
 end
