@@ -57,7 +57,7 @@ describe RubyWarrior::Level do
   it "should exist if file exists" do
     @level.stubs(:load_path).returns('/foo/bar')
     File.expects(:exist?).with('/foo/bar').returns(true)
-    @level.exists?.should be_true
+    expect(@level.exists?).to be true
   end
   
   it "should load player and player path" do
