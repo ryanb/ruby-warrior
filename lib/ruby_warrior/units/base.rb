@@ -23,6 +23,8 @@ module RubyWarrior
         unbind if bound?
         if health
           self.health -= amount
+          # health can't be negative
+          self.health = 0 if self.health < 0
           say "takes #{amount} damage, #{health} health power left"
           if health <= 0
             @position = nil

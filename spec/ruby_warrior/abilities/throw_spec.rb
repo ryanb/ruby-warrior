@@ -40,7 +40,7 @@ describe RubyWarrior::Abilities::Detonate do
     captive.add_abilities :explode!
     @floor.add(captive, 1, 1)
     @detonate.perform
-    captive.health.should == -99
-    @warrior.health.should == -80
+    captive.health.should == 0
+    @warrior.health.should == 0
   end
 end
