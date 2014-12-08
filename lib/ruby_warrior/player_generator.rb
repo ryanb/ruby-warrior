@@ -4,12 +4,9 @@ require 'erb'
 
 module RubyWarrior
   class PlayerGenerator
+    attr_reader :level
     def initialize(level)
       @level = level
-    end
-    
-    def level
-      @level
     end
     
     def previous_level
