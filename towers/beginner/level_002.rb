@@ -11,8 +11,6 @@ ace_score 26
 size 8, 1
 stairs 7, 0
 
-warrior 0, 0, :east do |u|
-  u.add_abilities :feel, :attack!
-end
+warrior 0, 0, :east {|u| u.add_abilities :feel, :attack!}
 
 unit :sludge, 4, 0, :west
