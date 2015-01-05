@@ -3,10 +3,6 @@ require 'rspec'
 
 require File.dirname(__FILE__) + '/../../lib/ruby_warrior'
 
-Before do
-  RubyWarrior::Config.reset
-end
+Before {RubyWarrior::Config.reset}
 
-After do
-  FileUtils.rm_rf "towers/short"
-end
+After {FileUtils.rm_rf "towers/short"}
