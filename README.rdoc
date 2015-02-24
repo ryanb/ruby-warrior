@@ -28,9 +28,9 @@ Here is a simple example which will instruct the warrior to attack if he feels a
   class Player
     def play_turn(warrior)
       if warrior.feel.enemy?
-        warrior.attack!
-      else
         warrior.walk!
+      else
+        warrior.attack!
       end
     end
   end
