@@ -181,4 +181,4 @@ Running "rubywarrior" while you are in your profile directory will auto-select t
 
 If you're aiming for points, remember to sweep the area. Even if you're close to the stairs, don't go in until you've gotten everything (if you have the health). Use far-ranged senses (such as look and listen) to determine if there are any enemies left.
 
-Make sure to try the different options you can pass to the rubywarrior command. Run "rubywarrior --help" to see them all.
+Make sure to try the different options you can pass to the rubywarrior command. Run <code>rubywarrior --help</code> to see them all.
