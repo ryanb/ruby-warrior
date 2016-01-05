@@ -6,18 +6,18 @@ describe RubyWarrior::Units::Wizard do
   end
   
   it "should have look and shoot abilities" do
-    @wizard.abilities.keys.to_set.should == [:shoot!, :look].to_set
+    expect(@wizard.abilities.keys.to_set).to eq([:shoot!, :look].to_set)
   end
   
   it "should have shoot power of 11" do
-    @wizard.shoot_power.should == 11
+    expect(@wizard.shoot_power).to eq(11)
   end
   
   it "should have 3 max health" do
-    @wizard.max_health.should == 3
+    expect(@wizard.max_health).to eq(3)
   end
   
   it "should appear as w on map" do
-    @wizard.character.should == "w"
+    expect(@wizard.character).to eq("w")
   end
 end

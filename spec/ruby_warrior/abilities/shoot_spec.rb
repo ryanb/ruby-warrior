@@ -17,6 +17,6 @@ describe RubyWarrior::Abilities::Shoot do
   
   it "should shoot and do nothing if no units in the way" do
     @shoot.expects(:multi_unit).with(:forward, anything).returns([nil, nil])
-    lambda { @shoot.perform }.should_not raise_error
+    expect(lambda { @shoot.perform }).not_to raise_error
   end
 end

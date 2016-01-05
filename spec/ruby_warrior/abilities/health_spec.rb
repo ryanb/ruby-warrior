@@ -8,6 +8,6 @@ describe RubyWarrior::Abilities::Health do
   
   it "should return the amount of health" do
     @warrior.health = 10
-    @health.perform.should == 10
+    expect(@health.perform).to eq 10
   end
 end
