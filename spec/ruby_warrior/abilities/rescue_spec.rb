@@ -13,7 +13,7 @@ describe RubyWarrior::Abilities::Rescue do
     @rescue.expects(:unit).with(:forward).returns(captive)
     @warrior.expects(:earn_points).with(20)
     @rescue.perform
-    captive.position.should be_nil
+    expect(captive.position).to be_nil
   end
   
   it "should do nothing to other unit if not bound" do
@@ -23,7 +23,7 @@ describe RubyWarrior::Abilities::Rescue do
     @rescue.expects(:unit).with(:forward).never
     @warrior.expects(:earn_points).never
     @rescue.perform
-    unit.position.should_not be_nil
+    expect(unit.position).not_to be_nil
   end
   
   it "should release other unit when bound" do
@@ -34,7 +34,7 @@ describe RubyWarrior::Abilities::Rescue do
     @rescue.expects(:unit).with(:forward).returns(unit)
     @warrior.expects(:earn_points).never
     @rescue.perform
-    unit.should_not be_bound
-    unit.position.should_not be_nil
+    expect(unit).not_to be_bound
+    expect(unit.position).not_to be_nil
   end
 end

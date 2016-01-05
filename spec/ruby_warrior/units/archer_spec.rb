@@ -6,18 +6,18 @@ describe RubyWarrior::Units::Archer do
   end
   
   it "should have look and shoot abilities" do
-    @archer.abilities.keys.to_set.should == [:shoot!, :look].to_set
+    expect(@archer.abilities.keys.to_set).to eq([:shoot!, :look].to_set)
   end
   
   it "should have shoot power of 3" do
-    @archer.shoot_power.should == 3
+    expect(@archer.shoot_power).to eq(3)
   end
   
   it "should have 7 max health" do
-    @archer.max_health.should == 7
+    expect(@archer.max_health).to eq(7)
   end
   
   it "should appear as a on map" do
-    @archer.character.should == "a"
+    expect(@archer.character).to eq("a")
   end
 end

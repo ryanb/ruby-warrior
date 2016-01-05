@@ -14,15 +14,15 @@ describe RubyWarrior::Units::Golem do
   
   it "should set max health and update current health" do
     @golem.max_health = 10
-    @golem.max_health.should == 10
-    @golem.health.should == 10
+    expect(@golem.max_health).to eq(10)
+    expect(@golem.health).to eq(10)
   end
   
   it "should have attack power of 3" do
-    @golem.attack_power.should == 3
+    expect(@golem.attack_power).to eq(3)
   end
   
   it "should appear as G on map" do
-    @golem.character.should == "G"
+    expect(@golem.character).to eq("G")
   end
 end

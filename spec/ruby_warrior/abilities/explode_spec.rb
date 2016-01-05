@@ -16,8 +16,8 @@ describe RubyWarrior::Abilities::Explode do
     @floor.add(unit, 0, 1)
     @captive.health = 10
     @explode.perform
-    @captive.health.should == -90
-    unit.health.should == -80
+    expect(@captive.health).to eq -90
+    expect(unit.health).to eq -80
   end
   
   it "should explode when bomb time reaches zero" do
@@ -25,8 +25,8 @@ describe RubyWarrior::Abilities::Explode do
     @explode.time = 3
     @explode.pass_turn
     @explode.pass_turn
-    @captive.health.should == 10
+    expect(@captive.health).to eq 10
     @explode.pass_turn
-    @captive.health.should == -90
+    expect(@captive.health).to eq -90
   end
 end

@@ -9,11 +9,11 @@ describe RubyWarrior::Abilities::Bind do
     receiver = RubyWarrior::Units::Base.new
     @bind.stubs(:unit).returns(receiver)
     @bind.perform
-    receiver.should be_bound
+    expect(receiver).to be_bound
   end
   
   it "should do nothing if no recipient" do
     @bind.stubs(:unit).returns(nil)
-    lambda { @bind.perform }.should_not raise_error
+    expect{ @bind.perform }.not_to raise_error
   end
 end

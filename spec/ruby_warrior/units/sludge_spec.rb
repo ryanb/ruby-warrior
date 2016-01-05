@@ -6,22 +6,22 @@ describe RubyWarrior::Units::Sludge do
   end
   
   it "should have attack action" do
-    @sludge.abilities.keys.should include(:attack!)
+    expect(@sludge.abilities.keys).to include(:attack!)
   end
   
   it "should have feel sense" do
-    @sludge.abilities.keys.should include(:feel)
+    expect(@sludge.abilities.keys).to include(:feel)
   end
   
   it "should have attack power of 3" do
-    @sludge.attack_power.should == 3
+    expect(@sludge.attack_power).to eq(3)
   end
   
   it "should have 12 max health" do
-    @sludge.max_health.should == 12
+    expect(@sludge.max_health).to eq(12)
   end
   
   it "should appear as s on map" do
-    @sludge.character.should == "s"
+    expect(@sludge.character).to eq("s")
   end
 end

@@ -7,6 +7,6 @@ describe RubyWarrior::PlayerGenerator do
   end
   
   it "should know templates path" do
-    @generator.templates_path.should == File.expand_path("../../../templates", __FILE__)
+    expect(@generator.templates_path).to eq(File.expand_path("../../../templates", __FILE__))
   end
 end

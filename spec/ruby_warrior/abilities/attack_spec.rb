@@ -12,12 +12,12 @@ describe RubyWarrior::Abilities::Attack do
     receiver.health = 5
     @attack.stubs(:unit).returns(receiver)
     @attack.perform
-    receiver.health.should == 2
+    expect(receiver.health).to eq 2
   end
   
   it "should do nothing if recipient is nil" do
     @attack.stubs(:unit).returns(nil)
-    lambda { @attack.perform }.should_not raise_error
+    expect{ @attack.perform }.not_to raise_error
   end
   
   it "should get object at position from offset" do
@@ -46,6 +46,6 @@ describe RubyWarrior::Abilities::Attack do
     receiver.health = 5
     @attack.stubs(:unit).returns(receiver)
     @attack.perform(:backward)
-    receiver.health.should == 3
+    expect(receiver.health).to eq 3
   end
 end

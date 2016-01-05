@@ -7,22 +7,22 @@ describe RubyWarrior::Turn do
     end
     
     it "should have no action performed at first" do
-      @turn.action.should be_nil
+      expect(@turn.action).to be_nil
     end
     
     it "should be able to perform action and recall it" do
       @turn.walk!
-      @turn.action.should == [:walk!]
+      expect(@turn.action).to eq([:walk!])
     end
     
     it "should include arguments passed to action" do
       @turn.walk! :forward
-      @turn.action.should == [:walk!, :forward]
+      expect(@turn.action).to eq([:walk!, :forward])
     end
     
     it "should not be able to call multiple actions per turn" do
       @turn.walk! :forward
-      lambda { @turn.attack! }.should raise_error
+      expect(lambda { @turn.attack! }).to raise_error "Only one action can be performed per turn."
     end
   end
   
@@ -35,8 +35,8 @@ describe RubyWarrior::Turn do
     end
     
     it "should be able to call sense with any argument and return expected results" do
-      @turn.feel.should == @feel.perform
-      @turn.feel(:backward).should == @feel.perform(:backward)
+      expect(@turn.feel).to eq(@feel.perform)
+      expect(@turn.feel(:backward)).to eq(@feel.perform(:backward))
     end
   end
 end

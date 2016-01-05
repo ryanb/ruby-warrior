@@ -6,14 +6,14 @@ describe RubyWarrior::Units::ThickSludge do
   end
   
   it "should have 24 max health" do
-    @sludge.max_health.should == 24
+    expect(@sludge.max_health).to eq(24)
   end
   
   it "should appear as S on map" do
-    @sludge.character.should == "S"
+    expect(@sludge.character).to eq("S")
   end
   
   it "should have the name of 'Thick Sludge'" do
-    @sludge.name.should == "Thick Sludge"
+    expect(@sludge.name).to eq("Thick Sludge")
   end
 end
