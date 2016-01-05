@@ -40,17 +40,17 @@ describe RubyWarrior::UI do
   
   it "should ask for yes/no and return true when yes" do
     @ui.expects(:request).with('foo? [yn] ').returns('y')
-    @ui.ask("foo?").should be_true
+    expect(@ui.ask("foo?")).to eq true
   end
   
   it "should ask for yes/no and return false when no" do
     @ui.stubs(:request).returns('n')
-    @ui.ask("foo?").should be_false
+    expect(@ui.ask("foo?")).to eq false
   end
   
   it "should ask for yes/no and return false for any input" do
     @ui.stubs(:request).returns('aklhasdf')
-    @ui.ask("foo?").should be_false
+    expect(@ui.ask("foo?")).to eq false
   end
   
   it "should present multiple options and return selected one" do
