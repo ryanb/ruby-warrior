@@ -94,7 +94,9 @@ module RubyWarrior
     end
     
     def request_next_level
-      if !Config.skip_input? && (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
+      if Config.skip_input?
+        UI.puts "Staying on current level. Remove --skip option to continue on to the next level."
+      elsif (next_level.exists? ? UI.ask("Would you like to continue on to the next level?") : UI.ask("Would you like to continue on to epic mode?"))
         if next_level.exists?
           prepare_next_level
           UI.puts "See the updated README in the rubywarrior/#{profile.directory_name} directory."
@@ -103,7 +105,7 @@ module RubyWarrior
           UI.puts "Run rubywarrior again to play epic mode."
         end
       else
-        UI.puts "Staying on current level. Try to earn more points next time."
+        UI.puts "Staying on current level."
       end
     end
     
