@@ -24,10 +24,10 @@ module RubyWarrior
         print "No progress to reset.\n" 
       else
         directories = Dir["rubywarrior/*"]
-	    if directories.length>0
+        if directories.length>0
           puts inputProfile = UI.choose('directory', directories)
           if inputProfile != nil
-		    if File.directory?('%{IN}'% {IN:inputProfile})
+	          if File.directory?('%{IN}'% {IN:inputProfile})
               # Prompt the user to avoid accidental an reset.
               print "Are you sure you want to reset your progress? [yn]\n"
               input = gets.chomp
@@ -41,15 +41,14 @@ module RubyWarrior
                 reset
               end
             else
-			  print "No such profile.\n"
-		    end
-		  else
-		    print "No profile name provided.\n" 
+              print "No such profile.\n"
+	          end
+          else
+            print "No profile name provided.\n" 
           end
         else 
           print "No profile to reset."
         end
-      
       end
       exit
     end
