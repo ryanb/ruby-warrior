@@ -27,7 +27,7 @@ module RubyWarrior
         if directories.length>0
           puts inputProfile = UI.choose('directory', directories)
           if inputProfile != nil
-	          if File.directory?('%{IN}'% {IN:inputProfile})
+            if File.directory?('%{IN}'% {IN:inputProfile})
               # Prompt the user to avoid accidental an reset.
               print "Are you sure you want to reset your progress? [yn]\n"
               input = gets.chomp
