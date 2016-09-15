@@ -42,7 +42,7 @@ module RubyWarrior
               end
             else
               print "No such profile.\n"
-	          end
+            end
           else
             print "No profile name provided.\n" 
           end
