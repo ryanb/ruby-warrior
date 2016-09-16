@@ -92,8 +92,8 @@ module RubyWarrior
           end
         end
       else 
-	      UI.puts "You haven't changed the initial rubywarrior/#{profile.directory_name}/player.rb file!"
-		    continue=false
+        UI.puts "You haven't changed the initial rubywarrior/#{profile.directory_name}/player.rb file!"
+        continue=false
       end
       continue
     end
