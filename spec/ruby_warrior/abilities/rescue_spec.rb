@@ -8,20 +8,20 @@ describe RubyWarrior::Abilities::Rescue do
 
   it "should rescue captive" do
     captive = RubyWarrior::Units::Captive.new
-    captive.position = stub
-    @rescue.expects(:space).with(:forward).returns(stub(:captive? => true))
-    @rescue.expects(:unit).with(:forward).returns(captive)
-    @warrior.expects(:earn_points).with(20)
+    captive.position = double
+    expect(@rescue).to receive(:space).with(:forward).and_return(double(:captive? => true))
+    expect(@rescue).to receive(:unit).with(:forward).and_return(captive)
+    expect(@warrior).to receive(:earn_points).with(20)
     @rescue.perform
     expect(captive.position).to be_nil
   end
 
   it "should do nothing to other unit if not bound" do
     unit = RubyWarrior::Units::Base.new
-    unit.position = stub
-    @rescue.expects(:space).with(:forward).returns(stub(:captive? => false))
-    @rescue.expects(:unit).with(:forward).never
-    @warrior.expects(:earn_points).never
+    unit.position = double
+    expect(@rescue).to receive(:space).with(:forward).and_return(double(:captive? => false))
+    expect(@rescue).to receive(:unit).with(:forward).never
+    expect(@warrior).to receive(:earn_points).never
     @rescue.perform
     expect(unit.position).to_not be_nil
   end
@@ -29,10 +29,10 @@ describe RubyWarrior::Abilities::Rescue do
   it "should release other unit when bound" do
     unit = RubyWarrior::Units::Base.new
     unit.bind
-    unit.position = stub
-    @rescue.expects(:space).with(:forward).returns(stub(:captive? => true))
-    @rescue.expects(:unit).with(:forward).returns(unit)
-    @warrior.expects(:earn_points).never
+    unit.position = double
+    expect(@rescue).to receive(:space).with(:forward).and_return(double(:captive? => true))
+    expect(@rescue).to receive(:unit).with(:forward).and_return(unit)
+    expect(@warrior).to receive(:earn_points).never
     @rescue.perform
     expect(unit).to_not be_bound
     expect(unit.position).to_not be_nil

@@ -36,9 +36,9 @@ describe RubyWarrior::Profile do
 
   it "load should read file, decode and set player path" do
     profile = 'profile'
-    profile.expects(:player_path=).with('path/to')
-    File.expects(:read).with('path/to/.profile').returns('encoded_profile')
-    RubyWarrior::Profile.expects(:decode).with('encoded_profile').returns(profile)
+    expect(profile).to receive(:player_path=).with('path/to')
+    expect(File).to receive(:read).with('path/to/.profile').and_return('encoded_profile')
+    expect(RubyWarrior::Profile).to receive(:decode).with('encoded_profile').and_return(profile)
     expect(RubyWarrior::Profile.load('path/to/.profile')).to eq(profile)
   end
 
@@ -129,10 +129,10 @@ describe RubyWarrior::Profile do
     end
 
     it "save should write file with encoded profile" do
-      file = stub
-      file.expects(:write).with('encoded_profile')
-      File.expects(:open).with(@profile.player_path + '/.profile', 'w').yields(file)
-      @profile.expects(:encode).returns('encoded_profile')
+      file = double
+      expect(file).to receive(:write).with('encoded_profile')
+      expect(File).to receive(:open).with(@profile.player_path + '/.profile', 'w').and_yield(file)
+      expect(@profile).to receive(:encode).and_return('encoded_profile')
       @profile.save
     end
 
@@ -164,7 +164,7 @@ describe RubyWarrior::Profile do
     end
 
     it "should load tower from path" do
-      RubyWarrior::Tower.expects(:new).with('tower').returns('tower')
+      expect(RubyWarrior::Tower).to receive(:new).with('tower').and_return('tower')
       expect(@profile.tower).to eq('tower')
     end
   end

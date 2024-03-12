@@ -39,22 +39,22 @@ describe RubyWarrior::UI do
   end
 
   it "should ask for yes/no and return true when yes" do
-    @ui.expects(:request).with('foo? [yn] ').returns('y')
+    expect(@ui).to receive(:request).with('foo? [yn] ').and_return('y')
     expect(@ui.ask("foo?")).to eq(true)
   end
 
   it "should ask for yes/no and return false when no" do
-    @ui.stubs(:request).returns('n')
+    allow(@ui).to receive(:request).and_return('n')
     expect(@ui.ask("foo?")).to eq(false)
   end
 
   it "should ask for yes/no and return false for any input" do
-    @ui.stubs(:request).returns('aklhasdf')
+    allow(@ui).to receive(:request).and_return('aklhasdf')
     expect(@ui.ask("foo?")).to eq(false)
   end
 
   it "should present multiple options and return selected one" do
-    @ui.expects(:request).with(includes('item')).returns('2')
+    expect(@ui).to receive(:request).with(include('item')).and_return('2')
     expect(@ui.choose('item', [:foo, :bar, :test])).to eq(:bar)
     expect(@out.string).to include('[1] foo')
     expect(@out.string).to include('[2] bar')
@@ -62,15 +62,15 @@ describe RubyWarrior::UI do
   end
 
   it "choose should accept array as option" do
-    @ui.stubs(:request).returns('3')
+    allow(@ui).to receive(:request).and_return('3')
     expect(@ui.choose('item', [:foo, :bar, [:tower, 'easy']])).to eq(:tower)
     expect(@out.string).to include('[3] easy')
   end
 
   it "choose should return option without prompt if only one item" do
-    @ui.expects(:puts).never
-    @ui.expects(:gets).never
-    @ui.stubs(:request).returns('3')
+    expect(@ui).to receive(:puts).never
+    expect(@ui).to receive(:gets).never
+    allow(@ui).to receive(:request).and_return('3')
     expect(@ui.choose('item', [:foo])).to eq(:foo)
   end
 
@@ -80,14 +80,14 @@ describe RubyWarrior::UI do
 
   it "should delay after puts when specified" do
     @config.delay = 1.3
-    @ui.expects(:puts).with("foo")
-    @ui.expects(:sleep).with(1.3)
+    expect(@ui).to receive(:puts).with("foo")
+    expect(@ui).to receive(:sleep).with(1.3)
     @ui.puts_with_delay("foo")
   end
 
   it "should not delay puts when delay isn't specified" do
-    @ui.expects(:puts).with("foo")
-    @ui.expects(:sleep).never
+    expect(@ui).to receive(:puts).with("foo")
+    expect(@ui).to receive(:sleep).never
     @ui.puts_with_delay("foo")
   end
 end

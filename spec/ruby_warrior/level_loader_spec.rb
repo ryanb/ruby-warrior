@@ -24,7 +24,7 @@ describe RubyWarrior::LevelLoader do
     end
 
     it "should be able to add stairs" do
-      @level.floor.expects(:place_stairs).with(1, 2)
+      expect(@level.floor).to receive(:place_stairs).with(1, 2)
       @loader.stairs 1, 2
     end
 

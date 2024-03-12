@@ -7,7 +7,7 @@ describe RubyWarrior::Units::Golem do
 
   it "should execute turn proc when playing turn" do
     proc = Object.new
-    proc.expects(:call).with(:turn)
+    expect(proc).to receive(:call).with(:turn)
     @golem.turn = proc
     @golem.play_turn(:turn)
   end

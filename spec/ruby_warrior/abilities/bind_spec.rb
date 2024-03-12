@@ -2,18 +2,18 @@ require 'spec_helper'
 
 describe RubyWarrior::Abilities::Bind do
   before(:each) do
-    @bind = RubyWarrior::Abilities::Bind.new(stub(:say => nil))
+    @bind = RubyWarrior::Abilities::Bind.new(double(:say => nil))
   end
 
   it "should bind recipient" do
     receiver = RubyWarrior::Units::Base.new
-    @bind.stubs(:unit).returns(receiver)
+    allow(@bind).to receive(:unit).and_return(receiver)
     @bind.perform
     expect(receiver).to be_bound
   end
 
   it "should do nothing if no recipient" do
-    @bind.stubs(:unit).returns(nil)
+    allow(@bind).to receive(:unit).and_return(nil)
     expect { @bind.perform }.to_not raise_error
   end
 end
