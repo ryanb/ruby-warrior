@@ -35,7 +35,7 @@ module RubyWarrior
     private
     
     def read_template(path)
-      ERB.new(File.read(path), nil, '-').result(binding)
+      ERB.new(File.read(path), trim_mode: '-').result(binding)
     end
   end
 end
