@@ -1,4 +1,5 @@
 tmp/**/*
+rubywarrior/*
 *.gem
 .project
 .buildpath
