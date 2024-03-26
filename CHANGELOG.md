@@ -1,3 +1,10 @@
+## 0.2.0 (March 26, 2024)
+
+* Support Ruby 3.3 (thanks fpsvogel)
+
+* Improve message when using --skip option (thanks dcki)
+
+
 ## 0.1.3 (April 28, 2012)
 
 * Making specs pass with latest RSpec.
