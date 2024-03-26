@@ -94,7 +94,7 @@ An action is something that effects the game in some way. You can easily tell an
     Bind unit in given direction to keep him from moving (forward by default).
 
   warrior.rescue!
-    Rescue a captive from his chains (earning 50 points) in given direction (forward by default).
+    Rescue a captive from his chains (earning 20 points) in given direction (forward by default).
 
 
 A sense is something which gathers information about the floor. You can perform senses as often as you want per turn to gather information about your surroundings and to aid you in choosing the proper action. Senses do NOT end in an exclamation mark.
