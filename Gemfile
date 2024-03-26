@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem 'base64'
+gem 'syntax_tree'
 
 group :test do
   gem 'rake'
