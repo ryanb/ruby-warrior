@@ -11,9 +11,9 @@ When /^I copy fixture "([^\"]*)" to "([^\"]*)"$/ do |from, to|
 end
 
 Then /^I should find file at "([^\"]*)"$/ do |path|
-  File.exist?(path).should be_true
+  File.exist?(path).should eq(true)
 end
 
 Then /^I should find no file at "([^\"]*)"$/ do |path|
-  File.exist?(path).should be_false
+  File.exist?(path).should eq(false)
 end

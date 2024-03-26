@@ -9,9 +9,9 @@ describe RubyWarrior::Abilities::Listen do
     @floor.add(@warrior, 0, 0)
     @listen = RubyWarrior::Abilities::Listen.new(@warrior)
   end
-  
+
   it "should return an array of spaces which have units on them besides main unit" do
     @floor.add(RubyWarrior::Units::Base.new, 0, 1)
-    @listen.perform.should have(1).record
+    @listen.perform.size.should == 1
   end
 end
