@@ -12,6 +12,6 @@ describe RubyWarrior::Abilities::Listen do
 
   it "should return an array of spaces which have units on them besides main unit" do
     @floor.add(RubyWarrior::Units::Base.new, 0, 1)
-    @listen.perform.size.should == 1
+    expect(@listen.perform.size).to eq(1)
   end
 end

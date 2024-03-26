@@ -5,9 +5,9 @@ describe RubyWarrior::Abilities::DirectionOfStairs do
     @position = stub
     @distance = RubyWarrior::Abilities::DirectionOfStairs.new(stub(:position => @position, :say => nil))
   end
-  
+
   it "should return relative direction of stairs" do
     @position.stubs(:relative_direction_of_stairs).returns(:left)
-    @distance.perform.should == :left
+    expect(@distance.perform).to eq(:left)
   end
 end

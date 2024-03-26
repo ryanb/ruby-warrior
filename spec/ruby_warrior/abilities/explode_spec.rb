@@ -9,24 +9,24 @@ describe RubyWarrior::Abilities::Explode do
     @floor.add(@captive, 0, 0)
     @explode = RubyWarrior::Abilities::Explode.new(@captive)
   end
-  
+
   it "should subtract 100 health from each unit on the floor" do
     unit = RubyWarrior::Units::Base.new
     unit.health = 20
     @floor.add(unit, 0, 1)
     @captive.health = 10
     @explode.perform
-    @captive.health.should == -90
-    unit.health.should == -80
+    expect(@captive.health).to eq(-90)
+    expect(unit.health).to eq(-80)
   end
-  
+
   it "should explode when bomb time reaches zero" do
     @captive.health = 10
     @explode.time = 3
     @explode.pass_turn
     @explode.pass_turn
-    @captive.health.should == 10
+    expect(@captive.health).to eq(10)
     @explode.pass_turn
-    @captive.health.should == -90
+    expect(@captive.health).to eq(-90)
   end
 end

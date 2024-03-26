@@ -14,50 +14,50 @@ describe RubyWarrior::Level do
     @level.warrior = RubyWarrior::Units::Warrior.new
     @floor.add(@level.warrior, 0, 0, :north)
     @floor.place_stairs(0, 0)
-    @level.should be_passed
+    expect(@level).to be_passed
   end
 
   it "should default time bonus to zero" do
-    @level.time_bonus.should be_zero
+    expect(@level.time_bonus).to be_zero
   end
 
   it "should have a grade relative to ace score" do
     @level.ace_score = 100
-    @level.grade_for(110).should == "S"
-    @level.grade_for(100).should == "S"
-    @level.grade_for(99).should == "A"
-    @level.grade_for(89).should == "B"
-    @level.grade_for(79).should == "C"
-    @level.grade_for(69).should == "D"
-    @level.grade_for(59).should == "F"
+    expect(@level.grade_for(110)).to eq("S")
+    expect(@level.grade_for(100)).to eq("S")
+    expect(@level.grade_for(99)).to eq("A")
+    expect(@level.grade_for(89)).to eq("B")
+    expect(@level.grade_for(79)).to eq("C")
+    expect(@level.grade_for(69)).to eq("D")
+    expect(@level.grade_for(59)).to eq("F")
   end
 
   it "should have no grade if there is no ace score" do
-    @level.ace_score.should be_nil
-    @level.grade_for(100).should be_nil
+    expect(@level.ace_score).to be_nil
+    expect(@level.grade_for(100)).to be_nil
   end
 
   it "should load file contents into level" do
     @level.stubs(:load_path).returns('path/to/level.rb')
     File.expects(:read).with('path/to/level.rb').returns("description 'foo'")
     @level.load_level
-    @level.description.should == 'foo'
+    expect(@level.description).to eq('foo')
   end
 
   it "should have a player path from profile" do
     @profile.stubs(:player_path).returns('path/to/player')
-    @level.player_path.should == 'path/to/player'
+    expect(@level.player_path).to eq('path/to/player')
   end
 
   it "should have a load path from profile tower with level number in it" do
     @profile.stubs(:tower_path).returns('path/to/tower')
-    @level.load_path.should == File.expand_path('towers/tower/level_001.rb')
+    expect(@level.load_path).to eq(File.expand_path('towers/tower/level_001.rb'))
   end
 
   it "should exist if file exists" do
     @level.stubs(:load_path).returns('/foo/bar')
     File.expects(:exist?).with('/foo/bar').returns(true)
-    @level.exists?.should eq(true)
+    expect(@level.exists?).to eq(true)
   end
 
   it "should load player and player path" do
@@ -120,27 +120,27 @@ describe RubyWarrior::Level do
       @level.play(2) do
         int += 1
       end
-      int.should == 2
+      expect(int).to eq(2)
     end
 
     it "should count down time_bonus once each turn" do
       @level.time_bonus = 10
       @level.play(3)
-      @level.time_bonus.should == 7
+      expect(@level.time_bonus).to eq(7)
     end
 
     it "should count down time_bonus below 0" do
       @level.time_bonus = 2
       @level.play(5)
-      @level.time_bonus.should be_zero
+      expect(@level.time_bonus).to be_zero
     end
 
     it "should have a pretty score calculation" do
-      @level.score_calculation(123, 45).should == "123 + 45 = 168"
+      expect(@level.score_calculation(123, 45)).to eq("123 + 45 = 168")
     end
 
     it "should not have a score calculation when starting score is zero" do
-      @level.score_calculation(0, 45).should == "45"
+      expect(@level.score_calculation(0, 45)).to eq("45")
     end
   end
 
@@ -154,14 +154,14 @@ describe RubyWarrior::Level do
     it "should add warrior score to profile" do
       @warrior.stubs(:score).returns(30)
       @level.tally_points
-      @profile.score.should == 30
+      expect(@profile.score).to eq(30)
     end
 
     it "should add warrior score to profile for epic mode" do
       @profile.enable_epic_mode
       @warrior.stubs(:score).returns(30)
       @level.tally_points
-      @profile.current_epic_score.should == 30
+      expect(@profile.current_epic_score).to eq(30)
     end
 
     it "should add level grade percent to profile for epic mode" do
@@ -169,7 +169,7 @@ describe RubyWarrior::Level do
       @profile.enable_epic_mode
       @warrior.stubs(:score).returns(30)
       @level.tally_points
-      @profile.current_epic_grades.should == { 1 => 0.3 }
+      expect(@profile.current_epic_grades).to eq({ 1 => 0.3 })
     end
 
     it "should not add level grade if ace score is not set" do
@@ -177,19 +177,19 @@ describe RubyWarrior::Level do
       @profile.enable_epic_mode
       @warrior.stubs(:score).returns(30)
       @level.tally_points
-      @profile.current_epic_grades.should == {}
+      expect(@profile.current_epic_grades).to eq({})
     end
 
     it "should apply warrior abilities to profile" do
       @warrior.stubs(:abilities).returns({:foo => nil, :bar => nil})
       @level.tally_points
-      @profile.abilities.to_set.should == [:foo, :bar].to_set
+      expect(@profile.abilities.to_set).to eq([:foo, :bar].to_set)
     end
 
     it "should apply time bonus to profile score" do
       @level.time_bonus = 20
       @level.tally_points
-      @profile.score.should == 20
+      expect(@profile.score).to eq(20)
     end
 
     it "should give 20% bonus when no other units left" do
@@ -197,7 +197,7 @@ describe RubyWarrior::Level do
       @warrior.stubs(:score).returns(10)
       @level.time_bonus = 10
       @level.tally_points
-      @profile.score.should == 24
+      expect(@profile.score).to eq(24)
     end
   end
 end
