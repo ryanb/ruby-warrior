@@ -69,26 +69,31 @@ module RubyWarrior
       continue = true
       current_level.load_player
       UI.puts "Starting Level #{current_level.number}"
-      current_level.play
-      if current_level.passed?
-        if next_level.exists?
-          UI.puts "Success! You have found the stairs."
+      if !compared_files?  
+        current_level.play
+        if current_level.passed?
+          if next_level.exists?
+            UI.puts "Success! You have found the stairs."
+          else
+            UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescued the fair maiden Ruby."
+            continue = false
+          end
+          current_level.tally_points
+          if profile.epic?
+            UI.puts final_report if final_report && !continue
+          else
+            request_next_level
+          end
         else
-          UI.puts "CONGRATULATIONS! You have climbed to the top of the tower and rescued the fair maiden Ruby."
           continue = false
+          UI.puts "Sorry, you failed level #{current_level.number}. Change your script and try again."
+          if !Config.skip_input? && current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
+            UI.puts current_level.clue.hard_wrap
+          end
         end
-        current_level.tally_points
-        if profile.epic?
-          UI.puts final_report if final_report && !continue
-        else
-          request_next_level
-        end
-      else
-        continue = false
-        UI.puts "Sorry, you failed level #{current_level.number}. Change your script and try again."
-        if !Config.skip_input? && current_level.clue && UI.ask("Would you like to read the additional clues for this level?")
-          UI.puts current_level.clue.hard_wrap
-        end
+      else 
+        UI.puts "You haven't changed the initial rubywarrior/#{profile.directory_name}/player.rb file!"
+        continue=false
       end
       continue
     end
@@ -159,6 +164,17 @@ module RubyWarrior
     
     def tower_paths
       Dir[File.expand_path('../../../towers/*', __FILE__)]
+    end
+    
+    
+    #templates
+    
+    def templates_path
+      File.expand_path("../../../templates", __FILE__)
+    end
+    	
+    def compared_files?
+      FileUtils.compare_file(current_level.player_path+'/player.rb',templates_path+'/player.rb')
     end
     
     

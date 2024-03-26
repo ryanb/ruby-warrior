@@ -33,15 +33,22 @@ module RubyWarrior
         if options.length == 1
           response = options.first
         else
-          options.each_with_index do |option, i|
-            if option.kind_of? Array
-              puts "[#{i+1}] #{option.last}"
-            else
-              puts "[#{i+1}] #{option}"
+          loop do
+            options.each_with_index do |option, i|
+              if option.kind_of? Array
+                puts "[#{i+1}] #{option.last}"
+              else
+                puts "[#{i+1}] #{option}"
+              end
             end
+            choice = request("Choose #{item} by typing the number: ")
+            if choice.to_i>options.length
+              print "You haven't provided a correct input. Try again!\n\n"
+            else
+              response = options[choice.to_i-1]
+            end
+            break if choice.to_i<=options.length
           end
-          choice = request("Choose #{item} by typing the number: ")
-          response = options[choice.to_i-1]
         end
         if response.kind_of? Array
           response.first
