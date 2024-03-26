@@ -7,4 +7,5 @@ RSpec.configure do |config|
   config.before(:each) do
     RubyWarrior::Config.reset
   end
+  config.raise_errors_for_deprecations!
 end
