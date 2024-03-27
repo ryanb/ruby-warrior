@@ -91,8 +91,8 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should pass abilities to new turn when calling next_turn" do
-    expect(RubyWarrior::Turn).to receive(:new).with(:walk! => nil, :attack! => nil, :feel => nil).and_return('turn')
-    allow(@unit).to receive(:abilities).and_return(:walk! => nil, :attack! => nil, :feel => nil)
+    expect(RubyWarrior::Turn).to receive(:new).with({:walk! => nil, :attack! => nil, :feel => nil}).and_return('turn')
+    allow(@unit).to receive(:abilities).and_return({:walk! => nil, :attack! => nil, :feel => nil})
     expect(@unit.next_turn).to eq('turn')
   end
 

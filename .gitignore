@@ -3,4 +3,5 @@ rubywarrior/*
 *.gem
 .project
 .buildpath
+.tool-versions
 Gemfile.lock
