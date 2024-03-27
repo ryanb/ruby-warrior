@@ -1,9 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::DistanceOf do
   before(:each) do
     @position = double
-    @distance = RubyWarrior::Abilities::DistanceOf.new(double(:position => @position, :say => nil))
+    @distance = RubyWarrior::Abilities::DistanceOf.new(double(position: @position, say: nil))
   end
 
   it "should return distance from stairs" do

@@ -4,7 +4,7 @@ module RubyWarrior
       def max_health
         24
       end
-      
+
       def character
         "S"
       end

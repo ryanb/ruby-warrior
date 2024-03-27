@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe String do
   it "should wrap text at white space when over a specific character length" do

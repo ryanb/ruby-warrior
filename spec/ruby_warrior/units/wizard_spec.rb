@@ -1,12 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Units::Wizard do
-  before(:each) do
-    @wizard = RubyWarrior::Units::Wizard.new
-  end
+  before(:each) { @wizard = RubyWarrior::Units::Wizard.new }
 
   it "should have look and shoot abilities" do
-    expect(@wizard.abilities.keys.to_set).to eq([:shoot!, :look].to_set)
+    expect(@wizard.abilities.keys.to_set).to eq(%i[shoot! look].to_set)
   end
 
   it "should have shoot power of 11" do

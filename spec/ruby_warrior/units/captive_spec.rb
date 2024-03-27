@@ -1,9 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Units::Captive do
-  before(:each) do
-    @captive = RubyWarrior::Units::Captive.new
-  end
+  before(:each) { @captive = RubyWarrior::Units::Captive.new }
 
   it "should have 1 max health" do
     expect(@captive.max_health).to eq(1)

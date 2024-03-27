@@ -4,7 +4,7 @@ module RubyWarrior
       def description
         "Returns an integer representing your health."
       end
-      
+
       def perform
         @unit.health
       end

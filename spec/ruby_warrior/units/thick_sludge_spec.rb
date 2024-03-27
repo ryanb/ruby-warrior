@@ -1,9 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Units::ThickSludge do
-  before(:each) do
-    @sludge = RubyWarrior::Units::ThickSludge.new
-  end
+  before(:each) { @sludge = RubyWarrior::Units::ThickSludge.new }
 
   it "should have 24 max health" do
     expect(@sludge.max_health).to eq(24)

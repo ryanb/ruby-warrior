@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::Rescue do
   before(:each) do
@@ -9,7 +9,7 @@ describe RubyWarrior::Abilities::Rescue do
   it "should rescue captive" do
     captive = RubyWarrior::Units::Captive.new
     captive.position = double
-    expect(@rescue).to receive(:space).with(:forward).and_return(double(:captive? => true))
+    expect(@rescue).to receive(:space).with(:forward).and_return(double(captive?: true))
     expect(@rescue).to receive(:unit).with(:forward).and_return(captive)
     expect(@warrior).to receive(:earn_points).with(20)
     @rescue.perform
@@ -19,7 +19,7 @@ describe RubyWarrior::Abilities::Rescue do
   it "should do nothing to other unit if not bound" do
     unit = RubyWarrior::Units::Base.new
     unit.position = double
-    expect(@rescue).to receive(:space).with(:forward).and_return(double(:captive? => false))
+    expect(@rescue).to receive(:space).with(:forward).and_return(double(captive?: false))
     expect(@rescue).to receive(:unit).with(:forward).never
     expect(@warrior).to receive(:earn_points).never
     @rescue.perform
@@ -30,7 +30,7 @@ describe RubyWarrior::Abilities::Rescue do
     unit = RubyWarrior::Units::Base.new
     unit.bind
     unit.position = double
-    expect(@rescue).to receive(:space).with(:forward).and_return(double(:captive? => true))
+    expect(@rescue).to receive(:space).with(:forward).and_return(double(captive?: true))
     expect(@rescue).to receive(:unit).with(:forward).and_return(unit)
     expect(@warrior).to receive(:earn_points).never
     @rescue.perform

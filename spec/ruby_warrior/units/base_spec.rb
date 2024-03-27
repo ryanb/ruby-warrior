@@ -1,9 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Units::Base do
-  before(:each) do
-    @unit = RubyWarrior::Units::Base.new
-  end
+  before(:each) { @unit = RubyWarrior::Units::Base.new }
 
   it "should have an attack power which defaults to zero" do
     expect(@unit.attack_power).to be_zero
@@ -55,13 +53,13 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should return name in to_s" do
-    expect(@unit.name).to eq('Base')
-    expect(@unit.to_s).to eq('Base')
+    expect(@unit.name).to eq("Base")
+    expect(@unit.to_s).to eq("Base")
   end
 
   it "should prepare turn by calling play_turn with next turn object" do
-    allow(@unit).to receive(:next_turn).and_return('next_turn')
-    expect(@unit).to receive(:play_turn).with('next_turn')
+    allow(@unit).to receive(:next_turn).and_return("next_turn")
+    expect(@unit).to receive(:play_turn).with("next_turn")
     @unit.prepare_turn
   end
 
@@ -69,7 +67,7 @@ describe RubyWarrior::Units::Base do
     @unit.position = double
     expect_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).with(:backward)
     @unit.add_abilities(:walk!)
-    turn = double(:action => [:walk!, :backward])
+    turn = double(action: %i[walk! backward])
     allow(@unit).to receive(:next_turn).and_return(turn)
     @unit.prepare_turn
     @unit.perform_turn
@@ -77,9 +75,11 @@ describe RubyWarrior::Units::Base do
 
   it "should not perform action when dead (no position)" do
     @unit.position = nil
-    allow_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).and_raise("action should not be called")
+    allow_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).and_raise(
+      "action should not be called",
+    )
     @unit.add_abilities(:walk!)
-    turn = double(:action => [:walk!, :backward])
+    turn = double(action: %i[walk! backward])
     allow(@unit).to receive(:next_turn).and_return(turn)
     @unit.prepare_turn
     @unit.perform_turn
@@ -91,15 +91,17 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should pass abilities to new turn when calling next_turn" do
-    expect(RubyWarrior::Turn).to receive(:new).with({:walk! => nil, :attack! => nil, :feel => nil}).and_return('turn')
-    allow(@unit).to receive(:abilities).and_return({:walk! => nil, :attack! => nil, :feel => nil})
-    expect(@unit.next_turn).to eq('turn')
+    expect(RubyWarrior::Turn).to receive(:new).with(
+      { walk!: nil, attack!: nil, feel: nil },
+    ).and_return("turn")
+    allow(@unit).to receive(:abilities).and_return({ walk!: nil, attack!: nil, feel: nil })
+    expect(@unit.next_turn).to eq("turn")
   end
 
   it "should add ability" do
-    expect(RubyWarrior::Abilities::Walk).to receive(:new).with(@unit).and_return('walk')
+    expect(RubyWarrior::Abilities::Walk).to receive(:new).with(@unit).and_return("walk")
     @unit.add_abilities(:walk!)
-    expect(@unit.abilities).to eq({ :walk! => 'walk' })
+    expect(@unit.abilities).to eq({ walk!: "walk" })
   end
 
   it "should appear as question mark on map" do
@@ -123,9 +125,11 @@ describe RubyWarrior::Units::Base do
   it "should not perform action when bound" do
     @unit.position = double
     @unit.bind
-    allow_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).and_raise("action should not be called")
+    allow_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).and_raise(
+      "action should not be called",
+    )
     @unit.add_abilities(:walk!)
-    turn = double(:action => [:walk!, :backward])
+    turn = double(action: %i[walk! backward])
     allow(@unit).to receive(:next_turn).and_return(turn)
     @unit.prepare_turn
     @unit.perform_turn

@@ -4,7 +4,7 @@ module RubyWarrior
       def description
         "Move in the given direction (forward by default)."
       end
-      
+
       def perform(direction = :forward)
         verify_direction(direction)
         if @unit.position

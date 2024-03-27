@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::Look do
   before(:each) do
-    @unit = double(:position => double, :say => nil)
+    @unit = double(position: double, say: nil)
     @feel = RubyWarrior::Abilities::Look.new(@unit)
   end
 
