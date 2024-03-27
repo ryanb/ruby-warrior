@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::Listen do
   before(:each) do

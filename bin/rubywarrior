@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../lib/ruby_warrior'
+require_relative "../lib/ruby_warrior"
 
 runner = RubyWarrior::Runner.new(ARGV, STDIN, STDOUT)
 runner.run

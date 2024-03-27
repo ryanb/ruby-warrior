@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 class Player
   def turn(warrior)
@@ -6,13 +6,11 @@ class Player
 end
 
 describe RubyWarrior::Units::Warrior do
-  before(:each) do
-    @warrior = RubyWarrior::Units::Warrior.new
-  end
+  before(:each) { @warrior = RubyWarrior::Units::Warrior.new }
 
   it "should default name to warrior" do
     expect(@warrior.name).to eq("Warrior")
-    @warrior.name = ''
+    @warrior.name = ""
     expect(@warrior.name).to eq("Warrior")
   end
 
@@ -34,16 +32,14 @@ describe RubyWarrior::Units::Warrior do
 
   it "should call player.play_turn and pass turn to player" do
     player = double
-    expect(player).to receive(:play_turn).with('turn')
+    expect(player).to receive(:play_turn).with("turn")
     allow(@warrior).to receive(:player).and_return(player)
-    @warrior.play_turn('turn')
+    @warrior.play_turn("turn")
   end
 
   it "should call Player.new the first time loading player, and return same object next time" do
-    expect(Player).to receive(:new).and_return('player').once
-    2.times do
-      expect(@warrior.player).to eq('player')
-    end
+    expect(Player).to receive(:new).and_return("player").once
+    2.times { expect(@warrior.player).to eq("player") }
   end
 
   it "should have an attack power of 5" do

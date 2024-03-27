@@ -1,5 +1,5 @@
 Given /^a profile named "([^\"]*)" on "([^\"]*)"$/ do |name, tower|
-  step 'I run rubywarrior'
+  step "I run rubywarrior"
   step 'I answer "y" to "create one?"'
   step 'I choose "' + tower + '" for "tower"'
   step 'I answer "' + name + '" to "name"'
@@ -27,9 +27,7 @@ end
 When /^I run rubywarrior with options "([^\"]*)"$/ do |options|
   RubyWarrior::Config.reset
   @io = MockIO.new
-  @io.start do |io|
-    RubyWarrior::Runner.new(options.split, io, io).run
-  end
+  @io.start { |io| RubyWarrior::Runner.new(options.split, io, io).run }
 end
 
 When /^I answer "([^\"]*)" to "([^\"]*)"$/ do |answer, question|
@@ -40,11 +38,7 @@ end
 When /^I choose "([^\"]*)" for "([^\"]*)"$/ do |choice, phrase|
   answer = nil
   content = @io.gets_until_include(phrase)
-  content.split("\n").each do |line|
-    if line.include?(choice) && line =~ /\[(\d)\]/
-      answer = $1
-    end
-  end
+  content.split("\n").each { |line| answer = $1 if line.include?(choice) && line =~ /\[(\d)\]/ }
   if answer
     @io.puts(answer)
   else

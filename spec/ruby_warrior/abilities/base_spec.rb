@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::Base do
   before(:each) do
@@ -22,8 +22,8 @@ describe RubyWarrior::Abilities::Base do
   end
 
   it "should fetch unit at given direction with distance" do
-    expect(@ability).to receive(:space).with(:right, 3, 1).and_return(double(:unit => 'unit'))
-    expect(@ability.unit(:right, 3, 1)).to eq('unit')
+    expect(@ability).to receive(:space).with(:right, 3, 1).and_return(double(unit: "unit"))
+    expect(@ability.unit(:right, 3, 1)).to eq("unit")
   end
 
   it "should have no description" do
@@ -31,8 +31,8 @@ describe RubyWarrior::Abilities::Base do
   end
 
   it "should raise an exception if direction isn't recognized" do
-    expect {
-      @ability.verify_direction(:foo)
-    }.to raise_error("Unknown direction :foo. Should be :forward, :backward, :left or :right.")
+    expect { @ability.verify_direction(:foo) }.to raise_error(
+      "Unknown direction :foo. Should be :forward, :backward, :left or :right.",
+    )
   end
 end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Position do
   before(:each) do
@@ -12,7 +12,7 @@ describe RubyWarrior::Position do
 
   it "should rotate clockwise" do
     expect(@position.direction).to eq(:north)
-    [:east, :south, :west, :north, :east].each do |dir|
+    %i[east south west north east].each do |dir|
       @position.rotate(1)
       expect(@position.direction).to eq(dir)
     end
@@ -20,7 +20,7 @@ describe RubyWarrior::Position do
 
   it "should rotate counterclockwise" do
     expect(@position.direction).to eq(:north)
-    [:west, :south, :east, :north, :west].each do |dir|
+    %i[west south east north west].each do |dir|
       @position.rotate(-1)
       expect(@position.direction).to eq(dir)
     end

@@ -1,9 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Units::Golem do
-  before(:each) do
-    @golem = RubyWarrior::Units::Golem.new
-  end
+  before(:each) { @golem = RubyWarrior::Units::Golem.new }
 
   it "should execute turn proc when playing turn" do
     proc = Object.new

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::UI do
   before(:each) do
@@ -39,43 +39,43 @@ describe RubyWarrior::UI do
   end
 
   it "should ask for yes/no and return true when yes" do
-    expect(@ui).to receive(:request).with('foo? [yn] ').and_return('y')
+    expect(@ui).to receive(:request).with("foo? [yn] ").and_return("y")
     expect(@ui.ask("foo?")).to eq(true)
   end
 
   it "should ask for yes/no and return false when no" do
-    allow(@ui).to receive(:request).and_return('n')
+    allow(@ui).to receive(:request).and_return("n")
     expect(@ui.ask("foo?")).to eq(false)
   end
 
   it "should ask for yes/no and return false for any input" do
-    allow(@ui).to receive(:request).and_return('aklhasdf')
+    allow(@ui).to receive(:request).and_return("aklhasdf")
     expect(@ui.ask("foo?")).to eq(false)
   end
 
   it "should present multiple options and return selected one" do
-    expect(@ui).to receive(:request).with(include('item')).and_return('2')
-    expect(@ui.choose('item', [:foo, :bar, :test])).to eq(:bar)
-    expect(@out.string).to include('[1] foo')
-    expect(@out.string).to include('[2] bar')
-    expect(@out.string).to include('[3] test')
+    expect(@ui).to receive(:request).with(include("item")).and_return("2")
+    expect(@ui.choose("item", %i[foo bar test])).to eq(:bar)
+    expect(@out.string).to include("[1] foo")
+    expect(@out.string).to include("[2] bar")
+    expect(@out.string).to include("[3] test")
   end
 
   it "choose should accept array as option" do
-    allow(@ui).to receive(:request).and_return('3')
-    expect(@ui.choose('item', [:foo, :bar, [:tower, 'easy']])).to eq(:tower)
-    expect(@out.string).to include('[3] easy')
+    allow(@ui).to receive(:request).and_return("3")
+    expect(@ui.choose("item", [:foo, :bar, [:tower, "easy"]])).to eq(:tower)
+    expect(@out.string).to include("[3] easy")
   end
 
   it "choose should return option without prompt if only one item" do
     expect(@ui).to receive(:puts).never
     expect(@ui).to receive(:gets).never
-    allow(@ui).to receive(:request).and_return('3')
-    expect(@ui.choose('item', [:foo])).to eq(:foo)
+    allow(@ui).to receive(:request).and_return("3")
+    expect(@ui.choose("item", [:foo])).to eq(:foo)
   end
 
   it "choose should return first value in array of option if only on item" do
-    expect(@ui.choose('item', [[:foo, :bar]])).to eq(:foo)
+    expect(@ui.choose("item", [%i[foo bar]])).to eq(:foo)
   end
 
   it "should delay after puts when specified" do

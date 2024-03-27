@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::Attack do
   before(:each) do
-    @attacker = double(:position => double, :attack_power => 3, :say => nil)
+    @attacker = double(position: double, attack_power: 3, say: nil)
     @attack = RubyWarrior::Abilities::Attack.new(@attacker)
   end
 
@@ -26,14 +26,14 @@ describe RubyWarrior::Abilities::Attack do
   end
 
   it "should award points when killing unit" do
-    receiver = double(:take_damage => nil, :max_health => 8, :alive? => false)
+    receiver = double(take_damage: nil, max_health: 8, alive?: false)
     allow(@attack).to receive(:unit).and_return(receiver)
     expect(@attacker).to receive(:earn_points).with(8)
     @attack.perform
   end
 
   it "should not award points when not killing unit" do
-    receiver = double(:max_health => 8, :alive? => true)
+    receiver = double(max_health: 8, alive?: true)
     expect(receiver).to receive(:take_damage)
     allow(@attack).to receive(:unit).and_return(receiver)
     expect(@attacker).to receive(:earn_points).never

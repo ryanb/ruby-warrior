@@ -1,10 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Abilities::Walk do
   before(:each) do
-    @space = double(:empty? => true, :unit => nil)
-    @position = double(:relative_space => @space, :move => nil)
-    @walk = RubyWarrior::Abilities::Walk.new(double(:position => @position, :say => nil))
+    @space = double(empty?: true, unit: nil)
+    @position = double(relative_space: @space, move: nil)
+    @walk = RubyWarrior::Abilities::Walk.new(double(position: @position, say: nil))
   end
 
   it "should move position forward when calling perform" do

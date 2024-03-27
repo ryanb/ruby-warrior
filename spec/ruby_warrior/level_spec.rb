@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'set'
+require "spec_helper"
+require "set"
 
 describe RubyWarrior::Level do
   before(:each) do
@@ -38,32 +38,32 @@ describe RubyWarrior::Level do
   end
 
   it "should load file contents into level" do
-    allow(@level).to receive(:load_path).and_return('path/to/level.rb')
-    expect(File).to receive(:read).with('path/to/level.rb').and_return("description 'foo'")
+    allow(@level).to receive(:load_path).and_return("path/to/level.rb")
+    expect(File).to receive(:read).with("path/to/level.rb").and_return("description 'foo'")
     @level.load_level
-    expect(@level.description).to eq('foo')
+    expect(@level.description).to eq("foo")
   end
 
   it "should have a player path from profile" do
-    allow(@profile).to receive(:player_path).and_return('path/to/player')
-    expect(@level.player_path).to eq('path/to/player')
+    allow(@profile).to receive(:player_path).and_return("path/to/player")
+    expect(@level.player_path).to eq("path/to/player")
   end
 
   it "should have a load path from profile tower with level number in it" do
-    allow(@profile).to receive(:tower_path).and_return('path/to/tower')
-    expect(@level.load_path).to eq(File.expand_path('towers/tower/level_001.rb'))
+    allow(@profile).to receive(:tower_path).and_return("path/to/tower")
+    expect(@level.load_path).to eq(File.expand_path("towers/tower/level_001.rb"))
   end
 
   it "should exist if file exists" do
-    allow(@level).to receive(:load_path).and_return('/foo/bar')
-    expect(File).to receive(:exist?).with('/foo/bar').and_return(true)
+    allow(@level).to receive(:load_path).and_return("/foo/bar")
+    expect(File).to receive(:exist?).with("/foo/bar").and_return(true)
     expect(@level.exists?).to eq(true)
   end
 
   it "should load player and player path" do
-    allow(@level).to receive(:player_path).and_return('player/path')
-    expect($:).to receive(:<<).with('player/path')
-    expect(@level).to receive(:load).with('player.rb')
+    allow(@level).to receive(:player_path).and_return("player/path")
+    expect($:).to receive(:<<).with("player/path")
+    expect(@level).to receive(:load).with("player.rb")
     @level.load_player
   end
 
@@ -76,7 +76,7 @@ describe RubyWarrior::Level do
   end
 
   it "should setup warrior with profile abilities" do
-    @profile.abilities = [:foo, :bar]
+    @profile.abilities = %i[foo bar]
     warrior = double.as_null_object
     expect(warrior).to receive(:add_abilities).with(:foo, :bar)
     @level.setup_warrior(warrior)
@@ -90,9 +90,7 @@ describe RubyWarrior::Level do
   end
 
   describe "playing" do
-    before(:each) do
-      allow(@level).to receive(:load_level)
-    end
+    before(:each) { allow(@level).to receive(:load_level) }
 
     it "should load level once when playing multiple turns" do
       expect(@level).to receive(:load_level)
@@ -117,9 +115,7 @@ describe RubyWarrior::Level do
 
     it "should yield to block in play method for each turn" do
       int = 0
-      @level.play(2) do
-        int += 1
-      end
+      @level.play(2) { int += 1 }
       expect(int).to eq(2)
     end
 
@@ -146,7 +142,7 @@ describe RubyWarrior::Level do
 
   describe "tallying points" do
     before(:each) do
-      @warrior = double(:score => 0, :abilities => {})
+      @warrior = double(score: 0, abilities: {})
       allow(@level).to receive(:warrior).and_return(@warrior)
       allow(@level.floor).to receive(:other_units).and_return([double])
     end
@@ -181,9 +177,9 @@ describe RubyWarrior::Level do
     end
 
     it "should apply warrior abilities to profile" do
-      allow(@warrior).to receive(:abilities).and_return({:foo => nil, :bar => nil})
+      allow(@warrior).to receive(:abilities).and_return({ foo: nil, bar: nil })
       @level.tally_points
-      expect(@profile.abilities.to_set).to eq([:foo, :bar].to_set)
+      expect(@profile.abilities.to_set).to eq(%i[foo bar].to_set)
     end
 
     it "should apply time bonus to profile score" do

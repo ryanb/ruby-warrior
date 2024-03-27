@@ -4,7 +4,7 @@ module RubyWarrior
       def description
         "Rescue a captive from his chains (earning 20 points) in given direction (forward by default)."
       end
-      
+
       def perform(direction = :forward)
         verify_direction(direction)
         if space(direction).captive?

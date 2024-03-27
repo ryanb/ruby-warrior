@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Space do
   before(:each) do
@@ -8,9 +8,7 @@ describe RubyWarrior::Space do
   end
 
   describe "with empty space" do
-    before(:each) do
-      @space = @floor.space(0, 0)
-    end
+    before(:each) { @space = @floor.space(0, 0) }
 
     it "should not be enemy" do
       expect(@space).to_not be_enemy
@@ -37,7 +35,7 @@ describe RubyWarrior::Space do
     end
 
     it "should say 'nothing' as name" do
-      expect(@space.to_s).to eq('nothing')
+      expect(@space.to_s).to eq("nothing")
     end
 
     it "should not be ticking" do
@@ -46,9 +44,7 @@ describe RubyWarrior::Space do
   end
 
   describe "out of bounds" do
-    before(:each) do
-      @space = @floor.space(-1, 1)
-    end
+    before(:each) { @space = @floor.space(-1, 1) }
 
     it "should be wall" do
       expect(@space).to be_wall
@@ -59,7 +55,7 @@ describe RubyWarrior::Space do
     end
 
     it "should have name of 'wall'" do
-      expect(@space.to_s).to eq('wall')
+      expect(@space.to_s).to eq("wall")
     end
   end
 
@@ -114,9 +110,7 @@ describe RubyWarrior::Space do
     end
 
     describe "bound" do
-      before(:each) do
-        @space.unit.bind
-      end
+      before(:each) { @space.unit.bind }
 
       it "should be captive" do
         expect(@space).to be_captive

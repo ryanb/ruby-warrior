@@ -1,10 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Turn do
   describe "with actions" do
-    before(:each) do
-      @turn = RubyWarrior::Turn.new({:walk! => nil, :attack! => nil})
-    end
+    before(:each) { @turn = RubyWarrior::Turn.new({ walk!: nil, attack!: nil }) }
 
     it "should have no action performed at first" do
       expect(@turn.action).to be_nil
@@ -17,7 +15,7 @@ describe RubyWarrior::Turn do
 
     it "should include arguments passed to action" do
       @turn.walk! :forward
-      expect(@turn.action).to eq([:walk!, :forward])
+      expect(@turn.action).to eq(%i[walk! forward])
     end
 
     it "should not be able to call multiple actions per turn" do
@@ -31,7 +29,7 @@ describe RubyWarrior::Turn do
       @feel = RubyWarrior::Abilities::Feel.new(Object.new)
       allow(@feel).to receive(:space).and_return(Object.new)
       allow(@feel).to receive(:space).with(:backward).and_return(Object.new)
-      @turn = RubyWarrior::Turn.new({:feel => @feel})
+      @turn = RubyWarrior::Turn.new({ feel: @feel })
     end
 
     it "should be able to call sense with any argument and return expected results" do

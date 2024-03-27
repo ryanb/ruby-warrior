@@ -1,9 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe RubyWarrior::Units::Sludge do
-  before(:each) do
-    @sludge = RubyWarrior::Units::Sludge.new
-  end
+  before(:each) { @sludge = RubyWarrior::Units::Sludge.new }
 
   it "should have attack action" do
     expect(@sludge.abilities.keys).to include(:attack!)
