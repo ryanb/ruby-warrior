@@ -29,8 +29,8 @@ describe RubyWarrior::Turn do
   describe "with senses" do
     before(:each) do
       @feel = RubyWarrior::Abilities::Feel.new(Object.new)
-      @feel.stubs(:space).returns(Object.new)
-      @feel.stubs(:space).with(:backward).returns(Object.new)
+      allow(@feel).to receive(:space).and_return(Object.new)
+      allow(@feel).to receive(:space).with(:backward).and_return(Object.new)
       @turn = RubyWarrior::Turn.new({:feel => @feel})
     end
 

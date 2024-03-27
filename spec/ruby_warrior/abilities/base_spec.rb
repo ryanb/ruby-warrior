@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyWarrior::Abilities::Base do
   before(:each) do
-    @unit = stub
+    @unit = double
     @ability = RubyWarrior::Abilities::Base.new(@unit)
   end
 
@@ -22,7 +22,7 @@ describe RubyWarrior::Abilities::Base do
   end
 
   it "should fetch unit at given direction with distance" do
-    @ability.expects(:space).with(:right, 3, 1).returns(stub(:unit => 'unit'))
+    expect(@ability).to receive(:space).with(:right, 3, 1).and_return(double(:unit => 'unit'))
     expect(@ability.unit(:right, 3, 1)).to eq('unit')
   end
 

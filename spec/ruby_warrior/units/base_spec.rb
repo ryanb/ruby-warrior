@@ -15,7 +15,7 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should consider itself alive with position" do
-    @unit.position = stub
+    @unit.position = double
     expect(@unit).to be_alive
   end
 
@@ -28,12 +28,12 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should default health to max health" do
-    @unit.stubs(:max_health).returns(10)
+    allow(@unit).to receive(:max_health).and_return(10)
     expect(@unit.health).to eq(10)
   end
 
   it "should subtract health when taking damage" do
-    @unit.stubs(:max_health).returns(10)
+    allow(@unit).to receive(:max_health).and_return(10)
     @unit.take_damage(3)
     expect(@unit.health).to eq(7)
   end
@@ -43,14 +43,14 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should set position to nil when running out of health" do
-    @unit.position = stub
-    @unit.stubs(:max_health).returns(10)
+    @unit.position = double
+    allow(@unit).to receive(:max_health).and_return(10)
     @unit.take_damage(10)
     expect(@unit.position).to be_nil
   end
 
   it "should print out line with name when speaking" do
-    RubyWarrior::UI.expects(:puts_with_delay).with("Base foo")
+    expect(RubyWarrior::UI).to receive(:puts_with_delay).with("Base foo")
     @unit.say "foo"
   end
 
@@ -60,27 +60,27 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should prepare turn by calling play_turn with next turn object" do
-    @unit.stubs(:next_turn).returns('next_turn')
-    @unit.expects(:play_turn).with('next_turn')
+    allow(@unit).to receive(:next_turn).and_return('next_turn')
+    expect(@unit).to receive(:play_turn).with('next_turn')
     @unit.prepare_turn
   end
 
   it "should perform action when calling perform on turn" do
-    @unit.position = stub
-    RubyWarrior::Abilities::Walk.any_instance.expects(:perform).with(:backward)
+    @unit.position = double
+    expect_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).with(:backward)
     @unit.add_abilities(:walk!)
-    turn = stub(:action => [:walk!, :backward])
-    @unit.stubs(:next_turn).returns(turn)
+    turn = double(:action => [:walk!, :backward])
+    allow(@unit).to receive(:next_turn).and_return(turn)
     @unit.prepare_turn
     @unit.perform_turn
   end
 
   it "should not perform action when dead (no position)" do
     @unit.position = nil
-    RubyWarrior::Abilities::Walk.any_instance.stubs(:perform).raises("action should not be called")
+    allow_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).and_raise("action should not be called")
     @unit.add_abilities(:walk!)
-    turn = stub(:action => [:walk!, :backward])
-    @unit.stubs(:next_turn).returns(turn)
+    turn = double(:action => [:walk!, :backward])
+    allow(@unit).to receive(:next_turn).and_return(turn)
     @unit.prepare_turn
     @unit.perform_turn
   end
@@ -91,13 +91,13 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should pass abilities to new turn when calling next_turn" do
-    RubyWarrior::Turn.expects(:new).with({:walk! => nil, :attack! => nil, :feel => nil}).returns('turn')
-    @unit.stubs(:abilities).returns(:walk! => nil, :attack! => nil, :feel => nil)
+    expect(RubyWarrior::Turn).to receive(:new).with(:walk! => nil, :attack! => nil, :feel => nil).and_return('turn')
+    allow(@unit).to receive(:abilities).and_return(:walk! => nil, :attack! => nil, :feel => nil)
     expect(@unit.next_turn).to eq('turn')
   end
 
   it "should add ability" do
-    RubyWarrior::Abilities::Walk.expects(:new).with(@unit).returns('walk')
+    expect(RubyWarrior::Abilities::Walk).to receive(:new).with(@unit).and_return('walk')
     @unit.add_abilities(:walk!)
     expect(@unit.abilities).to eq({ :walk! => 'walk' })
   end
@@ -107,7 +107,7 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should be released from bonds when taking damage" do
-    @unit.stubs(:max_health).returns(10)
+    allow(@unit).to receive(:max_health).and_return(10)
     @unit.bind
     expect(@unit).to be_bound
     @unit.take_damage(2)
@@ -121,12 +121,12 @@ describe RubyWarrior::Units::Base do
   end
 
   it "should not perform action when bound" do
-    @unit.position = stub
+    @unit.position = double
     @unit.bind
-    RubyWarrior::Abilities::Walk.any_instance.stubs(:perform).raises("action should not be called")
+    allow_any_instance_of(RubyWarrior::Abilities::Walk).to receive(:perform).and_raise("action should not be called")
     @unit.add_abilities(:walk!)
-    turn = stub(:action => [:walk!, :backward])
-    @unit.stubs(:next_turn).returns(turn)
+    turn = double(:action => [:walk!, :backward])
+    allow(@unit).to receive(:next_turn).and_return(turn)
     @unit.prepare_turn
     @unit.perform_turn
   end

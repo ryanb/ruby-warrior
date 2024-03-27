@@ -113,7 +113,7 @@ module RubyWarrior
     def exists?
       File.exist? load_path
     end
-    
+
     def setup_warrior(warrior)
       @warrior = warrior
       @warrior.add_abilities(*profile.abilities)
